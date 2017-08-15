@@ -10,10 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170814204131) do
+ActiveRecord::Schema.define(version: 20170815133135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "courses", force: :cascade do |t|
+    t.text "name"
+    t.bigint "resume_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["resume_id"], name: "index_courses_on_resume_id"
+  end
+
+  create_table "meetings", force: :cascade do |t|
+    t.time "start_time"
+    t.time "end_time"
+    t.text "review_title"
+    t.text "review_content"
+    t.integer "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "undergraduate_id"
+    t.integer "highschooler_id"
+  end
+
+  create_table "resumes", force: :cascade do |t|
+    t.string "school_email"
+    t.integer "relative_completion"
+    t.text "academic_description"
+    t.string "stance"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "universities", force: :cascade do |t|
+    t.string "name"
+    t.bigint "resume_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["resume_id"], name: "index_universities_on_resume_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -28,8 +65,20 @@ ActiveRecord::Schema.define(version: 20170814204131) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "gender"
+    t.date "birth_date"
+    t.string "city"
+    t.string "country"
+    t.boolean "undergraduate"
+    t.text "personal_description"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "courses", "resumes"
+  add_foreign_key "meetings", "users", column: "highschooler_id"
+  add_foreign_key "meetings", "users", column: "undergraduate_id"
+  add_foreign_key "universities", "resumes"
 end
