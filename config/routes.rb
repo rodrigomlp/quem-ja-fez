@@ -23,7 +23,4 @@ Rails.application.routes.draw do
     resource :info, only: [:edit, :update]
   end
 
-
-  # get 'profile/edit', to: 'users#edit'
-  # get 'profile/update', to: 'users#update'
 end
