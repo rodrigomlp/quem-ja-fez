@@ -235,7 +235,3 @@ User.all.where(undergraduate: true).each do |undergraduate|
     highschooler: User.where(undergraduate: false).order("RANDOM()").first
     )
 end
-
-
-
-
