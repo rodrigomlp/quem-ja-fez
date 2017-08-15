@@ -1,3 +1,3 @@
 class University < ApplicationRecord
-  belongs_to :resume
+  has_many :resumes
 end
