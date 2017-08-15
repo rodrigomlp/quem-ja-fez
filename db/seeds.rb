@@ -1,7 +1,9 @@
 require 'faker'
 
 #Destroy everything
-User.all.destroy
+User.destroy_all
+University.destroy_all
+Course.destroy_all
 
 #Creating basic info
 password = 123456
@@ -181,6 +183,58 @@ end
 #   Universitie.create(name: courses.sample)
 # end
 
+# Creating Resumes
+User.all.where(undergraduate: true).each do |undergraduate|
+  Resume.create!(
+    user: undergraduate,
+    university: University.order("RANDOM()").first,
+    course: Course.order("RANDOM()").first,
+    school_email: Faker::Internet.email,
+    relative_completion: rand(0..100),
+    academic_description: Faker::HitchhikersGuideToTheGalaxy.quote,
+    stance: Resume::STANCE.sample)
+end
+
+# Creating Meetings
+duration = [0.5, 1, 1.5, 2]
+rating = [0, 1, 2, 3, 4, 5]
+
+Creating meeting by especifying the amount
+meetings_number = 100
+for i in 1..meetings_number
+  randon_times = []
+  randon_times << Faker::Time.forward(rand(8), :all) # random time in the next 7 days
+  randon_times << Faker::Time.backward(rand(8), :all) # random time in the last 7 days
+  start_time = randon_times.sample
+
+  Meeting.create!(
+    start_time: start_time,
+    end_time: start_time + duration.sample.hour,
+    review_title: Faker::MostInterestingManInTheWorld.quote,
+    review_content: Faker::Hacker.say_something_smart,
+    rating: rating.sample,
+    undergraduate: User.where(undergraduate: true).order("RANDOM()").first,
+    highschooler: User.where(undergraduate: false).order("RANDOM()").first
+    )
+end
+
+# Creating meeting for all undergraduates
+User.all.where(undergraduate: true).each do |undergraduate|
+  randon_times = []
+  randon_times << Faker::Time.forward(rand(8), :all) # mettings to occur in the next 7 days
+  randon_times << Faker::Time.backward(rand(8), :all) # mettings that have already occurred in the last 7 days
+  start_time = randon_times.sample
+
+  Meeting.create!(
+    start_time: start_time,
+    end_time: start_time + duration.sample.hour,
+    review_title: Faker::MostInterestingManInTheWorld.quote,
+    review_content: Faker::Hacker.say_something_smart,
+    rating: rating.sample,
+    undergraduate: undergraduate,
+    highschooler: User.where(undergraduate: false).order("RANDOM()").first
+    )
+end
 
 
 
