@@ -1,4 +1,16 @@
 .card {
   border: 1px solid $gray;
   border-radius: 5px;
+
+  margin: 10px 0;
+}
+
+.card-site-info {
+  @extend .card;
+
+  .banner {
+    height: 200px;
+    background-size: cover !important;
+    background-position: center;
+  }
 }

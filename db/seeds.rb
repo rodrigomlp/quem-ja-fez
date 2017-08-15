@@ -1,7 +1,7 @@
 require 'faker'
 
 #Destroy everything
-User.all.destroy
+User.destroy_all
 
 #Creating basic info
 password = 123456
