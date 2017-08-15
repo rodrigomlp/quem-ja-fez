@@ -8,6 +8,6 @@ class User < ApplicationRecord
   has_many :universities, through: :resumes
   has_many :courses, through: :resumes
 
-  validates :first_name, presence: true
-  validates :last_name, presence: true
+  # validates :first_name, presence: true # We don't have a form for this yet
+  # validates :last_name, presence: true # We don't have a form for this yet
 end

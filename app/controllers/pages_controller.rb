@@ -3,4 +3,10 @@ class PagesController < ApplicationController
 
   def home
   end
+
+  def about # about us
+  end
+
+  def info # undergrad sign up explanation page
+  end
 end
