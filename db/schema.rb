@@ -17,10 +17,8 @@ ActiveRecord::Schema.define(version: 20170815224228) do
 
   create_table "courses", force: :cascade do |t|
     t.text "name"
-    t.bigint "resume_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["resume_id"], name: "index_courses_on_resume_id"
   end
 
   create_table "meetings", force: :cascade do |t|
@@ -42,17 +40,20 @@ ActiveRecord::Schema.define(version: 20170815224228) do
     t.string "stance"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "university_id"
+    t.bigint "course_id"
+    t.index ["course_id"], name: "index_resumes_on_course_id"
+    t.index ["university_id"], name: "index_resumes_on_university_id"
   end
 
   create_table "universities", force: :cascade do |t|
     t.string "name"
-    t.bigint "resume_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["resume_id"], name: "index_universities_on_resume_id"
   end
 
   create_table "users", force: :cascade do |t|
+    # Devise
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -65,12 +66,19 @@ ActiveRecord::Schema.define(version: 20170815224228) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+<<<<<<< HEAD
+=======
+    # Other
+    t.string "first_name"
+    t.string "last_name"
+>>>>>>> 0155ad2fbb59781b323a583d774c48be30b4f690
     t.string "gender"
     t.date "birth_date"
     t.string "city"
     t.string "country"
-    t.boolean "undergraduate"
+    t.boolean "undergraduate", default: false
     t.text "personal_description"
+<<<<<<< HEAD
     t.string "provider"
     t.string "uid"
     t.string "facebook_picture_url"
@@ -78,12 +86,15 @@ ActiveRecord::Schema.define(version: 20170815224228) do
     t.string "last_name"
     t.string "token"
     t.datetime "token_expiry"
+=======
+
+>>>>>>> 0155ad2fbb59781b323a583d774c48be30b4f690
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "courses", "resumes"
   add_foreign_key "meetings", "users", column: "highschooler_id"
   add_foreign_key "meetings", "users", column: "undergraduate_id"
-  add_foreign_key "universities", "resumes"
+  add_foreign_key "resumes", "courses"
+  add_foreign_key "resumes", "universities"
 end
