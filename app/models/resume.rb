@@ -1,4 +1,4 @@
 class Resume < ApplicationRecord
-  has_one :university
-  has_one :course
+  belongs_to :university
+  belongs_to :course
 end
