@@ -193,7 +193,8 @@ User.all.where(undergraduate: true).each do |undergraduate|
       school_email: Faker::Internet.email,
       relative_completion: rand(0..100),
       academic_description: Faker::HitchhikersGuideToTheGalaxy.quote,
-      stance: Resume::STANCE.sample
+      stance: Resume::STANCE.sample,
+      email_checked: [true, false].sample
     )
   end
 end
