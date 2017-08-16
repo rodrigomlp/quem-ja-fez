@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170816144520) do
+ActiveRecord::Schema.define(version: 20170816194427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20170816144520) do
     t.bigint "university_id"
     t.bigint "course_id"
     t.bigint "user_id"
+    t.boolean "email_checked", default: false
     t.index ["course_id"], name: "index_resumes_on_course_id"
     t.index ["university_id"], name: "index_resumes_on_university_id"
     t.index ["user_id"], name: "index_resumes_on_user_id"
@@ -67,19 +68,17 @@ ActiveRecord::Schema.define(version: 20170816144520) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    #
     t.string "gender"
     t.date "birth_date"
     t.string "city"
     t.string "country"
     t.boolean "undergraduate", default: false
     t.text "personal_description"
-    t.string "first_name"
-    t.string "last_name"
-    #
     t.string "provider"
     t.string "uid"
     t.string "facebook_picture_url"
+    t.string "first_name"
+    t.string "last_name"
     t.string "token"
     t.datetime "token_expiry"
     t.index ["email"], name: "index_users_on_email", unique: true
