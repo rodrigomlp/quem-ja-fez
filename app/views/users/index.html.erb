@@ -9,18 +9,17 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>Nome</th>
+        <th>Universitário</th>
         <th>Curso</th>
         <th>Universidade</th>
       </tr>
     </thead>
     <tbody>
-      <% @users.each do |user| %>
+      <% @resumes.each do |resume| %>
         <tr>
-          <td><%= user.first_name %> <%= user.last_name %></td>
-          <!-- <td><%= user.city %>, <%= user.country %></td> -->
-          <td><%= user.courses.first.name %></td>
-          <td><%= user.universities.first.name %></td>
+          <td> <%= resume.user.first_name %> <%= resume.user.last_name %> </td>
+          <td> <%= resume.course.name %> </td>
+          <td> <%= resume.university.name %> </td>
         </tr>
       <% end %>
     </tbody>

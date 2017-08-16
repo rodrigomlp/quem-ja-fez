@@ -10,7 +10,7 @@ password = 123456
 gender = ['masculino', 'feminino', 'other']
 
 highschollers_number = 10
-undergraduates_number = 10
+undergraduates_number = 50
 
 highschollers_emails = []
 undergraduates_emails = []
@@ -185,14 +185,17 @@ end
 
 # Creating Resumes
 User.all.where(undergraduate: true).each do |undergraduate|
-  Resume.create!(
-    user: undergraduate,
-    university: University.order("RANDOM()").first,
-    course: Course.order("RANDOM()").first,
-    school_email: Faker::Internet.email,
-    relative_completion: rand(0..100),
-    academic_description: Faker::HitchhikersGuideToTheGalaxy.quote,
-    stance: Resume::STANCE.sample)
+  (rand(3) + 1).times do
+    Resume.create!(
+      user: undergraduate,
+      university: University.order("RANDOM()").first,
+      course: Course.order("RANDOM()").first,
+      school_email: Faker::Internet.email,
+      relative_completion: rand(0..100),
+      academic_description: Faker::HitchhikersGuideToTheGalaxy.quote,
+      stance: Resume::STANCE.sample
+    )
+  end
 end
 
 # Creating Meetings
