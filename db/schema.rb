@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20170815210434) do
+ActiveRecord::Schema.define(version: 20170816144520) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,8 +22,6 @@ ActiveRecord::Schema.define(version: 20170815210434) do
   end
 
   create_table "meetings", force: :cascade do |t|
-    t.time "start_time"
-    t.time "end_time"
     t.text "review_title"
     t.text "review_content"
     t.integer "rating"
@@ -32,6 +29,8 @@ ActiveRecord::Schema.define(version: 20170815210434) do
     t.datetime "updated_at", null: false
     t.integer "undergraduate_id"
     t.integer "highschooler_id"
+    t.datetime "start_time"
+    t.datetime "end_time"
   end
 
   create_table "resumes", force: :cascade do |t|
@@ -56,7 +55,6 @@ ActiveRecord::Schema.define(version: 20170815210434) do
   end
 
   create_table "users", force: :cascade do |t|
-    # Devise
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -82,7 +80,6 @@ ActiveRecord::Schema.define(version: 20170815210434) do
     t.string "last_name"
     t.string "token"
     t.datetime "token_expiry"
-
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
