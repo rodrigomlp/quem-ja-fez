@@ -67,17 +67,19 @@ ActiveRecord::Schema.define(version: 20170816144520) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    #
     t.string "gender"
     t.date "birth_date"
     t.string "city"
     t.string "country"
     t.boolean "undergraduate", default: false
     t.text "personal_description"
+    t.string "first_name"
+    t.string "last_name"
+    #
     t.string "provider"
     t.string "uid"
     t.string "facebook_picture_url"
-    t.string "first_name"
-    t.string "last_name"
     t.string "token"
     t.datetime "token_expiry"
     t.index ["email"], name: "index_users_on_email", unique: true

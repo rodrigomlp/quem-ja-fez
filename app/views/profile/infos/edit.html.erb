@@ -1,0 +1,16 @@
+<div class="container">
+  <h3>Informações Básicas</h3>
+  <%= simple_form_for @user, url: profile_info_path do |f| %>
+    <%= f.input :first_name, placeholder: 'Nome', label: false %>
+    <%= f.input :last_name, placeholder: 'Sobrenome', label: false %>
+    <%= f.input :gender, placeholder: 'Sexo', label: false %> <!-- TO-DO: Change gender to be a range only -->
+    <%= f.input :birth_date, as: :date, start_year: Date.today.year - 90,
+                              end_year: Date.today.year - 10,
+                              order: [:day, :month, :year],
+                              label: false %>
+    <%= f.input :city, placeholder: 'Cidade', label: false %>
+    <%= f.input :country, placeholder: 'País', label: false %>
+    <!-- BUG: :country not working -->
+    <%= f.button :submit, 'Atualizar', class: "btn btn-primary" %>
+  <% end %>
+</div>
