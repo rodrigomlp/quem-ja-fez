@@ -8,13 +8,14 @@ class UsersController < ApplicationController
   def index
     @users = User.all
 
-    # @users = @users.joins(resumes: [:courses, :universities])
-    # if params[:school].present?
-    #   @users = @users.where("LOWER(universities.name) LIKE ?", "%#{params[:school].downcase}%")
-    # end
-    # if params[:course].present?
-    #   @users = @users.where("LOWER(courses.name) LIKE ?", "%#{params[:course].downcase}%")
-    # end
+    @users = @users.joins(resumes: [:course, :university])
+    if params[:school].present?
+      @users = @users.where("LOWER(universities.name) LIKE ?", "%#{params[:school].downcase}%")
+    end
+
+    if params[:course].present?
+      @users = @users.where("LOWER(courses.name) ILIKE ?", "%#{params[:course]}%")
+    end
 
     # SELECT * FROM users
     #   JOIN resumes ON resumes.user_id = users.id
