@@ -2,20 +2,20 @@
   <div class="panel-heading">Profile</div>
   <!-- TO-DO: Indicate which page the user is currently in by highlighting the list -->
   <div class="list-group">
-    <a href="<% edit_profile_info_path %>" class="list-group-item">Informações básicas</a>
-    <a href="#" class="list-group-item">Meus cursos</a> <!-- TO-DO: Link missing -->
+    <%= link_to "Informações básicas", edit_profile_info_path, class: "list-group-item" %>
+    <%= link_to "Meus cursos", profile_resumes_path, class: "list-group-item" %>
   </div>
 
   <div class="panel-heading">Agenda</div>
   <div class="list-group">
-    <a href="#" class="list-group-item">Conversas agendadas</a> <!-- TO-DO: Link missing -->
-    <a href="#" class="list-group-item">Solicitações</a> <!-- TO-DO: Link missing -->
+    <%= link_to "Conversas agendadas", root_path, class: "list-group-item" %> <!-- TO-DO: Link missing -->
+    <%= link_to "Solicitações", root_path, class: "list-group-item" %> <!-- TO-DO: Link missing -->
   </div>
 
   <div class="panel-heading">Dados financeiros</div>
   <div class="list-group">
-    <a href="#" class="list-group-item">Editar meio de pagamento</a> <!-- TO-DO: Link missing -->
-    <a href="#" class="list-group-item">Transações</a> <!-- TO-DO: Link missing -->
-    <a href="#" class="list-group-item">Editar conta bancária</a> <!-- TO-DO: Link missing -->
+    <%= link_to "Editar meio de pagamento", root_path, class: "list-group-item" %> <!-- TO-DO: Link missing -->
+    <%= link_to "Transações", root_path, class: "list-group-item" %> <!-- TO-DO: Link missing -->
+    <%= link_to "Editar conta bancária", root_path, class: "list-group-item" %> <!-- TO-DO: Link missing -->
   </div>
 </div>
