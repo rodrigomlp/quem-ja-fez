@@ -1,0 +1,9 @@
+<div class="container">
+  <h3>Adicione seu email acadêmico</h3>
+
+  <!-- Adicionar university email -->
+  <%= simple_form_for @resume, url: profile_verification_path, method: :patch do |f| %>
+    <%= f.input :school_email, label: false, placeholder: "Email acadêmico" %>
+    <%= f.button :submit, "Adicionar Email" %>
+  <% end %>
+</div>
