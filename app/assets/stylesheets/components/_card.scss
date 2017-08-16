@@ -14,3 +14,13 @@
     background-position: center;
   }
 }
+
+.card-resume {
+  @extend .card;
+
+  // .card-banner {
+  //   height: 200px;
+  //   background-size: cover !important;
+  //   background-position: center;
+  // }
+}
