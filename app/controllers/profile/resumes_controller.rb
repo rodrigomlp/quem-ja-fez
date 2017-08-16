@@ -38,6 +38,7 @@ class Profile::ResumesController < ApplicationController
     end
   end
 
+
   def destroy
     @resume.destroy
     redirect_to profile_resumes_path
