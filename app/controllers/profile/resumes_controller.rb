@@ -22,10 +22,13 @@ class Profile::ResumesController < ApplicationController
 
   end
 
-  def destroy
+  def show
 
   end
 
+  def destroy
+
+  end
   private
 
   def resume_params

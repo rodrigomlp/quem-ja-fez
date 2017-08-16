@@ -1,0 +1,58 @@
+<div class="container-fluid">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-9">
+        <div class="infos">
+          <div class="info text-center">
+            <div class="item">
+              <%= image_tag 'http://via.placeholder.com/100x100', class: "avatar avatar-large img-thumbnail img-responsive" %>
+            </div>
+            <div class="item">
+              <h3><%= @resume.user.first_name %> <%= @resume.user.last_name %></h3>
+              <h4><%= @resume.university.name %></h4>
+              <h5>Média de 0 a 5: <%= @avg_rating %></h5>
+              <h5 class="text-right"><span><%= @meetings.count %> Conversas</span></h5>
+            </div>
+          </div>
+          <div class="info text-center">
+            <div class="item">
+              <h4>Porcentagem completa do curso:</h4>
+            </div>
+            <div class="item">
+              <h4><%= @resume.relative_completion %>%</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-3">
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-9">
+        <div class="info text-center">
+          <div class="item">
+            <h3>Sobre mim</h3>
+            <p><%= @resume.academic_description %></p>
+            <p><%= @resume.stance %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-9">
+        <div class="review-row">
+          <h3 class="text-center"><%= @meetings.size %> Reviews</h3>
+        </div>
+      </div>
+      <% @meetings.each do |meeting| %>
+        <div class="col-xs-12 col-sm-9">
+          <div class="item">
+            <h3><%= meeting.review_title %></h3>
+            <p><%= meeting.review_content %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
