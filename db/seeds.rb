@@ -199,7 +199,7 @@ end
 duration = [0.5, 1, 1.5, 2]
 rating = [0, 1, 2, 3, 4, 5]
 
-Creating meeting by especifying the amount
+# Creating meeting by especifying the amount
 meetings_number = 100
 for i in 1..meetings_number
   randon_times = []
