@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   namespace :profile do
     resources :resumes, only: [:index, :create, :update, :destroy]
     resources :meetings, only: [:index]
-    resource :info, only: [:edit, :update]
+    resource  :info, only: [:edit, :update]
+    resource  :verification, only: [:show, :update]
   end
-
 end
