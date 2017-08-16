@@ -6,22 +6,14 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @resumes = Resume.all
+    @resumes = @resumes.joins(:course, :university, :user) # joins all tables onto resume
 
-    # @users = @users.joins(resumes: [:courses, :universities])
-    # if params[:school].present?
-    #   @users = @users.where("LOWER(universities.name) LIKE ?", "%#{params[:school].downcase}%")
-    # end
-    # if params[:course].present?
-    #   @users = @users.where("LOWER(courses.name) LIKE ?", "%#{params[:course].downcase}%")
-    # end
-
-    # SELECT * FROM users
-    #   JOIN resumes ON resumes.user_id = users.id
-    #   JOIN courses ON resumes.course_id = courses.id
-    #   JOIN universities ON resumes.university_id = universities.id
-    #   WHERE courses.name LIKE "%direito%" AND
-    #     universities.name LIKE "%PUC%"
-
+    if params[:university].present? # has the user entered anything in the 'university' search field?
+      @resumes = @resumes.where("LOWER(universities.name) ILIKE ?", "%#{params[:university]}%")
+    end
+    if params[:course].present? # has the user entered anything in the 'course' search field?
+      @resumes = @resumes.where("LOWER(courses.name) ILIKE ?", "%#{params[:course]}%")
+    end
   end
 end

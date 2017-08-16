@@ -1,9 +1,27 @@
-<!-- Small Banner -->
+<!-- Search Bar -->
 <div class="banner banner-sm" style="background-image: url(<%= image_path 'bw_college_graduation_day.jpg' %>);">
   <%= render '/shared/banner_form' %>
 </div>
 
 <!-- Body -->
-<div class="container">
-
+<div class="container margin-v-md">
+  <!-- Search Results -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Universitário</th>
+        <th>Curso</th>
+        <th>Universidade</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @resumes.each do |resume| %>
+        <tr>
+          <td> <%= resume.user.first_name %> <%= resume.user.last_name %> </td>
+          <td> <%= resume.course.name %> </td>
+          <td> <%= resume.university.name %> </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
