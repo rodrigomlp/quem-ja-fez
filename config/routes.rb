@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :profile do
+    get 'infos/edit'
+  end
+
   get 'users/show'
 
   get 'users/index'
