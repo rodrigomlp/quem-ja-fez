@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     # if params[:school].present?
     #   @users = @users.where("LOWER(universities.name) LIKE ?", "%#{params[:school].downcase}%")
     # end
+
     # if params[:course].present?
     #   @users = @users.where("LOWER(courses.name) LIKE ?", "%#{params[:course].downcase}%")
     # end

@@ -4,6 +4,15 @@
 </div>
 
 <!-- Body -->
-<div class="container">
-
+<div class="container margin-v-md">
+  <table class="table">
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.first_name %> <%= user.last_name %></td>
+          <td><%= user.city %>, <%= user.country %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
