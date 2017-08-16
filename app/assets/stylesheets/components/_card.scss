@@ -15,6 +15,18 @@
   }
 }
 
+// app/views/pages/info
+.card-info {
+  padding: 20px;
+  background-color: rgba(0,0,0,0.6);
+  .card-title {
+    margin-bottom: 10px;
+  }
+  .card-body {
+    margin-bottom: 20px;
+  }
+}
+
 .card-resume {
   @extend .card;
 
@@ -23,4 +35,8 @@
   //   background-size: cover !important;
   //   background-position: center;
   // }
+}
+
+.card-border-rd-sm {
+  border-radius: 5px;
 }
