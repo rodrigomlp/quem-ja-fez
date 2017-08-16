@@ -1,0 +1,32 @@
+<div class="container">
+  <h1>Meus cursos</h1>
+  <!-- List of my courses -->
+  <% @resumes.each do |resume| %>
+    <div class="card-resume">
+      <div class="row">
+        <div class="col-xs-6">
+          <p><%= resume.university.name %></p>
+          <p><%= resume.course.name %></p>
+          <p><%= resume.school_email %></p>
+        </div>
+        <div class="col-xs-6">
+          <p><%= resume.relative_completion %></p>
+          <p><%= resume.stance %></p>
+          <p><%= resume.academic_description %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <!-- Add a new course -->
+  <%= simple_form_for @new_resume, url:  profile_resumes_path, method: :post do |f| %>
+    <%= f.association :university, label: false, prompt: "Universidade" %>
+    <%= f.association :course, label: false, prompt: "Curso" %>
+    <%= f.input :school_email, readonly: true, label: false, placeholder: "E-mail da instituição de ensino" %>
+    <%= f.input :relative_completion, label: false, prompt: "Nível de completude do curso", as: :select, collection: Resume::RELATIVE_COMPLETION %>
+    <%= f.input :stance, label: false, prompt: "Posicionamento", as: :select, collection: Resume::STANCE %>
+    <%= f.input :academic_description, label: false, placeholder: "Descrição breve da sua experiência", :input_html => {:rows => 3}  %>
+    <%= f.submit "Submeter para validação de e-mail", class: "btn btn-primary" %>
+  <% end %>
+
+</div>
+
