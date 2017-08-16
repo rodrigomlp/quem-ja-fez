@@ -1,0 +1,50 @@
+.undergrad-card {
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  margin: 10px auto;
+  position: relative;
+
+  .content {
+    margin-top: 10px;
+  }
+
+  .content img {
+    margin: 25px auto;
+  }
+  p {
+    color: rgba(0,0,0,0.4);
+    font-weight: lighter;
+    font-size: 14px;
+  }
+  .card-link {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 2;
+    background: black;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .card-link:hover {
+    opacity: 0.1;
+  }
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px;
+
+    .controls {
+      display: flex;
+      justify-content: space-around;
+    }
+    .controls i {
+      padding: 0 10px;
+      color: black;
+      opacity: 0.2;
+    }
+    .controls i:hover {
+      opacity: 0.4;
+    }
+  }
+}
