@@ -21,7 +21,7 @@
   <%= simple_form_for @new_resume, url:  profile_resumes_path, method: :post do |f| %>
     <%= f.association :university, label: false, prompt: "Universidade" %>
     <%= f.association :course, label: false, prompt: "Curso" %>
-    <%= f.input :school_email, readonly: true, label: false, placeholder: "E-mail da instituição de ensino" %>
+    <%= f.input :school_email, label: false, placeholder: "E-mail da instituição de ensino" %>
     <%= f.input :relative_completion, label: false, prompt: "Nível de completude do curso", as: :select, collection: Resume::RELATIVE_COMPLETION %>
     <%= f.input :stance, label: false, prompt: "Posicionamento", as: :select, collection: Resume::STANCE %>
     <%= f.input :academic_description, label: false, placeholder: "Descrição breve da sua experiência", :input_html => {:rows => 3}  %>
