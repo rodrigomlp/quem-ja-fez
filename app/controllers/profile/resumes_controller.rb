@@ -10,10 +10,14 @@ class Profile::ResumesController < ApplicationController
 
   def create
     @resume = Resume.new(resume_params)
+    @resume.school_email = nil unless EmailChecker.is_valid?(@resume.school_email, @resume.university)
+
     @resume.user = current_user
     if @resume.save
       redirect_to profile_resumes_path
     else
+      @resumes = current_user.resumes
+      @new_resume = Resume.new
       render :index
     end
 
@@ -32,9 +36,7 @@ class Profile::ResumesController < ApplicationController
       else
         render :index
       end
-
       # TO-DO: fazer ação que envia check de e-mail
-
     end
   end
 
