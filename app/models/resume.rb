@@ -7,6 +7,7 @@ class Resume < ApplicationRecord
   belongs_to :university
   belongs_to :course
   belongs_to :user
+  has_many :meetings
 
 
   # Método a ser jogado no ERB para criar o o array do RELATIVE_COMPLETION
