@@ -15,7 +15,7 @@ class Profile::VerificationsController < ApplicationController
     if @resume.save
       redirect_to profile_resumes_path
     else
-      render :update
+      render :show
     end
   end
 
