@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 20170817175124) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "email" #email sufix from each school. ex.: UNICAMP >> dac.unicamp
+    t.string "email" # email sufix from each school. ex.: UNICAMP >> dac.unicamp
   end
 
   create_table "users", force: :cascade do |t|
