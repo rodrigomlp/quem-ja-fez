@@ -7,35 +7,13 @@
     </div>
 
     <!-- TO-DO: terminar os cards -->
-    <!-- List of scheduled meetings -->
+    <!-- List of scheduled meetings to be attended-->
     <div class="col-xs-8">
       <h3>Conversas agendadas</h3>
 
-      <!-- First attempt -->
-      <% @future_meetings.each do |meeting| %>
-          <div class="panel panel-default">
-          <div class="panel-heading">
-            <h4 class="panel-title">
-              Bate papo com
-              <% if current_user.id == meeting.highschooler.id %>
-                <%= meeting.undergraduate.first_name %>
-              <% else %>
-                <%= meeting.highschooler.first_name %>
-              <% end %>
-            </h4>
-          </div>
-          <div class="panel-body">
-            <p><%= meeting.start_time %></p>
-            <p><%= meeting.end_time %></p>
-          </div>
-        </div>
-      <% end %>
-
-      <!-- Second attempt -->
       <div class="list-group">
         <% @future_meetings.each do |meeting| %>
           <%= link_to root_path, class: "list-group-item" do %> <%# TO-DO: profile_meeting_path(meeting)  %>
-          <!-- <a href="#" class="list-group-item"> -->
             <div class="row">
               <div class="col-xs-4">
                 <strong><%= meeting.start_time.strftime("%A, %d %b %y") %></strong>
@@ -43,9 +21,8 @@
               </div>
               <div class="col-xs-4 text-center">
                 <p>
-                  Bate papo com
                   <% if current_user.id == meeting.highschooler.id %>
-                    <%= meeting.undergraduate.first_name %>
+                    Conversa com <%= meeting.undergraduate.first_name %> sobre o curso de .. na .. <%# TO-DO: puxar nome da facul e curso de meeting %>
                   <% else %>
                     <%= meeting.highschooler.first_name %>
                   <% end %>
@@ -55,7 +32,6 @@
                 <strong>Status</strong>
               </div>
             </div>
-          <!-- </a> -->
           <% end %>
         <% end %>
       </div>
