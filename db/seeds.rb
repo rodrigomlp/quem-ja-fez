@@ -222,6 +222,26 @@ for i in 1..meetings_number
     )
 end
 
+# Creating meetings that where proposed from undergraduates to other undergraduates
+meetings_number = 100
+for i in 1..meetings_number
+  randon_times = []
+  randon_times << Faker::Time.forward(rand(8), :all) # random time in the next 7 days
+  randon_times << Faker::Time.backward(rand(8), :all) # random time in the last 7 days
+  start_time = randon_times.sample
+  random_undergraduates = User.where(undergraduate: true).order("RANDOM()")
+
+  Meeting.create!(
+    start_time: start_time,
+    end_time: start_time + duration.sample.hour,
+    review_title: Faker::MostInterestingManInTheWorld.quote,
+    review_content: Faker::Hacker.say_something_smart,
+    rating: rating.sample,
+    undergraduate: random_undergraduates.first,
+    highschooler: random_undergraduates.second
+    )
+end
+
 # Creating meeting for all undergraduates
 User.all.where(undergraduate: true).each do |undergraduate|
   randon_times = []
