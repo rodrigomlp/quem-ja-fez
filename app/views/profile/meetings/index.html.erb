@@ -34,7 +34,7 @@
       <!-- Second attempt -->
       <div class="list-group">
         <% @future_meetings.each do |meeting| %>
-          <%= link_to root_path, class: "list-group-item" do %>
+          <%= link_to root_path, class: "list-group-item" do %> <%# TO-DO: profile_meeting_path(meeting)  %>
           <!-- <a href="#" class="list-group-item"> -->
             <div class="row">
               <div class="col-xs-4">
