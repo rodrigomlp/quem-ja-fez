@@ -13,7 +13,7 @@ class UsersController < ApplicationController
       count += meeting.rating
     end
 
-    @avg_rating = (count / @meetings.size)
+    @avg_rating = (count / @meetings.size) unless @meetings.size == 0 # If user has no reviews, there is no rating yet.
   end
 
   def index
