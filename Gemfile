@@ -17,6 +17,7 @@ gem 'sass-rails'
 gem 'simple_form'
 gem 'country_select' # Simple_form country
 gem 'uglifier'
+gem 'postmark-rails' # automatic email sender
 
 gem 'omniauth-facebook' # ~> Facebook connection
 
