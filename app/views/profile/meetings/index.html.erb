@@ -13,7 +13,7 @@
 
       <div class="list-group">
         <% @meetings.each do |meeting| %>
-          <%= link_to root_path, class: "list-group-item" do %> <%# TO-DO: profile_meeting_path(meeting)  %>
+          <%= link_to profile_meeting_path(meeting), class: "list-group-item" do %>
             <div class="content">
               <div class="row">
                 <div class="col-xs-4">
