@@ -17,7 +17,6 @@ class Profile::VerificationsController < ApplicationController
     else
       render :update
     end
-    # TO-DO: University must exist, Course must exist
   end
 
   private
