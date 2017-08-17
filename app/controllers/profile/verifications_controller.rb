@@ -9,14 +9,20 @@ class Profile::VerificationsController < ApplicationController
   def update
     @resume = Resume.new(resume_params)
     @resume.user = current_user
-    current_user.undergraduate = true; #set user to be an undergrad
-    @resume.save!
+    current_user.undergraduate = true;  #set user to be an undergrad
+    current_user.save! # save to DB
+
+    if @resume.save
+      redirect_to profile_resumes_path
+    else
+      render :update
+    end
     # TO-DO: University must exist, Course must exist
   end
 
   private
 
   def resume_params
-    params.require(:resume).permit(:school_email)
+    params.require(:resume).permit(:school_email, :course_id, :university_id)
   end
 end

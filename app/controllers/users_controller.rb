@@ -2,7 +2,18 @@ class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def show
+    user = User.find(params[:id])
+    @resume = Resume.find_by(user_id: user.id)
 
+    @meetings = Meeting.where(undergraduate_id: @resume.user.id)
+
+    count = 0
+
+    @meetings.each do |meeting|
+      count += meeting.rating
+    end
+
+    @avg_rating = (count / @meetings.size)
   end
 
   def index

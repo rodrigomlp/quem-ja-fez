@@ -1,40 +1,103 @@
 <div class="container margin-v-md">
   <div class="row">
+
+    <!-- Profile side-bar -->
     <div class="col-xs-3">
-      <!-- Profile side-bar -->
       <%= render 'shared/profile/profile_side_bar' %>
     </div>
 
+    <!-- List of courses -->
     <div class="col-xs-8">
       <h3>Meus cursos</h3>
-      <!-- List of my courses -->
-      <% @resumes.each do |resume| %>
-        <div class="card-resume">
-          <div class="row">
-            <div class="col-xs-6">
-              <p><%= resume.university.name %></p>
-              <p><%= resume.course.name %></p>
-              <p><%= resume.school_email %></p>
-            </div>
 
-            <div class="col-xs-6">
-              <p><%= resume.relative_completion %></p>
-              <p><%= resume.stance %></p>
-              <p><%= resume.academic_description %></p>
+      <!-- List of my checked courses -->
+      <% @resumes.each do |resume| %>
+        <% if resume.email_checked %>
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h3 class="panel-title">E-mail verificado</h3>
+            </div>
+            <div class="panel-body">
+              <%= simple_form_for resume, url: profile_resume_path(resume), method: :patch do |f| %>
+                <div class="row">
+                  <div class="col-xs-6">
+                    <p><%= f.input :university, readonly: true, label: false, prompt: "Universidade" %></p>
+                    <p><%= f.input :course, readonly: true, label: false, prompt: "Curso" %></p>
+                    <p><%= f.input :school_email, readonly: true, label: false, placeholder: "E-mail da instituição de ensino" %></p>
+                  </div>
+                  <div class="col-xs-6">
+                    <p><%= f.input :relative_completion, label: false, prompt: "Nível de completude do curso", as: :select, collection: Resume::RELATIVE_COMPLETION %></p>
+                    <p><%= f.input :stance, label: false, prompt: "Posicionamento", as: :select, collection: Resume::STANCE %></p>
+                    <p><%= f.input :academic_description, label: false, placeholder: "Descrição breve da sua experiência", :input_html => {:rows => 3}  %></p>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <%= f.submit "Salvar alterações", class: "btn btn-primary btn-xs" %>
+                  <%= link_to "Excluir curso", profile_resume_path(resume), data: { confirm: "Are you sure?" }, method: :delete , class: "btn btn-danger btn-xs"%>
+                </div>
+              <% end %>
             </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
+
+      <!-- List of the courses pending verification -->
+      <% @resumes.each do |resume| %>
+        <% if !resume.email_checked %>
+          <div class="panel panel-warning">
+            <div class="panel-heading">
+              <h3 class="panel-title">E-mail precisa ser verificado</h3>
+            </div>
+            <div class="panel-body">
+              <%= simple_form_for resume, url: profile_resume_path(resume), method: :patch do |f| %>
+                <div class="row">
+                  <div class="col-xs-6">
+                    <p><%= f.association :university, label: false, prompt: "Universidade" %></p>
+                    <p><%= f.association :course, label: false, prompt: "Curso" %></p>
+                    <p><%= f.input :school_email, label: false, placeholder: "E-mail da instituição de ensino" %></p>
+                  </div>
+                  <div class="col-xs-6">
+                    <p><%= f.input :relative_completion, label: false, prompt: "Nível de completude do curso", as: :select, collection: Resume::RELATIVE_COMPLETION %></p>
+                    <p><%= f.input :stance, label: false, prompt: "Posicionamento", as: :select, collection: Resume::STANCE %></p>
+                    <p><%= f.input :academic_description, label: false, placeholder: "Descrição breve da sua experiência", :input_html => {:rows => 3}  %></p>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <%= f.submit "Salvar alterações", class: "btn btn-primary btn-xs" %>
+                  <%= link_to "Excluir curso", profile_resume_path(resume), data: { confirm: "Are you sure?" }, method: :delete , class: "btn btn-danger btn-xs"%>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+
       <!-- Add a new course -->
-      <%= simple_form_for @new_resume, url:  profile_resumes_path, method: :post do |f| %>
-        <%= f.association :university, label: false, prompt: "Universidade" %>
-        <%= f.association :course, label: false, prompt: "Curso" %>
-        <%= f.input :school_email, readonly: true, label: false, placeholder: "E-mail da instituição de ensino" %>
-        <%= f.input :relative_completion, label: false, prompt: "Nível de completude do curso", as: :select, collection: Resume::RELATIVE_COMPLETION %>
-        <%= f.input :stance, label: false, prompt: "Posicionamento", as: :select, collection: Resume::STANCE %>
-        <%= f.input :academic_description, label: false, placeholder: "Descrição breve da sua experiência", :input_html => {:rows => 3}  %>
-        <%= f.submit "Submeter para validação de e-mail", class: "btn btn-primary" %>
-      <% end %>
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">Adicione um novo curso</h3>
+        </div>
+        <div class="panel-body">
+          <%= simple_form_for @new_resume, url:  profile_resumes_path, method: :post do |f| %>
+            <div class="row">
+              <div class="col-xs-6">
+                <p><%= f.association :university, label: false, prompt: "Universidade" %></p>
+                <p><%= f.association :course, label: false, prompt: "Curso" %></p>
+                <p><%= f.input :school_email, label: false, placeholder: "E-mail da instituição de ensino" %></p>
+              </div>
+              <div class="col-xs-6">
+                <p><%= f.input :relative_completion, label: false, prompt: "Nível de completude do curso", as: :select, collection: Resume::RELATIVE_COMPLETION %></p>
+                <p><%= f.input :stance, label: false, prompt: "Posicionamento", as: :select, collection: Resume::STANCE %></p>
+                <p><%= f.input :academic_description, label: false, placeholder: "Descrição breve da sua experiência", :input_html => {:rows => 3}  %></p>
+              </div>
+            </div>
+            <div class="text-center">
+              <%= f.submit "Submeter para validação de e-mail", class: "btn btn-primary btn-xs" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
