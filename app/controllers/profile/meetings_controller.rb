@@ -15,5 +15,7 @@ class Profile::MeetingsController < ApplicationController
     @past_meetings_proposed = @meetings_proposed.where('start_time < ?', Time.now)
     @past_meetings = @past_meetings_accepted + @past_meetings_proposed
     @past_meetings.sort! { |a, b|  a.start_time <=> b.start_time }
+    # All the meetings together
+    @meetings = @future_meetings + @past_meetings
   end
 end

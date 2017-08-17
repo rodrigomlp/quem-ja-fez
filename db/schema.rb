@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170816194427) do
+ActiveRecord::Schema.define(version: 20170817194236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 20170816194427) do
     t.integer "highschooler_id"
     t.datetime "start_time"
     t.datetime "end_time"
+    t.bigint "resume_id"
+    t.index ["resume_id"], name: "index_meetings_on_resume_id"
   end
 
   create_table "resumes", force: :cascade do |t|
@@ -85,6 +87,7 @@ ActiveRecord::Schema.define(version: 20170816194427) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "meetings", "resumes"
   add_foreign_key "meetings", "users", column: "highschooler_id"
   add_foreign_key "meetings", "users", column: "undergraduate_id"
   add_foreign_key "resumes", "courses"
