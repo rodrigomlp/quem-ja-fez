@@ -21,7 +21,7 @@ gem 'uglifier'
 gem 'omniauth-facebook' # ~> Facebook connection
 
 group :development, :test do
-  gem "letter_opener", # to preview e-mails to be sent to user
+  gem "letter_opener" # to preview e-mails to be sent to user
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'web-console', '>= 3.3.0'

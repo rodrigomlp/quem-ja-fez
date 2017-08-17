@@ -7,7 +7,10 @@ class UserMailer < ApplicationMailer
   #
   def validation(resume)
     @resume = resume
+    @user = @resume.user.first_name
+    @greeting = "Olá," # greeting message displayed on e-mail
+    @greeting += " #{@resume.user.first_name}" unless @resume.user.first_name.nil? # Call user by his name if this variable is not empty
 
-    mail(to: @resume.school_email, subject: "Please validate your e-mail!")
+    mail(to: @resume.school_email, subject: "Validação do email acadêmico | Quem já fez")
   end
 end
