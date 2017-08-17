@@ -1,0 +1,25 @@
+<div class="container-fluid margin-v-md">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-8 col-xs-offset-2">
+        <div class="panel-body">
+          <%= simple_form_for @meeting, url: profile_meeting_path(@meeting), method: :patch do |f| %>
+            <div class="row">
+              <div class="col-xs-12">
+                <p>Review Title:</p>
+                <p><%= f.input :review_title, label: false, placeholder: "Title" %></p>
+                <p>Review Content:</p>
+                <p><%= f.input :review_content, label: false, placeholder: "Review" %></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="text-center">
+                <%= f.submit "Salvar alterações", class: "btn btn-primary btn-xs" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
