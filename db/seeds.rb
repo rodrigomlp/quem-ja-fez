@@ -52,34 +52,37 @@ undergraduates_emails.each do |email|
     undergraduate: true)
 end
 
-#Creating universities
+# TO-DO: Fill out all universities emails!
+# DO NOT DELETE THIS!!
 universities = [
-  'Universidade de São Paulo (USP)',
-  'Universidade Estadual de Campinas (Unicamp)',
-  'Universidade Federal do Rio de Janeiro (UFRJ)',
-  'Universidade Estadual Paulista (Unesp)',
-  'Pontifícia Universidade Católica de São Paulo (PUC-SP)',
-  'Pontifícia Universidade Católica do Rio de Janeiro (PUC-Rio)',
-  'Universidade Federal de São Paulo (Unifesp)',
-  'Universidade Federal do Rio Grande do Sul (UFRS)',
-  'Universidade Federal de Minas Gerais (UFMG)',
-  'Universidade de Brasília (UnB)',
-  'Universidade Federal de São Carlos (Ufscar)',
-  'Universidade Federal de Santa Catarina (Ufsc)',
-  'Pontifícia Universidade Católica do Rio Grande do Sul (PUC-RS)',
-  'Universidade do Estado do Rio de Janeiro (Uerj)',
-  'Universidade Estadual de Londrina (UEL)',
-  'Universidade Federal da Bahia (UFBA)',
-  'Universidade Federal de Santa Maria (UFSM)',
-  'Universidade Federal de Viçosa (UFV)',
-  'Universidade Federal do Ceará (UFC)',
-  'Universidade Federal do Paraná (UFPR)',
-  'Universidade Federal de Pernambuco (UFPE)',
-  'Universidade Federal Fluminense (UFF)',
+  { name: 'Universidade de São Paulo (USP)', email: 'usp.com' },
+  { name: 'Universidade Estadual de Campinas (Unicamp)', email: 'dac.unicamp.com' },
+  { name: 'Universidade Federal do Rio de Janeiro (UFRJ)', email: '' },
+  { name: 'Universidade Estadual Paulista (Unesp)', email: '' },
+  { name: 'Pontifícia Universidade Católica de São Paulo (PUC-SP)', email: '' },
+  { name: 'Pontifícia Universidade Católica do Rio de Janeiro (PUC-Rio)', email: '' },
+  { name: 'Universidade Federal de São Paulo (Unifesp)', email: '' },
+  { name: 'Universidade Federal do Rio Grande do Sul (UFRS)', email: '' } ,
+  { name: 'Universidade Federal de Minas Gerais (UFMG)', email: '' },
+  { name: 'Universidade de Brasília (UnB)', email: '' },
+  { name: 'Universidade Federal de São Carlos (Ufscar)', email: '' },
+  { name: 'Universidade Federal de Santa Catarina (Ufsc)', email: '' },
+  { name: 'Pontifícia Universidade Católica do Rio Grande do Sul (PUC-RS)' },
+  { name: 'Universidade do Estado do Rio de Janeiro (Uerj)', email: '' },
+  { name: 'Universidade Estadual de Londrina (UEL)', email: '' },
+  { name: 'Universidade Federal da Bahia (UFBA)', email: '' },
+  { name: 'Universidade Federal de Santa Maria (UFSM)', email: '' },
+  { name: 'Universidade Federal de Viçosa (UFV)', email: '' },
+  { name: 'Universidade Federal do Ceará (UFC)', email: '' },
+  { name: 'Universidade Federal do Paraná (UFPR)', email: '' },
+  { name: 'Universidade Federal de Pernambuco (UFPE)', email: '' },
+  { name: 'Universidade Federal Fluminense (UFF)', email: '' }
 ]
 
+
+
 universities.each do |university|
-  University.create!(name: university)
+  University.create!(name: university[:name], email: university[:email])
 end
 
 # Seed for a restricted number of universities

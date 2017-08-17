@@ -9,7 +9,10 @@ class Profile::VerificationsController < ApplicationController
   def update
     @resume = Resume.new(resume_params)
     @resume.user = current_user
+    # Custom class that validades if the e-mail is from a known university or not.
+    @resume.school_email = nil unless EmailChecker.is_valid?(@resume.school_email, @resume.university)
 
+    # only submit form if right info is provided
     if @resume.save
       UserMailer.validation(@resume).deliver_now # send email to validade school email
       current_user.undergraduate = true;  # user is now an undergrad
@@ -17,7 +20,7 @@ class Profile::VerificationsController < ApplicationController
 
       redirect_to profile_resumes_path
     else
-      render :show
+      render :show # else re-render form
     end
   end
 
