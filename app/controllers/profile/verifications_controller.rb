@@ -15,9 +15,8 @@ class Profile::VerificationsController < ApplicationController
     if @resume.save
       redirect_to profile_resumes_path
     else
-      render :update
+      render :show
     end
-    # TO-DO: University must exist, Course must exist
   end
 
   private
