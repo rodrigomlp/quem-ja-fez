@@ -6,8 +6,14 @@
           <%= simple_form_for @meeting, url: profile_meeting_path(@meeting), method: :patch do |f| %>
             <div class="row">
               <div class="col-xs-12">
-                <p>Review Title:</p>
-                <p><%= f.input :review_title, label: false, placeholder: "Title" %></p>
+                <% if @meeting.review_title.nil? %>
+                  <p>Please, enter your review title:</p>
+                  <div class="form-input">
+                    <%= f.input :review_title, label: false, placeholder: "Title" %>
+                  </div>
+                <% else %>
+                  <%= @meeting.review_title %>
+                <% end %>
                 <p>Review Content:</p>
                 <p><%= f.input :review_content, label: false, placeholder: "Review" %></p>
               </div>

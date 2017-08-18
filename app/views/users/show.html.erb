@@ -51,10 +51,12 @@
       </div>
       <% @meetings.each do |meeting| %>
         <div class="col-xs-12 col-sm-9">
-          <div class="item">
-            <h3><%= meeting.review_title %></h3>
-            <p><%= meeting.review_content %></p>
-          </div>
+          <% if !meeting.review_title.nil? && !meeting.review_content.nil?  %>
+            <div class="item">
+              <h3><%= meeting.review_title %></h3>
+              <p><%= meeting.review_content %></p>
+            </div>
+          <% end %>
         </div>
       <% end %>
     </div>
