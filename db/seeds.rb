@@ -79,6 +79,9 @@ universities = [
   { name: 'Universidade Federal Fluminense (UFF)', email: '' }
 ]
 
+# DEBUG
+university.create!(name: "Gmail", email: 'gmail.com')
+
 
 
 universities.each do |university|
