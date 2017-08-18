@@ -10,10 +10,22 @@ class UsersController < ApplicationController
     count = 0
 
     @meetings.each do |meeting|
-      count += meeting.rating
+      if !meeting.rating.nil?
+        count += meeting.rating
+      end
     end
 
-    @avg_rating = (count / @meetings.size) unless @meetings.size == 0 # If user has no reviews, there is no rating yet.
+    @count_reviews = 0
+
+    @meetings.each do |meeting|
+      if meeting.review_title.nil?
+        @count_reviews
+      else
+        @count_reviews += 1
+      end
+    end
+
+    @avg_rating = (count.to_f / @meetings.size).round(2) unless @meetings.size == 0 # If user has no reviews, there is no rating yet.
   end
 
   def index
