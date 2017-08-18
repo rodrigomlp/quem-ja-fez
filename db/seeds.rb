@@ -80,7 +80,7 @@ universities = [
 ]
 
 # DEBUG
-university.create!(name: "Gmail", email: 'gmail.com')
+University.create!(name: "Gmail", email: 'gmail.com')
 
 
 
