@@ -3,7 +3,9 @@
   <!-- TO-DO: Indicate which page the user is currently in by highlighting the list -->
   <div class="list-group">
     <%= link_to "Informações básicas", edit_profile_info_path, class: "list-group-item" %>
-    <%= link_to "Meus cursos", profile_resumes_path, class: "list-group-item" %>
+    <% if current_user.undergraduate %>
+      <%= link_to "Meus cursos", profile_resumes_path, class: "list-group-item" %>
+    <% end %>
   </div>
 
   <div class="panel-heading">Agenda</div>
