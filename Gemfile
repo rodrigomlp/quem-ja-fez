@@ -20,6 +20,7 @@ gem 'uglifier'
 gem 'postmark-rails' # automatic email sender
 
 gem 'omniauth-facebook' # ~> Facebook connection
+gem 'faker'
 
 group :development, :test do
   gem "letter_opener" # to preview e-mails to be sent to user
@@ -33,6 +34,5 @@ group :development, :test do
   gem 'poltergeist'
   gem 'launchy'
   gem 'minitest-reporters'
-  gem 'faker'
 end
 
