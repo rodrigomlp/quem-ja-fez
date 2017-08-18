@@ -11,7 +11,7 @@
         </div>
         <!-- If user is an undergrad, take him to 'edit resumes', else, help him create his first resume -->
         <%=
-          link_to_if(current_user.undergraduate == false, "Adicione um currículo", profile_verification_path, class: "btn btn-primary") do
+          link_to_if(current_user.undergraduate == false, "Adicione um currículo", new_profile_verification_path, class: "btn btn-primary") do
               link_to("Editar meus currículos", profile_resumes_path, class: "btn btn-default")
           end
         %>

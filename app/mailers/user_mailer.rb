@@ -6,10 +6,12 @@ class UserMailer < ApplicationMailer
   #
   def confirmation(resume)
     @resume = resume
-    @user = @resume.user.first_name
+    @resume.email_confirmation_token = SecureRandom.urlsafe_base64 # This create a randon token. More info: http://ruby-doc.org/stdlib-1.9.2/libdoc/securerandom/rdoc/SecureRandom.html
+    @resume.save! # Persist the email_confirmation_token on data base
+    @user_name = @resume.user.first_name
     @greeting = "Olá," # greeting message displayed on e-mail
-    @greeting += " #{@resume.user.first_name}" unless @resume.user.first_name.nil? # Call user by his name if this variable is not empty
+    @greeting += " #{@user_name}" unless @user_name.nil? # Call user by his name if this variable is not empty
 
-    mail(to: resume.school_email, subject: "Confirmação do email acadêmico | Quem já fez")
+    mail(to: resume.school_email, subject: "Confirme seu email acadêmico | Quem já fez?")
   end
 end
