@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     resource  :info, only: [:edit, :update]
     resource  :verification, only: [:new, :create] do
       member do
-        get '/email_confirmation', to: 'verification#email_confirmation'
+        get '/email_confirmation', to: 'verifications#email_confirmation'
       end
     end
   end
