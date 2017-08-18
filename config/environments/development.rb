@@ -1,9 +1,7 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  # config.action_mailer.delivery_method = :letter_opener
-  # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-  config.action_mailer.postmark_settings = { api_token: ENV['POSTMARK_API_KEY'] } # this key is only in heroku, not in our code
-  config.action_mailer.default_url_options = { host: "quemjafez.com.br" }
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
 
   # In the development environment your application's code is reloaded on

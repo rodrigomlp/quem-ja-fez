@@ -202,6 +202,14 @@ User.all.where(undergraduate: true).each do |undergraduate|
   end
 end
 
+# TESTE: E-mail do marco pra testar se o postmark está mandando e-mails corretamente
+# Resume.create!(
+#     user: User.last,
+#     university: University.last,
+#     course: Course.last,
+#     school_email: "beduschimarco@gmail.com"
+# )
+
 # Creating Meetings
 duration = [0.5, 1, 1.5, 2]
 ratings = [nil, 0, 1, 2, 3, 4, 5]
