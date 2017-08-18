@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     resources :resumes, only: [:index, :create, :update, :destroy]
     resources :meetings, only: [:index, :show, :create, :update, :destroy, :edit]
     resource  :info, only: [:edit, :update]
-    resource  :verification, only: [:show, :update] do
+    resource  :verification, only: [:new, :create] do
       member do
         get '/email_confirmation', to: 'verification#email_confirmation'
       end
