@@ -3,6 +3,8 @@ class Resume < ApplicationRecord
   RELATIVE_COMPLETION = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100]
 
   validates :school_email, presence: true
+  validate :validate_email
+
   after_create :send_confirmation_email
 
   belongs_to :university
@@ -14,6 +16,13 @@ class Resume < ApplicationRecord
 
   def send_confirmation_email # send email to validade school email
     UserMailer.confirmation(self).deliver_now
+  end
+
+  # Custom error: Verifica se o e-mail bate com a universidade selecionada
+  def validate_email
+    if !EmailChecker.is_valid?(self.school_email, self.university)
+      errors.add(:school_email, 'E-mail universitário inválido')
+    end
   end
 
   # Método a ser jogado no ERB para criar o o array do RELATIVE_COMPLETION
@@ -28,3 +37,5 @@ class Resume < ApplicationRecord
   #   completion_grades
   # end
 end
+
+

@@ -11,7 +11,6 @@ class Profile::VerificationsController < ApplicationController
     @resume.user = current_user
     # Custom class that validades if the e-mail is from a known university or not.
     @resume.school_email = nil unless EmailChecker.is_valid?(@resume.school_email, @resume.university)
-
     # Only submit form if right info is provided
     if @resume.save
       # After creating this resume, an e-mail of confirmation is sent. Logic is in Resume model.
