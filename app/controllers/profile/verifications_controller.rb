@@ -1,20 +1,19 @@
 class Profile::VerificationsController < ApplicationController
   before_action :authenticate_user!
 
-  def show
+  def show # deveria ser NEW
     @user = current_user
     @resume = Resume.new
   end
 
-  def update
+  def update # deveria ser CREATE
     @resume = Resume.new(resume_params)
     @resume.user = current_user
     # Custom class that validades if the e-mail is from a known university or not.
-    @resume.school_email = nil unless EmailChecker.is_valid?(@resume.school_email, @resume.university)
+    # @resume.school_email = nil unless EmailChecker.is_valid?(@resume.school_email, @resume.university)
 
     # only submit form if right info is provided
     if @resume.save
-      UserMailer.validation(@resume).deliver_now # send email to validade school email
       current_user.undergraduate = true;  # user is now an undergrad
       current_user.save! # save to DB
 
