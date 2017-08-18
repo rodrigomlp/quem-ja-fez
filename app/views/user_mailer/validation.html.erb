@@ -6,5 +6,8 @@
   Para validar seu e-mail acadêmico, clique na URL abaixo:
 </p>
   <!-- TO-DO: Validation link -->
+
+<%= link_to 'clique para validar', email_verification_user_url(token: @user.email_token)  %>
+
 <p>Sinceramente,</p>
 <p>Equipe Quem Já Fez.</p>

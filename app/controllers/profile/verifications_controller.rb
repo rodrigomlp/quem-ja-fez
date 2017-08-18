@@ -14,6 +14,7 @@ class Profile::VerificationsController < ApplicationController
 
     # only submit form if right info is provided
     if @resume.save
+      @resume.email_confirmation_token = SecureRandom.urlsafe_base64 # This create a randon token. More info: http://ruby-doc.org/stdlib-1.9.2/libdoc/securerandom/rdoc/SecureRandom.html
       UserMailer.validation(@resume).deliver_now # send email to validade school email
       current_user.undergraduate = true;  # user is now an undergrad
       current_user.save! # save to DB
@@ -29,4 +30,5 @@ class Profile::VerificationsController < ApplicationController
   def resume_params
     params.require(:resume).permit(:school_email, :course_id, :university_id)
   end
+
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170817194236) do
+ActiveRecord::Schema.define(version: 20170818165846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20170817194236) do
     t.bigint "course_id"
     t.bigint "user_id"
     t.boolean "email_checked", default: false
+    t.string "email_confirmation_token"
     t.index ["course_id"], name: "index_resumes_on_course_id"
     t.index ["university_id"], name: "index_resumes_on_university_id"
     t.index ["user_id"], name: "index_resumes_on_user_id"
