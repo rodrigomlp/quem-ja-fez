@@ -8,6 +8,7 @@ class Resume < ApplicationRecord
   belongs_to :university
   belongs_to :course
   belongs_to :user
+  has_many :meetings
 
   private
 

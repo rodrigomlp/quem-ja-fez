@@ -1,13 +1,5 @@
 Rails.application.routes.draw do
-  namespace :profile do
-    get 'verifications/show'
-  end
-
-  namespace :profile do
-    get 'verifications/update'
-  end
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   devise_for :users,
     controllers: { omniauth_callbacks: 'users/omniauth_callbacks' } # ~> Facebook connection
 
@@ -29,7 +21,7 @@ Rails.application.routes.draw do
 
   namespace :profile do
     resources :resumes, only: [:index, :create, :update, :destroy]
-    resources :meetings, only: [:index]
+    resources :meetings, only: [:index, :show, :create, :update, :destroy, :edit]
     resource  :info, only: [:edit, :update]
     resource  :verification, only: [:show, :update]
   end
