@@ -43,5 +43,6 @@ class UsersController < ApplicationController
     if params[:course].present? # has the user entered anything in the 'course' search field?
       @resumes = @resumes.where("LOWER(courses.name) ILIKE ?", "%#{params[:course]}%")
     end
+
   end
 end
