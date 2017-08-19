@@ -22,9 +22,7 @@ gem 'omniauth-facebook' # ~> Facebook connection
 gem 'rails-assets-momentjs', source: 'https://rails-assets.org'
 gem 'rails-assets-air-datepicker', source: 'https://rails-assets.org'
 gem 'postmark-rails' # automatic email sender
-
-gem 'omniauth-facebook' # ~> Facebook connection
-gem 'faker'
+gem 'faker' # Fake info generator
 
 group :development, :test do
   gem "letter_opener" # to preview e-mails to be sent to user
