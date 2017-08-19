@@ -2,6 +2,7 @@ class Profile::ResumesController < ApplicationController
   before_action :authenticate_user!
   before_action :check_if_user_is_undergraduate
   before_action :set_resume, only: [:update, :destroy]
+  helper_method :index, :current_class?
 
   def index
     @resumes = current_user.resumes
@@ -58,5 +59,15 @@ class Profile::ResumesController < ApplicationController
 
   def set_resume
     @resume = Resume.find(params[:id])
+  end
+
+  def current_class?(test_path)
+
+    if request.path == test_path
+      return 'list-group-item active'
+    else
+      return 'list-group-item'
+    end
+
   end
 end

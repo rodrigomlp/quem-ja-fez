@@ -2,24 +2,24 @@
   <div class="panel-heading">Profile</div>
   <!-- TO-DO: Indicate which page the user is currently in by highlighting the list -->
   <div class="list-group">
-    <%= link_to "Informações básicas", edit_profile_info_path, class: "list-group-item" %>
+    <%= link_to "Informações básicas", edit_profile_info_path, class: current_class?(edit_profile_info_path) %>
     <% if current_user.undergraduate %>
-      <%= link_to "Meus cursos", profile_resumes_path, class: "list-group-item" %>
+      <%= link_to "Meus cursos", profile_resumes_path, class: current_class?(profile_resumes_path) %>
     <% end %>
   </div>
 
   <div class="panel-heading">Agenda</div>
   <div class="list-group">
-    <%= link_to "Conversas agendadas", profile_meetings_path, class: "list-group-item" %>
+    <%= link_to "Conversas agendadas", profile_meetings_path, class: current_class?(profile_meetings_path) %>
     <% if current_user.undergraduate %>
-      <%= link_to "Solicitações", root_path, class: "list-group-item" %> <!-- TO-DO: Link missing -->
+      <%= link_to "Solicitações", root_path, class: current_class?(root_path) %> <!-- TO-DO: Link missing -->
     <% end %>
   </div>
 
   <div class="panel-heading">Dados financeiros</div>
   <div class="list-group">
-    <%= link_to "Editar meio de pagamento", root_path, class: "list-group-item" %> <!-- TO-DO: Link missing -->
-    <%= link_to "Transações", root_path, class: "list-group-item" %> <!-- TO-DO: Link missing -->
-    <%= link_to "Editar conta bancária", root_path, class: "list-group-item" %> <!-- TO-DO: Link missing -->
+    <%= link_to "Editar meio de pagamento", root_path, class: current_class?(root_path) %> <!-- TO-DO: Link missing -->
+    <%= link_to "Transações", root_path, class: current_class?(root_path) %> <!-- TO-DO: Link missing -->
+    <%= link_to "Editar conta bancária", root_path, class: current_class?(root_path) %> <!-- TO-DO: Link missing -->
   </div>
 </div>
