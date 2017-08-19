@@ -52,35 +52,41 @@ undergraduates_emails.each do |email|
     undergraduate: true)
 end
 
-#Creating universities
+# TO-DO: Fill out all universities emails!
+# DO NOT DELETE THIS!!
 universities = [
-  'Universidade de São Paulo (USP)',
-  'Universidade Estadual de Campinas (Unicamp)',
-  'Universidade Federal do Rio de Janeiro (UFRJ)',
-  'Universidade Estadual Paulista (Unesp)',
-  'Pontifícia Universidade Católica de São Paulo (PUC-SP)',
-  'Pontifícia Universidade Católica do Rio de Janeiro (PUC-Rio)',
-  'Universidade Federal de São Paulo (Unifesp)',
-  'Universidade Federal do Rio Grande do Sul (UFRS)',
-  'Universidade Federal de Minas Gerais (UFMG)',
-  'Universidade de Brasília (UnB)',
-  'Universidade Federal de São Carlos (Ufscar)',
-  'Universidade Federal de Santa Catarina (Ufsc)',
-  'Pontifícia Universidade Católica do Rio Grande do Sul (PUC-RS)',
-  'Universidade do Estado do Rio de Janeiro (Uerj)',
-  'Universidade Estadual de Londrina (UEL)',
-  'Universidade Federal da Bahia (UFBA)',
-  'Universidade Federal de Santa Maria (UFSM)',
-  'Universidade Federal de Viçosa (UFV)',
-  'Universidade Federal do Ceará (UFC)',
-  'Universidade Federal do Paraná (UFPR)',
-  'Universidade Federal de Pernambuco (UFPE)',
-  'Universidade Federal Fluminense (UFF)',
+  { name: 'Universidade de São Paulo (USP)', email: 'usp.com' },
+  { name: 'Universidade Estadual de Campinas (Unicamp)', email: 'dac.unicamp.com' },
+  { name: 'Universidade Federal do Rio de Janeiro (UFRJ)', email: '' },
+  { name: 'Universidade Estadual Paulista (Unesp)', email: '' },
+  { name: 'Pontifícia Universidade Católica de São Paulo (PUC-SP)', email: '' },
+  { name: 'Pontifícia Universidade Católica do Rio de Janeiro (PUC-Rio)', email: '' },
+  { name: 'Universidade Federal de São Paulo (Unifesp)', email: '' },
+  { name: 'Universidade Federal do Rio Grande do Sul (UFRS)', email: '' } ,
+  { name: 'Universidade Federal de Minas Gerais (UFMG)', email: '' },
+  { name: 'Universidade de Brasília (UnB)', email: '' },
+  { name: 'Universidade Federal de São Carlos (Ufscar)', email: '' },
+  { name: 'Universidade Federal de Santa Catarina (Ufsc)', email: '' },
+  { name: 'Pontifícia Universidade Católica do Rio Grande do Sul (PUC-RS)' },
+  { name: 'Universidade do Estado do Rio de Janeiro (Uerj)', email: '' },
+  { name: 'Universidade Estadual de Londrina (UEL)', email: '' },
+  { name: 'Universidade Federal da Bahia (UFBA)', email: '' },
+  { name: 'Universidade Federal de Santa Maria (UFSM)', email: '' },
+  { name: 'Universidade Federal de Viçosa (UFV)', email: '' },
+  { name: 'Universidade Federal do Ceará (UFC)', email: '' },
+  { name: 'Universidade Federal do Paraná (UFPR)', email: '' },
+  { name: 'Universidade Federal de Pernambuco (UFPE)', email: '' },
+  { name: 'Universidade Federal Fluminense (UFF)', email: '' }
 ]
 
+
+
+
 universities.each do |university|
-  University.create!(name: university)
+  University.create!(name: university[:name], email: university[:email])
 end
+# DEBUG
+# University.create!(name: "Gmail", email: 'gmail.com')
 
 # Seed for a restricted number of universities
 # universities_number = 10
@@ -199,43 +205,48 @@ User.all.where(undergraduate: true).each do |undergraduate|
   end
 end
 
+# TESTE: E-mail do marco pra testar se o postmark está mandando e-mails corretamente
+# Resume.create!(
+#     user: User.last,
+#     university: University.last,
+#     course: Course.last,
+#     school_email: "beduschimarco@gmail.com"
+# )
+
 # Creating Meetings
 duration = [0.5, 1, 1.5, 2]
-rating = [0, 1, 2, 3, 4, 5]
+ratings = [nil, 0, 1, 2, 3, 4, 5]
+meetings_number = 200
 
-# Creating meeting by especifying the amount
-meetings_number = 100
 for i in 1..meetings_number
   randon_times = []
   randon_times << Faker::Time.forward(rand(8), :all) # random time in the next 7 days
   randon_times << Faker::Time.backward(rand(8), :all) # random time in the last 7 days
   start_time = randon_times.sample
 
-  Meeting.create!(
-    start_time: start_time,
-    end_time: start_time + duration.sample.hour,
-    review_title: Faker::MostInterestingManInTheWorld.quote,
-    review_content: Faker::Hacker.say_something_smart,
-    rating: rating.sample,
-    undergraduate: User.where(undergraduate: true).order("RANDOM()").first,
-    highschooler: User.where(undergraduate: false).order("RANDOM()").first
-    )
-end
+  random_undergraduates = User.where(undergraduate: true).order("RANDOM()")
+  highschooler = User.where(undergraduate: false).order("RANDOM()").first
 
-# Creating meeting for all undergraduates
-User.all.where(undergraduate: true).each do |undergraduate|
-  randon_times = []
-  randon_times << Faker::Time.forward(rand(8), :all) # mettings to occur in the next 7 days
-  randon_times << Faker::Time.backward(rand(8), :all) # mettings that have already occurred in the last 7 days
-  start_time = randon_times.sample
+  review_title = nil
+  review_content = nil
+  rating = nil
+  if start_time < Time.now
+    rating = ratings.sample
+    if rating && rand(0) < 0.8
+      review_title = Faker::MostInterestingManInTheWorld.quote
+      review_content = Faker::Hacker.say_something_smart
+    end
+  end
 
   Meeting.create!(
     start_time: start_time,
     end_time: start_time + duration.sample.hour,
-    review_title: Faker::MostInterestingManInTheWorld.quote,
-    review_content: Faker::Hacker.say_something_smart,
-    rating: rating.sample,
-    undergraduate: undergraduate,
-    highschooler: User.where(undergraduate: false).order("RANDOM()").first
+    review_title: review_title,
+    review_content: review_content,
+    rating: rating,
+    undergraduate: random_undergraduates.first,
+    highschooler: [highschooler, random_undergraduates.first].sample,
+    resume: random_undergraduates.first.resumes.sample
     )
 end
+

@@ -5,30 +5,104 @@
 
 <!-- Body -->
 <div class="container margin-v-md">
-  <!-- Search Results -->
-  <% @resumes.each do |resume| %>
-    <div class="col-sm-10 col-sm-offset-1 ">
-      <div class="row undergrad-card">
-        <%= link_to "", user_path(resume.user), class: 'card-link'%>
-        <div class="col-xs-4 content text-center">
-          <!-- resume.user.facebook_picture_url # Quando tivermos foto dos usuários -->
-          <%= image_tag 'http://via.placeholder.com/100x100', class: "avatar avatar-large img-thumbnail img-responsive" %>
-          <h5><%= resume.course.name %></h5>
-          <h6><%= resume.university.name %></h6>
-        </div>
-        <div class="col-xs-8 text-center content right-column">
-          <h3><%= resume.user.first_name %> <%= resume.user.last_name %></h3>
-          <h4><%= resume.user.personal_description %></h4>
-          <p>Posicionamento: </p>
-          <div class="card-footer">
-            <div class="controls">
-              <a href="#"><i class="fa fa-thumbs-up fa-2x"></i></a>
-              <a href="#"><i class="fa fa-thumbs-down fa-2x"></i></a>
+  <!-- If there's some result -->
+
+  <% if @resumes.present? %>
+    <!-- Search Results if there's some resume-->
+    <% @resumes.each do |resume| %>
+      <% @meetings = Meeting.where(undergraduate_id: resume.user.id)  %>
+      <% @count = 0 %>
+      <% @meetings.each { |meeting| @count += meeting.rating if !meeting.rating.nil? } %>
+
+      <% @avg_rating = (@count.to_f / @meetings.size).round(2) unless @meetings.size == 0 %>
+      <div class="col-sm-10 col-sm-offset-1 ">
+        <div class="row undergrad-card">
+          <%= link_to "", user_path(resume.user), class: 'card-link'%>
+          <div class="col-xs-4 content text-center">
+            <!-- resume.user.facebook_picture_url # Quando tivermos foto dos usuários -->
+            <%= image_tag 'http://via.placeholder.com/100x100', class: "avatar avatar-large img-thumbnail img-responsive" %>
+            <div class="progress">
+              <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: <%= resume.relative_completion %>%;">
+                <p><%= resume.relative_completion %>%</p>
+              </div>
+            </div>
+            <h5><%= resume.course.name %></h5>
+            <h6><%= resume.university.name %></h6>
+          </div>
+          <div class="col-xs-8 text-center content right-column">
+            <h4><%= resume.user.first_name %> <%= resume.user.last_name %></h4>
+            <h5><%= resume.user.personal_description %></h5>
+            <div class="row position">
+              <div class="col-xs-6 col-xs-offset-3">
+                <div class="stance">
+                  <div class="stances">
+                    <p>Posicionamento: </p>
+                  </div>
+                  <div class="stances">
+                    <% if resume.stance == "1" %>
+                    <a class="btn btn-md btn-success" style="cursor: pointer;">
+                      <i class="fa fa-thumbs-up"></i></a>
+                      <!-- <a style="cursor: pointer;"><i class="fa fa-thumbs-up fa-2x"></i></a> -->
+                    <% elsif resume.stance == "0" %>
+                      <a class="btn btn-md btn-primary" style="cursor: pointer;">
+                      <i class="fa fa-question"></i></a>
+                    <% else %>
+                      <a class="btn btn-md btn-danger" style="cursor: pointer;">
+                      <i class="fa fa-thumbs-down"></i></a>
+                   <% end %>
+                  </div>
+                </div>
+                <div class="col-xs-6 col-xs-offset-3">
+                  <div class="stars">
+                  <% if @avg_rating >= 1 && @avg_rating < 1.5 %>
+                    <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
+                  <% elsif @avg_rating >= 1.5 && @avg_rating < 2 %>
+                    <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
+                    <h5><i class="fa fa-star-half" aria-hidden="true"></i></h5>
+                  <% elsif @avg_rating >= 2 && @avg_rating < 2.5 %>
+                    <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
+                    <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
+                    <h5><i class="fa fa-star-half" aria-hidden="true"></i></h5>
+                  <% elsif @avg_rating >= 3 && @avg_rating < 3.5 %>
+                    <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
+                    <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
+                    <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
+                    <h5><i class="fa fa-star-half" aria-hidden="true"></i></h5>
+                  <% elsif @avg_rating >= 4 && @avg_rating < 4.5 %>
+                    <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
+                    <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
+                    <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
+                    <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
+                    <h5><i class="fa fa-star-half" aria-hidden="true"></i></h5>
+                  <% elsif @avg_rating >= 4.5 && @avg_rating < 5 %>
+                    <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
+                    <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
+                    <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
+                    <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
+                    <h5><i class="fa fa-star-half" aria-hidden="true"></i></h5>
+                  <% elsif @avg_rating == 5 %>
+                    <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
+                    <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
+                    <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
+                    <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
+                    <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
+                  <% else %>
+                    <h5 style="color: rgba(41,41,41,0.7)"><i class="fa fa-star" aria-hidden="true"></i></h5>
+                  <% end %>
+
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
+        </div>
+      </div> <!-- end: ~> col-sm-10 -->
+    <% end %> <!-- end: ~> @resumes iterator-->
+    <% else %>
+      <div class="col-sm-10 col-sm-offset-1 text-center">
+        <h4>Ixi... Nenhum resultado encontrado</h4>
+        <h4>Dá uma melhorada na busca aê ;)</h4>
       </div>
-    </div> <!-- end: ~> col-sm-10 -->
   <% end %>
 </div> <!-- end: ~> Body  -->

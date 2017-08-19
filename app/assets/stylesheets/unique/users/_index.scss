@@ -1,0 +1,24 @@
+.position {
+
+  padding: 50px 0;
+
+  .stance {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .stars {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+    i {
+      color: rgb(238, 222, 84);
+      font-size: 30px;
+    }
+    i:hover {
+      color: rgba(238, 222, 84, 0.8);
+    }
+  }
+
+}

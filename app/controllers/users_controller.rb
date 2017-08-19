@@ -10,15 +10,32 @@ class UsersController < ApplicationController
     count = 0
 
     @meetings.each do |meeting|
-      count += meeting.rating
+      if !meeting.rating.nil?
+        count += meeting.rating
+      end
     end
 
-    @avg_rating = (count / @meetings.size)
+    @count_reviews = 0
+
+    @meetings.each do |meeting|
+      if meeting.review_title.nil?
+        @count_reviews
+      else
+        @count_reviews += 1
+      end
+    end
+
+    @avg_rating = (count.to_f / @meetings.size).round(2) unless @meetings.size == 0 # If user has no reviews, there is no rating yet.
   end
 
   def index
+    # Displays this on banner form
+    @university = params[:university]
+    @course = params[:course]
+
     @resumes = Resume.all
     @resumes = @resumes.joins(:course, :university, :user) # joins all tables onto resume
+    @resumes = @resumes.where(email_checked: true) # only show resumes that have been verified
 
     if params[:university].present? # has the user entered anything in the 'university' search field?
       @resumes = @resumes.where("LOWER(universities.name) ILIKE ?", "%#{params[:university]}%")
@@ -26,6 +43,7 @@ class UsersController < ApplicationController
     if params[:course].present? # has the user entered anything in the 'course' search field?
       @resumes = @resumes.where("LOWER(courses.name) ILIKE ?", "%#{params[:course]}%")
     end
+
   end
 
   def schedule

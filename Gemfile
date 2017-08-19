@@ -21,8 +21,13 @@ gem 'rails-assets-fullcalendar', source: 'https://rails-assets.org'
 gem 'omniauth-facebook' # ~> Facebook connection
 gem 'rails-assets-momentjs', source: 'https://rails-assets.org'
 gem 'rails-assets-air-datepicker', source: 'https://rails-assets.org'
+gem 'postmark-rails' # automatic email sender
+
+gem 'omniauth-facebook' # ~> Facebook connection
+gem 'faker'
 
 group :development, :test do
+  gem "letter_opener" # to preview e-mails to be sent to user
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'web-console', '>= 3.3.0'
@@ -33,6 +38,5 @@ group :development, :test do
   gem 'poltergeist'
   gem 'launchy'
   gem 'minitest-reporters'
-  gem 'faker'
 end
 

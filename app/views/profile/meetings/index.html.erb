@@ -6,27 +6,53 @@
       <%= render 'shared/profile/profile_side_bar' %>
     </div>
 
-    <!-- TO-DO: terminar os cards -->
-    <!-- List of scheduled meetings -->
+    <!-- TO-DO: makes "cards looks nice" -->
+    <!-- List of scheduled meetings to be attended-->
     <div class="col-xs-8">
       <h3>Conversas agendadas</h3>
-      <% @future_meetings.each do |meeting| %>
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">
-              Bate papo com
-              <% if current_user.undergraduate %>
-                <%= meeting.highschooler.first_name %>
-              <% else %>
-                <%= meeting.undergraduate.first_name %>
-              <% end %>
-            </h3>
-          </div>
-          <div class="panel-body">
 
-          </div>
-        </div>
-      <% end %>
+      <div class="list-group">
+        <% @meetings.each do |meeting| %>
+          <%= link_to profile_meeting_path(meeting), class: "list-group-item" do %>
+            <div class="content">
+              <div class="row">
+                <div class="col-xs-4">
+                  <strong><%= meeting.start_time.strftime("%A, %d %b %y") %></strong>
+                  <p><%= meeting.start_time.strftime("%R") %> - <%= meeting.end_time.strftime("%R") %></p>
+                </div>
+                <div class="col-xs-4 text-center">
+                  <% if current_user.id == meeting.highschooler.id %>
+                    <strong>Conversa com <%= meeting.undergraduate.first_name %></strong>
+                  <% else %>
+                    <strong>Conversa com <%= meeting.highschooler.first_name %></strong>
+                  <% end %>
+                    <p><%= meeting.course_name %></p>
+                    <p><%= meeting.university_name %></p>
+                </div>
+                <div class="col-xs-4 text-center">
+                  <div class="row">
+                    <strong>Informações</strong>
+                  </div>
+                  <div class="row">
+                    <% if meeting.rating %>
+                      <button type="button" class="btn btn-default btn-xs"><%=  meeting.rating %></button>
+                    <% else %>
+                      <% if meeting.start_time < Time.now %>
+                        <button type="button" class="btn btn-danger btn-xs">Conversa não avaliada</button>
+                      <% else %>
+                        <button type="button" class="btn btn-success btn-xs">Conversa agendada</button>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+
+
+
     </div>
 
   </div>

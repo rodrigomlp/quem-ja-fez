@@ -1,6 +1,7 @@
 // Import page-specific CSS files here.
-@import "pages/home";
-@import "pages/info";
-@import "profile/edit";
-@import "resumes/index";
-@import "users/show";
+@import "pages/*";
+// @import "pages/*";
+@import "profile/*";
+@import "resumes/*";
+@import "users/*";
+@import "meetings/*";

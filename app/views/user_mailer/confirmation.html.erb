@@ -1,0 +1,13 @@
+<h4><%= @greeting %></h4>
+<p>
+  Ficamos felizes que você tenha se cadastrado em nosso site.
+</p>
+<p>
+  Para validar seu e-mail acadêmico, clique na URL abaixo:
+</p>
+  <!-- TO-DO: Validation link -->
+
+<%= link_to 'clique aqui para validar', email_confirmation_profile_verification_url(token: @resume.email_confirmation_token)  %>
+
+<p>Sinceramente,</p>
+<p>Equipe Quem Já Fez.</p>

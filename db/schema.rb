@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170817181547) do
+
+ActiveRecord::Schema.define(version: 20170818165846) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +42,8 @@ ActiveRecord::Schema.define(version: 20170817181547) do
     t.integer "highschooler_id"
     t.datetime "start_time"
     t.datetime "end_time"
+    t.bigint "resume_id"
+    t.index ["resume_id"], name: "index_meetings_on_resume_id"
   end
 
   create_table "resumes", force: :cascade do |t|
@@ -53,6 +57,7 @@ ActiveRecord::Schema.define(version: 20170817181547) do
     t.bigint "course_id"
     t.bigint "user_id"
     t.boolean "email_checked", default: false
+    t.string "email_confirmation_token"
     t.index ["course_id"], name: "index_resumes_on_course_id"
     t.index ["university_id"], name: "index_resumes_on_university_id"
     t.index ["user_id"], name: "index_resumes_on_user_id"
@@ -62,6 +67,7 @@ ActiveRecord::Schema.define(version: 20170817181547) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email"
   end
 
   create_table "users", force: :cascade do |t|
@@ -94,6 +100,7 @@ ActiveRecord::Schema.define(version: 20170817181547) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "meetings", "resumes"
   add_foreign_key "meetings", "users", column: "highschooler_id"
   add_foreign_key "meetings", "users", column: "undergraduate_id"
   add_foreign_key "resumes", "courses"

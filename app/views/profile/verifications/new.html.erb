@@ -2,10 +2,10 @@
   <h3>Cadastre um novo currículo</h3>
 
   <!-- Adicionar university email -->
-  <%= simple_form_for @resume, url: profile_verification_path, method: :patch do |f| %>
+  <%= simple_form_for @resume, url: profile_verification_path, method: :post do |f| %>
     <%= f.association :university, label: false, prompt: "Universidade" %>
     <%= f.association :course, label: false, prompt: "Curso" %>
     <%= f.input :school_email, label: false, placeholder: "Email acadêmico" %>
-    <%= f.button :submit, "Adicionar Email" %>
+    <%= f.button :submit, "Adicionar Currículo" %>
   <% end %>
 </div>

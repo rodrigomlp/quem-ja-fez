@@ -1,0 +1,5 @@
+class AddResumeToMeetings < ActiveRecord::Migration[5.1]
+  def change
+    add_reference :meetings, :resume, foreign_key: true
+  end
+end
