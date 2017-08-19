@@ -1,2 +1,3 @@
-$('#remote_container').html('<%= j render "new" %>');
+// $('#remote_container').html('<= j render "new" %>');
+$("#remote_container").html("<%= escape_javascript(render partial: 'new') %>");
 $('#new_event').modal('show');

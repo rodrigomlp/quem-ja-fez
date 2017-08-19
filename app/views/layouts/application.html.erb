@@ -12,6 +12,12 @@
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
     <%= yield %>
+    <div id='remote_container'></div>
+    <!-- Include Required Prerequisites -->
+    <script>
+      window.user_undergraduate = <%= current_user && current_user.undergraduate %>;
+    </script>
+
     <%= javascript_include_tag 'application' %>
 
 

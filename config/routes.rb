@@ -26,6 +26,7 @@ Rails.application.routes.draw do
 
   end
   resources :meetings, only: [:create]
+  resources :events
 
   namespace :profile do
     resources :resumes, only: [:index, :create, :update, :destroy]
