@@ -27,8 +27,16 @@ class Profile::MeetingsController < ApplicationController
 
 
   def show
-    @undergraduate = User.find(@meeting.undergraduate_id)
-    @highschooler = User.find(@meeting.undergraduate_id)
+    if current_user.id == @meeting.highschooler.id
+      @name = @meeting.undergraduate.first_name
+    else
+      @name = @meeting.highschooler.first_name
+    end
+
+    @diff = ((@meeting.end_time - @meeting.start_time) / 60).round
+
+    @university = @meeting.university_name
+    @course = @meeting.course_name
 
   end
 
@@ -56,7 +64,7 @@ class Profile::MeetingsController < ApplicationController
 
   def current_class?(test_path)
 
-    if request.path == test_path
+    if (request.path == test_path)
       return 'list-group-item active'
     else
       return 'list-group-item'
