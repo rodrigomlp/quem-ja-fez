@@ -17,6 +17,10 @@ gem 'sass-rails'
 gem 'simple_form'
 gem 'country_select' # Simple_form country
 gem 'uglifier'
+gem 'rails-assets-fullcalendar', source: 'https://rails-assets.org'
+gem 'omniauth-facebook' # ~> Facebook connection
+gem 'rails-assets-momentjs', source: 'https://rails-assets.org'
+gem 'rails-assets-air-datepicker', source: 'https://rails-assets.org'
 gem 'postmark-rails' # automatic email sender
 
 gem 'omniauth-facebook' # ~> Facebook connection

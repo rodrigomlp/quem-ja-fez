@@ -45,4 +45,9 @@ class UsersController < ApplicationController
     end
 
   end
+
+  def schedule
+  end
+
+
 end
