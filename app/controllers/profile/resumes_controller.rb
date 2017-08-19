@@ -23,6 +23,7 @@ class Profile::ResumesController < ApplicationController
   end
 
   def update
+    # THe first if is for the resumes that has already the email checked. The second is for the ones not checked yet
     if @resume.email_checked
       if @resume.update(resume_params_for_checked_resume)
         redirect_to profile_resumes_path
@@ -36,7 +37,6 @@ class Profile::ResumesController < ApplicationController
       else
         render :index
       end
-      # TO-DO: fazer ação que envia check de e-mail
     end
   end
 
@@ -60,8 +60,8 @@ class Profile::ResumesController < ApplicationController
     @resume = Resume.find(params[:id])
   end
 
+  # PERGUNTA: Quem fez isso e para o que serve?
   def current_class?(test_path)
-
     if request.path == test_path
       return 'list-group-item active'
     else
