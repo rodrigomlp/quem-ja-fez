@@ -6,6 +6,28 @@
     margin-top: 25px;
     display: flex;
     align-items: center;
+    border-radius: 6px;
+  }
+
+  .opinion {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .stars {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    i {
+      color: rgb(238, 222, 84);
+      font-size: 30px;
+    }
+
+    i:hover {
+      color: rgba(238, 222, 84, 0.8);
+    }
   }
   .item {
     padding: 5px;
@@ -26,3 +48,4 @@
     margin: 5px auto !important;
   }
 }
+
