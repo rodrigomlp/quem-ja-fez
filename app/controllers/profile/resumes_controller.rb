@@ -10,8 +10,6 @@ class Profile::ResumesController < ApplicationController
 
   def create
     @resume = Resume.new(resume_params)
-    @resume.school_email = nil unless EmailChecker.is_valid?(@resume.school_email, @resume.university)
-
     @resume.user = current_user
     if @resume.save
       redirect_to profile_resumes_path
@@ -32,6 +30,7 @@ class Profile::ResumesController < ApplicationController
       end
     else
       if @resume.update(resume_params)
+
         redirect_to profile_resumes_path
       else
         render :index
