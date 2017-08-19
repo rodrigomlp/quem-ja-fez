@@ -1,17 +1,20 @@
 <form class="form-inline" method="GET" action="/results">
-  <input class="form-control" type="text" name="course" placeholder="<%= @course %>" id="course">
-  <input class="form-control" type="text" name="university" placeholder="<%= @university %>" id="course">
-  <button type="submit" class="btn btn-primary">Buscar</button>
+  <select class="form-control select-course-w-search" type="text" name="course" id="course" >
+    <option></option> <%# The first otion must be empty to the placeholder work%>
+    <% Course.all.each do |course| %>
+      <option><%= course.name %></option>
+    <% end %>
+  </select>
+  <select class="form-control select-university-w-search" type="text" name="university" id="university" >
+    <option></option> <%# The first otion must be empty to the placeholder work%>
+    <% University.all.each do |university| %>
+      <option><%= university.name %></option>
+    <% end %>
+  </select>
+  <button type="submit" class="btn btn-primary btn-sm">Buscar</button>
 </form>
 
-<script type="text/javascript">
-$(document).ready(function() {
-  $(".js-example-basic-single").select2();
-});
-</script>
 
-<select class="js-example-basic-single">
-  <option value="AL">Alabama</option>
-    ...
-  <option value="WY">Wyoming</option>
-</select>
+
+
+
