@@ -2,8 +2,8 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home, :about, :info]
 
   def home # home
-    @university = "ex.: USP"
-    @course = "ex.: Direito"
+    @university = "Universidade"
+    @course = "Curso"
   end
 
   def about # about us
