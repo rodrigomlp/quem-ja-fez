@@ -1,8 +1,15 @@
-<div class="container-fluid margin-v-md">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-8 col-xs-offset-2">
-        <div class="panel-body">
+<div class="container margin-v-md">
+  <div class="row">
+
+    <!-- Profile side-bar -->
+    <div class="col-xs-3">
+      <%= render 'shared/profile/profile_side_bar' %>
+    </div>
+
+    <div class="col-xs-8">
+
+      <div class="list-group">
+        <div class="list-group-item">
           <%= simple_form_for @meeting, url: profile_meeting_path(@meeting), method: :patch do |f| %>
             <div class="row">
               <div class="col-xs-12">
@@ -23,9 +30,10 @@
                 <%= f.submit "Salvar alterações", class: "btn btn-primary btn-xs" %>
               </div>
             </div>
-          <% end %>
+          <% end %> <!-- end: ~> simple_form_for -->
         </div>
       </div>
     </div>
+
   </div>
 </div>

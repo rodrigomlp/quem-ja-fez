@@ -1,6 +1,11 @@
 class Profile::MeetingsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_meeting, only: [:show, :edit, :update]
+  helper_method :index, :current_class?
+  helper_method :update, :current_class?
+  helper_method :new, :current_class?
+  helper_method :edit, :current_class?
+  helper_method :show, :current_class?
 
   # lógica ainda não terminada
   def index
@@ -24,6 +29,7 @@ class Profile::MeetingsController < ApplicationController
   def show
     @undergraduate = User.find(@meeting.undergraduate_id)
     @highschooler = User.find(@meeting.undergraduate_id)
+
   end
 
   def new
@@ -46,6 +52,16 @@ class Profile::MeetingsController < ApplicationController
 
   def set_meeting
     @meeting = Meeting.find(params[:id])
+  end
+
+  def current_class?(test_path)
+
+    if request.path == test_path
+      return 'list-group-item active'
+    else
+      return 'list-group-item'
+    end
+
   end
 
 end
