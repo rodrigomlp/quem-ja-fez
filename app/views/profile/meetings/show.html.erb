@@ -1,25 +1,83 @@
-<div class="container-fluid margin-v-md">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-8 col-xs-offset-2">
-        <div class="panel-body">
-          <%= simple_form_for @meeting, url: profile_meeting_path(@meeting), method: :patch do |f| %>
-            <div class="row">
-              <div class="col-xs-12">
-                <p>Review Title:</p>
-                <p><%= f.input :review_title, label: false, placeholder: "Title" %></p>
-                <p>Review Content:</p>
-                <p><%= f.input :review_content, label: false, placeholder: "Review" %></p>
-              </div>
+<div class="container margin-v-md">
+  <div class="row">
+
+    <!-- Profile side-bar -->
+    <div class="col-xs-3">
+      <%= render 'shared/profile/profile_side_bar' %>
+    </div>
+    <% if @meeting.start_time > Time.now %>
+      <div class="col-xs-8">
+        <div class="list-group">
+          <h3>Detalhes da sua conversa </h3>
+          <div class="list-group-item">
+            <h5><strong><%= @course %> na <%= @university %> com <%= @name %></strong></h5>
+          </div>
+          <div class="list-group-item">
+            <h5>Duração prevista da conversa: <strong><%= @diff %> minutos</strong></h5>
+            <p>Data da conversa: <strong><%= @meeting.start_time.strftime("%A, %d %b %y") %></strong></p>
+            <p>Horário agendado: </p>
+            <p><%= @meeting.start_time.strftime("%R") %> - <%= @meeting.end_time.strftime("%R") %></p>
+          </div>
+        </div>
+          <div class="list-group-item">
+          <p>Review:</p>
+          <hr>
+        </div>
+      </div>
+      <% else %>
+        <div class="col-xs-8">
+          <div class="list-group">
+            <h3>Detalhes da sua conversa </h3>
+            <div class="list-group-item">
+              <h5><strong><%= @course %> na <%= @university %> com <%= @name %></strong></h5>
             </div>
-            <div class="row">
-              <div class="text-center">
-                <%= f.submit "Salvar alterações", class: "btn btn-primary btn-xs" %>
+            <div class="list-group-item">
+              <h5>Duração prevista da conversa: <strong><%= @diff %> minutos</strong></h5>
+              <p>Data da conversa: <strong><%= @meeting.start_time.strftime("%A, %d %b %y") %></strong></p>
+              <p>Horário agendado: </p>
+              <p><%= @meeting.start_time.strftime("%R") %> - <%= @meeting.end_time.strftime("%R") %></p>
+            </div>
+          </div>
+          <% if (@meeting.review_title.present? && @meeting.review_content.present?) %>
+            <% if current_user.undergraduate? %>
+              <div class="list-group-item">
+                <p>Ei, olha só o review do <%= @name %>, após a conversa :)</p>
+                <div class="well">
+                  <p><%= @meeting.review_title %></p>
+                  <hr>
+                  <p><%= @meeting.review_content %></p>
+                </div>
               </div>
+            <% else %>
+              <div class="list-group-item">
+                <p>Aqui o seu review da conversa com o <%= @name %> :)</p>
+                <div class="well">
+                  <p><%= @meeting.review_title %></p>
+                  <hr>
+                  <p><%= @meeting.review_content %></p>
+                </div>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="list-group-item">
+              <p>Hey, dá um review sincero sobre a conversa... Como foi?</p>
+              <%= simple_form_for @meeting, url: profile_meeting_path(@meeting), method: :patch do |f| %>
+                <div class="row">
+                  <div class="col-xs-12">
+                    <%= f.input :review_title, label: false, placeholder: "Title" %>
+                   <%= f.input :review_content, label: false, placeholder: "Review" %>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="text-center">
+                    <%= f.submit "Salvar alterações", class: "btn btn-primary btn-sm btn" %>
+                  </div>
+                </div>
+              <% end %> <!-- end: ~> simple_form_for -->
             </div>
           <% end %>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
+
+      <% end %>
+  </div> <!-- end: row -->
+</div> <!-- end: ~> container margin-v-md -->

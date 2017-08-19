@@ -10,14 +10,21 @@
       <%= simple_form_for @user, url: profile_info_path do |f| %>
         <%= f.input :first_name, placeholder: 'Nome', label: false %>
         <%= f.input :last_name, placeholder: 'Sobrenome', label: false %>
-        <%= f.input :gender, placeholder: 'Sexo', label: false %> <!-- TO-DO: Change gender to be a range only -->
+        <div class="form-group"> <!--Uma vez que o current user atualiza o gender para 'Male' ou 'Female' nós não perguntamos mais -->
+          <% if !current_user.gender.present? || ( ['Male', 'Female'].include?(current_user.gender) == false ) %>
+            <%= f.select :gender, class: "form-control" do %> <!-- TO-DO: apesar de a classe ser form-control, o input ainda não está com o mesmo dos outros... BUG -->
+              <% [['Male', 1], ['Female', 2]].each do |c| -%>
+                <%= content_tag(:option, c.first, value: c.first) %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
         <%= f.input :birth_date, as: :date, start_year: Date.today.year - 90,
                                   end_year: Date.today.year - 10,
                                   order: [:day, :month, :year],
                                   label: false %>
         <%= f.input :city, placeholder: 'Cidade', label: false %>
         <%= f.input :country, placeholder: 'País', label: false %>
-        <!-- BUG: :country not working -->
         <%= f.button :submit, 'Atualizar', class: "btn btn-primary" %>
       <% end %>
     </div>

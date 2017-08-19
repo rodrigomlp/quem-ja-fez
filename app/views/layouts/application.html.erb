@@ -7,11 +7,21 @@
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
-  </head>
+
   <body class="<%= controller_name %> <%= action_name %>">
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
     <%= yield %>
+    <div id='remote_container'></div>
+    <!-- Include Required Prerequisites -->
+    <script>
+      window.user_undergraduate = <%= current_user && current_user.undergraduate %>;
+    </script>
+
+
+    <%= render 'shared/footer' %>
     <%= javascript_include_tag 'application' %>
+
+
   </body>
 </html>
