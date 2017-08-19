@@ -11,7 +11,9 @@
   <div class="panel-heading">Agenda</div>
   <div class="list-group">
     <%= link_to "Conversas agendadas", profile_meetings_path, class: "list-group-item" %>
-    <%= link_to "Solicitações", root_path, class: "list-group-item" %> <!-- TO-DO: Link missing -->
+    <% if current_user.undergraduate %>
+      <%= link_to "Solicitações", root_path, class: "list-group-item" %> <!-- TO-DO: Link missing -->
+    <% end %>
   </div>
 
   <div class="panel-heading">Dados financeiros</div>
