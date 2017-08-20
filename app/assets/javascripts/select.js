@@ -2,7 +2,7 @@
  $(document).ready(function() {
     $(".select-course-w-search").select2({
       placeholder: "Selecione um curso",
-      allowClear: false,
+      allowClear: true,
       theme: "bootstrap"
     });
   });
@@ -10,7 +10,7 @@
  $(document).ready(function() {
     $(".select-university-w-search").select2({
       placeholder: "Selecione uma universidade",
-      allowClear: false,
+      allowClear: true,
       theme: "bootstrap"
     });
   });
