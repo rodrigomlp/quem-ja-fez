@@ -10,9 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20170819185646) do
-
+ActiveRecord::Schema.define(version: 20170820214059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +43,7 @@ ActiveRecord::Schema.define(version: 20170819185646) do
     t.datetime "start_time"
     t.datetime "end_time"
     t.bigint "resume_id"
+    t.string "virtual_room"
     t.index ["resume_id"], name: "index_meetings_on_resume_id"
   end
 
