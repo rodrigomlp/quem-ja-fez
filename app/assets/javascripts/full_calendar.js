@@ -76,8 +76,9 @@ $(document).ready(function(){
       },
 
       eventClick: function(event){
+        console.log(typeof(event.color));
 
-        /*Check if the current user is a undegraduate which allows him to delete available time slots */
+        /*Check if the current user is a undegraduate and the right user which allows him to delete available time slots */
         if (window.user_undergraduate && is_same_user){
            var answer = confirm('Você quer deletar esse horário?');
            if (answer) {
@@ -90,9 +91,11 @@ $(document).ready(function(){
         }
 
 
-       /*Highschoolers that want to schedule a time*/
+       /*Highschoolers want sto schedule a time*/
        else {
-          var answer = confirm('Você quer marcar esses horários?');
+          /*if he has not clicked yet (event is green)*/
+
+          var answer = confirm('Você quer marcar esse horário?');
           if (answer) {
             $.ajax({
               type: "PATCH",

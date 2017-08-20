@@ -10,10 +10,10 @@
 
   <div class="panel-heading">Agenda</div>
   <div class="list-group">
-    <%= link_to "Conversas agendadas", profile_meetings_path, class: current_class?(profile_meetings_path) %>
     <% if current_user.undergraduate %>
-      <%= link_to "Solicitações", root_path, class: current_class?(root_path) %> <!-- TO-DO: Link missing -->
+      <%= link_to "Minha Disponibilidade", user_events_path(@user.resumes.first), class: current_class?(root_path) %> <!-- TO-DO: Link missing -->
     <% end %>
+    <%= link_to "Conversas agendadas", profile_meetings_path, class: current_class?(profile_meetings_path) %>
   </div>
 
   <div class="panel-heading">Dados financeiros</div>
