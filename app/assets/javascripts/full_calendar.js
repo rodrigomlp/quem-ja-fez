@@ -9,7 +9,8 @@ $(document).ready(function(){
     var calendar = $(this);
     calendar.fullCalendar({
       /* Disable resizing and drag and drop for the highschooler*/
-       // eventStartEditable: false,
+
+       eventStartEditable: false,
        eventDurationEditable: false,
       selectAllow: function(selectInfo) {
          var duration = moment.duration(selectInfo.end.diff(selectInfo.start));
@@ -25,15 +26,22 @@ $(document).ready(function(){
       selectHelper: true,
       editable: true,
       eventLimit: true,
-      events: '/events.json',
+      buttonText: {
+        week: "Semana",
+     },
+
+     monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+     monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+     dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'],
+     dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+      events: '/results/' +  resume_id + '/events.json',
 
 
       select: function(start, end, event) {
-
-          event.backgroundColor = 'green';
-          $.ajax({
+         if (window.user_undergraduate && is_same_user){
+            $.ajax({
             type: "POST",
-            url: "/events",
+            url: "/results/" + resume_id + "/events/",
             data: {
               event: {
                 start: start.toDate(),
@@ -42,41 +50,40 @@ $(document).ready(function(){
               }
             }
           })
-
-
-
-         $('.calendar').fullCalendar( 'renderEvent', {
+            $('.calendar').fullCalendar( 'renderEvent', {
 
             start: start,
             end: end,
             allDay: false,
-          }, true);
+             }, true);
 
+         }
       },
 
+
+
       eventDrop: function(event) {
-        $.ajax({
-          type: "PATCH",
-          url: "/events/" + event.id,
-          data: {
-            event: {
-              start: event.start.toDate(),
-              end: event.end.toDate()
-            }
-          }
-        });
+             $.ajax({
+                type: "PATCH",
+                url: "/results/" + resume_id + "/events/ " + event.id,
+                data: {
+                event: {
+                    start: event.start.toDate(),
+                    end: event.end.toDate()
+                }
+              }
+            });
       },
 
       eventClick: function(event){
 
         /*Check if the current user is a undegraduate which allows him to delete available time slots */
-        if (window.user_undergraduate){
-
-           var answer = confirm('Você quer deletar esses horários?');
+        if (window.user_undergraduate && is_same_user){
+           var answer = confirm('Você quer deletar esse horário?');
            if (answer) {
                $.ajax({
                type: 'DELETE',
-               url: "/events/" + event.id
+               url: "/results/" + resume_id + "/events/ " + event.id
              });
              window.location.reload()
            }
@@ -89,7 +96,7 @@ $(document).ready(function(){
           if (answer) {
             $.ajax({
               type: "PATCH",
-              url: "/events/" + event.id,
+              url: "/results/" + resume_id + "/events/ " + event.id,
               data: {
                 event: {
                   color: "red"
@@ -101,20 +108,8 @@ $(document).ready(function(){
        }
 
 
-       },
-
-      eventResize: function(event) {
-        $.ajax({
-          type: "PATCH",
-          url: "/events/" + event.id,
-          data: {
-            event: {
-              start: event.start.toDate(),
-              end: event.end.toDate()
-            }
-          }
-        });
       }
+
     });
 
   });

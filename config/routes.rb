@@ -11,14 +11,15 @@ Rails.application.routes.draw do
 
   # Users
   resources :users, only: [:index, :show], path: "/results" do
-    member do
-      get 'schedule', to: 'users#schedule'
-      get '/schedule/confirm', to: 'users#confirm'
-    end
+    # member do
+      # get 'schedule', to: 'users#schedule'
+      # get '/schedule/confirm', to: 'users#confirm'
+      resources :events
+
 
   end
   resources :meetings, only: [:create]
-  resources :events
+
 
   namespace :profile do
     resources :resumes, only: [:index, :create, :update, :destroy]

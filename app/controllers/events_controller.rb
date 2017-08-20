@@ -2,7 +2,11 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
-    @events = Event.where(start: params[:start]..params[:end])
+    @user = Resume.find(params[:user_id]).user
+    # @events = Event.where(start: params[:start]..params[:end])
+    @events = Event.where(user: @user)
+
+
   end
 
   def show
@@ -10,6 +14,7 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    @user = Resume.find(params[:user_id]).user
   end
 
   def edit
@@ -17,6 +22,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    @event.user = Resume.find(params[:user_id]).user
     @event.save
   end
 
@@ -25,6 +31,7 @@ class EventsController < ApplicationController
   end
 
   def destroy
+    # @event = Event.find(:id)
     @event.destroy
   end
 
@@ -36,4 +43,5 @@ class EventsController < ApplicationController
     def event_params
       params.require(:event).permit(:title, :start, :end, :color)
     end
+
 end

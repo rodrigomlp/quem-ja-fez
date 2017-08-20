@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :resumes, dependent: :destroy
   has_many :universities, through: :resumes
   has_many :courses, through: :resumes
-
+  has_many :events
   # validates :first_name, presence: true # We don't have a form for this yet
   # validates :last_name, presence: true # We don't have a form for this yet
   def self.find_for_facebook_oauth(auth)
@@ -37,3 +37,4 @@ class User < ApplicationRecord
   end
 
 end
+
