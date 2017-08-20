@@ -15,7 +15,11 @@
     <div id='remote_container'></div>
     <!-- Include Required Prerequisites -->
     <script>
-      window.user_undergraduate = <%= current_user && current_user.undergraduate %>;
+      <% if params[:user_id] %>
+        window.user_undergraduate = <%= current_user && current_user.undergraduate %>;
+        window.resume_id = <%= params[:user_id] %>
+        window.is_same_user = <%= current_user == Resume.find(params[:user_id]).user %>
+      <% end %>
     </script>
 
 
