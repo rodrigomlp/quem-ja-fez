@@ -97,7 +97,6 @@ end
 
 #Creating courses
 courses = [
-  "Fonoaudiologia",
   "Administração Pública",
   "Administração",
   "Agronomia",

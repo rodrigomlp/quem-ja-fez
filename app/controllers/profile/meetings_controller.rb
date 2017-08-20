@@ -64,7 +64,7 @@ class Profile::MeetingsController < ApplicationController
 
   def current_class?(test_path)
 
-    if (request.path == test_path)
+    if (request.path == test_path) || (request.path == "#{test_path}/#{params[:id]}")
       return 'list-group-item active'
     else
       return 'list-group-item'
