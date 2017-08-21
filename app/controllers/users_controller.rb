@@ -4,7 +4,6 @@ class UsersController < ApplicationController
   def show
     user = User.find(params[:id])
     @resume = Resume.find_by(user_id: user.id)
-
     @meetings = Meeting.where(undergraduate_id: @resume.user.id)
 
     count = 0
@@ -47,6 +46,7 @@ class UsersController < ApplicationController
   end
 
   def schedule
+
   end
 
 

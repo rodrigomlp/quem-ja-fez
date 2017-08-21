@@ -5,7 +5,35 @@
     <div class="col-xs-3">
       <%= render 'shared/profile/profile_side_bar' %>
     </div>
-    <% if @meeting.start_time > Time.now %>
+    <!-- Template if meeting is yet to come, or is happening, meaning that it don't have any reviews yet -->
+    <% if @meeting.end_time > Time.now %>
+      <div class="col-xs-8">
+        <div class="list-group">
+          <h3>Detalhes da sua conversa </h3>
+          <div class="list-group-item">
+            <h5><strong><%= @course %> na <%= @university %> com <%= @name %></strong></h5>
+          </div>
+          <div class="list-group-item">
+            <div class="row">
+              <div class="col-xs-6">
+                <h5>Duração prevista da conversa: <strong><%= @diff %> minutos</strong></h5>
+                <p>Data da conversa: <strong><%= @meeting.start_time.strftime("%A, %d %b %y") %></strong></p>
+                <p>Horário agendado: </p>
+                <p><%= @meeting.start_time.strftime("%R") %> - <%= @meeting.end_time.strftime("%R") %></p>
+              </div>
+              <div class="col-xs-6">
+                <%= link_to "Entrar na sala virtual", @link_to_vitural_room, target: "_blank", rel: "nofollow", class: "btn btn-primary btn-xs"  %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="list-group-item">
+          <p>Review:</p>
+          <hr>
+        </div>
+      </div>
+    <!-- Template of meeting already gone, meaning that it can have some reviews -->
+    <% else %>
       <div class="col-xs-8">
         <div class="list-group">
           <h3>Detalhes da sua conversa </h3>
@@ -19,65 +47,49 @@
             <p><%= @meeting.start_time.strftime("%R") %> - <%= @meeting.end_time.strftime("%R") %></p>
           </div>
         </div>
-          <div class="list-group-item">
-          <p>Review:</p>
-          <hr>
-        </div>
-      </div>
-      <% else %>
-        <div class="col-xs-8">
-          <div class="list-group">
-            <h3>Detalhes da sua conversa </h3>
+        <!-- Templete if review exist -->
+        <% if (@meeting.review_title.present? && @meeting.review_content.present?) %>
+          <!-- When user is a undergraduate -->
+          <% if current_user.undergraduate? %>
             <div class="list-group-item">
-              <h5><strong><%= @course %> na <%= @university %> com <%= @name %></strong></h5>
-            </div>
-            <div class="list-group-item">
-              <h5>Duração prevista da conversa: <strong><%= @diff %> minutos</strong></h5>
-              <p>Data da conversa: <strong><%= @meeting.start_time.strftime("%A, %d %b %y") %></strong></p>
-              <p>Horário agendado: </p>
-              <p><%= @meeting.start_time.strftime("%R") %> - <%= @meeting.end_time.strftime("%R") %></p>
-            </div>
-          </div>
-          <% if (@meeting.review_title.present? && @meeting.review_content.present?) %>
-            <% if current_user.undergraduate? %>
-              <div class="list-group-item">
-                <p>Ei, olha só o review do <%= @name %>, após a conversa :)</p>
-                <div class="well">
-                  <p><%= @meeting.review_title %></p>
-                  <hr>
-                  <p><%= @meeting.review_content %></p>
-                </div>
+              <p>Review do <%= @name %>, após a conversa</p>
+              <div class="well">
+                <p><%= @meeting.review_title %></p>
+                <hr>
+                <p><%= @meeting.review_content %></p>
               </div>
-            <% else %>
-              <div class="list-group-item">
-                <p>Aqui o seu review da conversa com o <%= @name %> :)</p>
-                <div class="well">
-                  <p><%= @meeting.review_title %></p>
-                  <hr>
-                  <p><%= @meeting.review_content %></p>
-                </div>
-              </div>
-            <% end %>
+            </div>
+          <!-- When user is a highscholler   -->
           <% else %>
             <div class="list-group-item">
-              <p>Hey, dá um review sincero sobre a conversa... Como foi?</p>
-              <%= simple_form_for @meeting, url: profile_meeting_path(@meeting), method: :patch do |f| %>
-                <div class="row">
-                  <div class="col-xs-12">
-                    <%= f.input :review_title, label: false, placeholder: "Title" %>
-                   <%= f.input :review_content, label: false, placeholder: "Review" %>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="text-center">
-                    <%= f.submit "Salvar alterações", class: "btn btn-primary btn-sm btn" %>
-                  </div>
-                </div>
-              <% end %> <!-- end: ~> simple_form_for -->
+              <p>Aqui o seu review da conversa com o <%= @name %></p>
+              <div class="well">
+                <p><%= @meeting.review_title %></p>
+                <hr>
+                <p><%= @meeting.review_content %></p>
+              </div>
             </div>
           <% end %>
-        </div>
-
-      <% end %>
+        <% else %>
+          <!-- When there is no review  -->
+          <div class="list-group-item">
+            <p>Deixe seu review!</p>
+            <%= simple_form_for @meeting, url: profile_meeting_path(@meeting), method: :patch do |f| %>
+              <div class="row">
+                <div class="col-xs-12">
+                  <%= f.input :review_title, label: false, placeholder: "Title" %>
+                 <%= f.input :review_content, label: false, placeholder: "Review" %>
+                </div>
+              </div>
+              <div class="row">
+                <div class="text-center">
+                  <%= f.submit "Salvar alterações", class: "btn btn-primary btn-sm btn" %>
+                </div>
+              </div>
+            <% end %> <!-- end: ~> simple_form_for -->
+          </div>
+        <% end %> <!-- end do review exit -->
+      </div>
+    <% end %> <!-- end of checking the time of the meeting -->
   </div> <!-- end: row -->
 </div> <!-- end: ~> container margin-v-md -->

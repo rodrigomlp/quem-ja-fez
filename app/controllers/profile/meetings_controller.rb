@@ -12,13 +12,13 @@ class Profile::MeetingsController < ApplicationController
     @meetings_accepted = current_user.meetings_accepted
     @meetings_proposed = current_user.meetings_proposed
     # Future meetings
-    @future_meetings_accepted = @meetings_accepted.where('start_time > ?', Time.now)
-    @future_meetings_proposed = @meetings_proposed.where('start_time > ?', Time.now)
+    @future_meetings_accepted = @meetings_accepted.where('end_time > ?', Time.now)
+    @future_meetings_proposed = @meetings_proposed.where('end_time > ?', Time.now)
     @future_meetings = @future_meetings_accepted + @future_meetings_proposed
     @future_meetings.sort! { |a, b|  a.start_time <=> b.start_time }
     # Past meetings
-    @past_meetings_accepted = @meetings_accepted.where('start_time < ?', Time.now)
-    @past_meetings_proposed = @meetings_proposed.where('start_time < ?', Time.now)
+    @past_meetings_accepted = @meetings_accepted.where('end_time < ?', Time.now)
+    @past_meetings_proposed = @meetings_proposed.where('end_time < ?', Time.now)
     @past_meetings = @past_meetings_accepted + @past_meetings_proposed
     @past_meetings.sort! { |a, b|  a.start_time <=> b.start_time }
     # All the meetings together
@@ -32,12 +32,10 @@ class Profile::MeetingsController < ApplicationController
     else
       @name = @meeting.highschooler.first_name
     end
-
     @diff = ((@meeting.end_time - @meeting.start_time) / 60).round
-
     @university = @meeting.university_name
     @course = @meeting.course_name
-
+    @link_to_vitural_room = VirtualRoom.create_url(@meeting)
   end
 
   def new

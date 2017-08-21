@@ -12,6 +12,7 @@
               <h4><%= @resume.course.name %></h4>
               <h4><%= @resume.university.name %></h4>
               <div class="stars">
+              <% if @avg_rating.present? && @avg_rating.nil? == false %>
                 <% if @avg_rating >= 1 && @avg_rating < 1.5 %>
                   <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
                 <% elsif @avg_rating >= 1.5 && @avg_rating < 2 %>
@@ -44,9 +45,10 @@
                   <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
                   <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
                   <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
-                <% else %>
-                  <h5 style="color: rgba(41,41,41,0.7)"><i class="fa fa-star" aria-hidden="true"></i></h5>
                 <% end %>
+              <% else %>
+                <h5 style="color: rgba(41,41,41,0.7)"><i class="fa fa-star" aria-hidden="true"></i></h5>
+              <% end %>
               </div>
               <h5 class="text-right"><span><%= @meetings.count %> Conversas</span></h5>
             </div>
