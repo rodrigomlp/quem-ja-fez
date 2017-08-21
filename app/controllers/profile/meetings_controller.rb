@@ -35,7 +35,6 @@ class Profile::MeetingsController < ApplicationController
     @diff = ((@meeting.end_time - @meeting.start_time) / 60).round
     @university = @meeting.university_name
     @course = @meeting.course_name
-    @link_to_vitural_room = VirtualRoom.create_url(@meeting)
   end
 
   def new

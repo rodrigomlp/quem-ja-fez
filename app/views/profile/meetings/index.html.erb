@@ -44,9 +44,20 @@
                       <% else %>
                         <!-- Meetings that are happening now -->
                         <% if (meeting.start_time - 10.minutes) <= Time.now && Time.now <= (meeting.end_time + 5.minutes)  %> <!-- #TO-DO: Refatorar usando métodos em meeting model -->
-                          <%= link_to "Entrar na sala virtual", @link_to_vitural_room, target: "_blank", rel: "nofollow", class: "btn btn-primary btn-xs"  %>
+                          <%= link_to "Entrar na sala virtual", meeting.virtual_room, target: "_blank", rel: "nofollow", class: "btn btn-primary btn-xs"  %>
+                          <p>Problemas com seu link?</p>
+                          <% if current_user.id == meeting.highschooler.id %>
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                            <p><%= meeting.undergraduate.email %></p>
+                            <i class="fa fa-skype" aria-hidden="true"></i>
+                            <p><%= meeting.undergraduat.skype %></p>
+                          <% else %>
+                            <p><%= meeting.highschooler.email %></p>
+                            <p><%= meeting.highschooler.skype %></p>
+                          <% end %>
                         <!-- When we are 1 hour from receiving the link -->
-                        <% elsif (meeting.start_time - 10.minutes - 1.hour) < Time.now && (meeting.start_time - 10.minutes) < Time.now %>  <!-- #TO-DO: Refatorar usando métodos em meeting model -->
+                        <!-- TO-DO: CONTADOR REGRESSIVO -->
+                        <% elsif (meeting.start_time - 10.minutes - 1.hour) <= Time.now && (meeting.start_time - 10.minutes) < Time.now %>  <!-- #TO-DO: Refatorar usando métodos em meeting model -->
                           <p> O link estará disponível em <%= (((meeting.start_time - 10.minutes) - Time.now)/60).round(0) %> minutos</p>
                         <% else %>
                           <p> O link estará disponível 10 minutos antes do horário agendado</p>

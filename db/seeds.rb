@@ -25,31 +25,39 @@ end
 
 #Creating highschoolers
 highschollers_emails.each do |email|
+  first = Faker::Name.first_name
+  last = Faker::Name.last_name
   User.create!(
     email: email,
     password: password,
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.first_name,
+    first_name: first,
+    last_name: last,
     gender: gender.sample,
     birth_date: Faker::Date.birthday(15, 20),
     city: Faker::Address.city,
     country: Faker::Address.country,
-    personal_description: Faker::HowIMetYourMother.quote)
+    personal_description: Faker::HowIMetYourMother.quote,
+    skype: "#{first}_#{last}_h"
+    )
 end
 
 #Creating undergraduates
 undergraduates_emails.each do |email|
+  first = Faker::Name.first_name
+  last = Faker::Name.last_name
   User.create!(
     email: email,
     password: password,
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.first_name,
+    first_name: first,
+    last_name: last,
     gender: gender.sample,
     birth_date: Faker::Date.birthday(17, 25),
     city: Faker::Address.city,
     country: Faker::Address.country,
     personal_description: Faker::HowIMetYourMother.quote,
-    undergraduate: true)
+    undergraduate: true,
+    skype: "#{first}_#{last}_u"
+    )
 end
 
 # TO-DO: Fill out all universities emails!
