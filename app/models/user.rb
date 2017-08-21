@@ -15,6 +15,8 @@ class User < ApplicationRecord
   has_many :events
   # validates :first_name, presence: true # We don't have a form for this yet
   # validates :last_name, presence: true # We don't have a form for this yet
+  mount_uploader :photo, PhotoUploader
+
   def self.find_for_facebook_oauth(auth)
     user_params = auth.slice(:provider, :uid)
     user_params.merge! auth.info.slice(:email, :first_name, :last_name)

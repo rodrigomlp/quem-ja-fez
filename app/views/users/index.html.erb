@@ -19,8 +19,17 @@
         <div class="row undergrad-card">
           <%= link_to "", user_path(resume.user), class: 'card-link'%>
           <div class="col-xs-4 content text-center">
-            <!-- resume.user.facebook_picture_url # Quando tivermos foto dos usuários -->
-            <%= image_tag 'http://via.placeholder.com/100x100', class: "avatar avatar-large img-thumbnail img-responsive" %>
+
+            <!-- Lógica necessária para pegar a foto do usuário, dependendo da onde vem es -->
+            <% if resume.user.facebook_picture_url != nil %>
+              <% user_photo_url = current_user.facebook_picture_url %>
+            <% elsif resume.user.photo.file != nil  %>
+              <% user_photo_url = resume.user.photo %>
+            <% else %>
+              <% user_photo_url = "http://placehold.it/100x100" %>
+            <% end %>
+            <!-- end: lógica para as imagens  -->
+            <%= image_tag user_photo_url, class: "avatar avatar-large img-thumbnail img-responsive" %>
             <div class="progress">
               <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: <%= resume.relative_completion %>%;">
                 <p><%= resume.relative_completion %>%</p>

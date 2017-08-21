@@ -24,6 +24,8 @@ gem 'rails-assets-air-datepicker', source: 'https://rails-assets.org'
 gem 'postmark-rails' # automatic email sender
 gem 'faker' # Fake info generator
 gem "select2-rails" # gem usada para fazer o autocomplete da searchbar
+gem 'cloudinary' # gem usada para armazenar as imagens
+gem 'carrierwave', '~> 0.11.2' # gem usada para associar photos aos Models
 
 group :development, :test do
   gem "letter_opener" # to preview e-mails to be sent to user

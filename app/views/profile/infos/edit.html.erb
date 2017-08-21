@@ -25,6 +25,8 @@
                                   label: false %>
         <%= f.input :city, placeholder: 'Cidade', label: false %>
         <%= f.input :country, placeholder: 'País', label: false %>
+        <%= f.input :photo, placeholder: "Profile photo", class: 'btn btn-lg btn-primary', label: false %>
+        <%= f.input :photo_cache, as: :hidden %>
         <%= f.button :submit, 'Atualizar', class: "btn btn-primary" %>
       <% end %>
     </div>
