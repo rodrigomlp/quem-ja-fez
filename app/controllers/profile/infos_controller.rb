@@ -17,7 +17,7 @@ class Profile::InfosController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :gender, :birth_date, :city, :country)
+    params.require(:user).permit(:first_name, :last_name, :gender, :birth_date, :city, :country, :photo, :photo_cache)
   end
 
   def current_class?(test_path)

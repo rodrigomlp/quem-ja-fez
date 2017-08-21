@@ -19,8 +19,7 @@
         <div class="row undergrad-card">
           <%= link_to "", user_path(resume.user), class: 'card-link'%>
           <div class="col-xs-4 content text-center">
-            <!-- resume.user.facebook_picture_url # Quando tivermos foto dos usuários -->
-            <%= image_tag 'http://via.placeholder.com/100x100', class: "avatar avatar-large img-thumbnail img-responsive" %>
+            <%= image_tag user_photo_index(resume), class: "avatar avatar-large img-thumbnail img-responsive" %>
             <div class="progress">
               <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: <%= resume.relative_completion %>%;">
                 <p><%= resume.relative_completion %>%</p>
