@@ -6,12 +6,16 @@
 }
 
 .card-how-it-works {
-
   .card-banner {
     // margin-bottom: 50px;
-    height: 120px;
+    height: 60px;
     background-size: cover !important;
     background-position: center;
+    color: $red;
+  }
+
+  .card-title {
+    color: $red;
   }
 }
 
