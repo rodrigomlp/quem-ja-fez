@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy, :confirm]
+  before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
     @user = Resume.find(params[:user_id]).user
@@ -36,7 +36,8 @@ class EventsController < ApplicationController
   end
 
   def confirm
-
+    @user = Resume.find(params[:user_id]).user
+    @events = @user.events.where(color: "red")
   end
 
   private
@@ -45,7 +46,7 @@ class EventsController < ApplicationController
     end
 
     def event_params
-      params.require(:event).permit(:title, :start, :end, :color)
+      params.require(:event).permit(:title, :start, :end, :color, :user_id)
     end
 
 end

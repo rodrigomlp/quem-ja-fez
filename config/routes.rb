@@ -14,11 +14,14 @@ Rails.application.routes.draw do
     # member do
       # get 'schedule', to: 'users#schedule'
       # get '/schedule/confirm', to: 'users#confirm'
-      get '/confirm', to: 'events#confirm'
-      resources :events
-
+      resources :events do
+        collection do
+          get '/confirm', to: 'events#confirm'
+        end
+      end
   end
   resources :meetings, only: [:create]
+
 
 
   namespace :profile do

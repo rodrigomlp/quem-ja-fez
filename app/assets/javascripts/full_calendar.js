@@ -92,24 +92,39 @@ $(document).ready(function(){
 
        /*Highschoolers want sto schedule a time*/
        else {
-          /*if he has not clicked yet (event is green)*/
-
-          var answer = confirm('Você quer marcar esse horário?');
-          if (answer) {
-            $.ajax({
-              type: "PATCH",
-              url: "/results/" + resume_id + "/events/ " + event.id,
-              data: {
-                event: {
-                  color: "red"
-                }
-              }
-            });
-            window.location.reload();
-         }
-       }
-
-
+          /*if he has not clicked yet (event is green) change it to red*/
+          if (event.color == "green"){
+                var answer = confirm('Você quer marcar esse horário?');
+                if (answer) {
+                  $.ajax({
+                    type: "PATCH",
+                    url: "/results/" + resume_id + "/events/ " + event.id,
+                    data: {
+                      event: {
+                        color: "red"
+                      }
+                    }
+                  });
+                  window.location.reload();
+               }
+            }
+          /*if he has not clicked yet (event is green) change it to red*/
+          else if (event.color == "red"){
+              var answer = confirm('Você quer desmarcar esse horário?');
+                if (answer) {
+                  $.ajax({
+                    type: "PATCH",
+                    url: "/results/" + resume_id + "/events/ " + event.id,
+                    data: {
+                      event: {
+                        color: "green"
+                      }
+                    }
+                  });
+                  window.location.reload();
+               }
+           }
+        }
       }
 
     });
