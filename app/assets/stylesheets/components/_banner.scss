@@ -1,7 +1,7 @@
 .banner {
   color: white;
   text-align: center;
-  height: calc(80vh - 70px);
+  height: calc(100vh - 70px);
 
   /* if you have a 70px navbar => height: calc(100vh - 70px); */
   background-size: cover !important;
@@ -27,6 +27,9 @@
 }
 
 // Small version of banner to be used in users#index
+.banner-lg {
+  height: calc(80vh - 70px);
+}
 .banner-sm {
   height: 20vh;
 }
