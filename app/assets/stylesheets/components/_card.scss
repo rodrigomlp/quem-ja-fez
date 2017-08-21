@@ -5,10 +5,10 @@
   margin: 10px 0;
 }
 
-.card-site-info {
-  @extend .card;
+.card-how-it-works {
 
   .card-banner {
+    margin-bottom: 50px;
     height: 200px;
     background-size: cover !important;
     background-position: center;

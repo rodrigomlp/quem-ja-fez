@@ -1,10 +1,12 @@
 // Import Google fonts
-@import url('https://fonts.googleapis.com/css?family=Alegreya+Sans:300,400|Indie+Flower');
+
+// Not working!
+// @import "https://fonts.googleapis.com/css?family=Alegreya+Sans:300,400|Indie+Flower.css";
 
 // Define fonts for body and headers
-$body-font: "Alegreya Sans", "Helvetica", "sans-serif";
-$headers-font: "Alegreya Sans", "Helvetica", "sans-serif";
-$logo-font: 'Indie Flower', 'cursive';
+$body-font: "Titillium Web", "Helvetica", "sans-serif";
+$headers-font: "Didact Gothic", "Helvetica", "sans-serif";
+$logo-font: 'Pacifico', 'cursive';
 
 
 // GLOBAL variables for FONTS
