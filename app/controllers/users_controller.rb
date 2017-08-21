@@ -25,6 +25,16 @@ class UsersController < ApplicationController
     end
 
     @avg_rating = (count.to_f / @meetings.size).round(2) unless @meetings.size == 0 # If user has no reviews, there is no rating yet.
+
+    # Lógica da imagem de cada usuário
+    if @resume.user.facebook_picture_url != nil
+      @user_photo_url = @resume.user.facebook_picture_url
+    elsif @resume.user.photo.file != nil
+      @user_photo_url = @resume.user.photo
+    else
+      @user_photo_url = "http://placehold.it/200x200"
+    end
+
   end
 
   def index

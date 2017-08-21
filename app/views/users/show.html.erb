@@ -5,50 +5,15 @@
         <div class="infos">
           <div class="info text-center">
             <div class="item">
-              <%= image_tag 'http://via.placeholder.com/100x100', class: "avatar avatar-large img-thumbnail img-responsive" %>
+            <%= image_tag @user_photo_url, class: "avatar avatar-large img-thumbnail img-responsive" %>
             </div>
             <div class="item">
               <h3><%= @resume.user.first_name %> <%= @resume.user.last_name %></h3>
               <h4><%= @resume.course.name %></h4>
               <h4><%= @resume.university.name %></h4>
               <div class="stars">
-              <% if @avg_rating.present? && @avg_rating.nil? == false %>
-                <% if @avg_rating >= 1 && @avg_rating < 1.5 %>
-                  <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
-                <% elsif @avg_rating >= 1.5 && @avg_rating < 2 %>
-                  <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
-                  <h5><i class="fa fa-star-half" aria-hidden="true"></i></h5>
-                <% elsif @avg_rating >= 2 && @avg_rating < 2.5 %>
-                  <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
-                  <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
-                  <h5><i class="fa fa-star-half" aria-hidden="true"></i></h5>
-                <% elsif @avg_rating >= 3 && @avg_rating < 3.5 %>
-                  <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
-                  <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
-                  <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
-                  <h5><i class="fa fa-star-half" aria-hidden="true"></i></h5>
-                <% elsif @avg_rating >= 4 && @avg_rating < 4.5 %>
-                  <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
-                  <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
-                  <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
-                  <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
-                  <h5><i class="fa fa-star-half" aria-hidden="true"></i></h5>
-                <% elsif @avg_rating >= 4.5 && @avg_rating < 5 %>
-                  <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
-                  <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
-                  <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
-                  <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
-                  <h5><i class="fa fa-star-half" aria-hidden="true"></i></h5>
-                <% elsif @avg_rating == 5 %>
-                  <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
-                  <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
-                  <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
-                  <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
-                  <h5><i class="fa fa-star" aria-hidden="true"></i></h5>
-                <% end %>
-              <% else %>
-                <h5 style="color: rgba(41,41,41,0.7)"><i class="fa fa-star" aria-hidden="true"></i></h5>
-              <% end %>
+                <!-- This partial calculate the avg_rating of each undergrad -->
+                <%= render 'shared/users/avg' %>
               </div>
               <h5 class="text-right"><span><%= @meetings.count %> Conversas</span></h5>
             </div>
