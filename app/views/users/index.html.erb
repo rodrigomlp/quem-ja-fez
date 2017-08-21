@@ -22,7 +22,7 @@
 
             <!-- Lógica necessária para pegar a foto do usuário, dependendo da onde vem es -->
             <% if resume.user.facebook_picture_url != nil %>
-              <% user_photo_url = current_user.facebook_picture_url %>
+              <% user_photo_url = resume.user.facebook_picture_url %>
             <% elsif resume.user.photo.file != nil  %>
               <% user_photo_url = resume.user.photo %>
             <% else %>
