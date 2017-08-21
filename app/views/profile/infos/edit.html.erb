@@ -13,9 +13,9 @@
           <%= f.input :last_name, placeholder: 'Sobrenome', label: 'Sobrenome' %>
         <!-- </div> -->
         <div class="form-group"> <!--Uma vez que o current user atualiza o gender para 'Male' ou 'Female' nós não perguntamos mais -->
-          <% if !current_user.gender.present? || ( ['Male', 'Female'].include?(current_user.gender) == false ) %>
+          <% if !current_user.gender.present? || ( ['Homem', 'Mulher'].include?(current_user.gender) == false ) %>
             <%= f.select :gender, class: "form-control" do %> <!-- TO-DO: apesar de a classe ser form-control, o input ainda não está com o mesmo dos outros... BUG -->
-              <% [['Male', 1], ['Female', 2]].each do |c| -%>
+              <% [['Homem', 1], ['Mulher', 2], ['Outro', 3]].each do |c| -%>
                 <%= content_tag(:option, c.first, value: c.first) %>
               <% end %>
             <% end %>
@@ -24,9 +24,11 @@
         <%= f.input :birth_date, as: :date, start_year: Date.today.year - 90,
                                   end_year: Date.today.year - 10,
                                   order: [:day, :month, :year],
-                                  label: "Data de Nascimento" %>
-        <%= f.input :city, placeholder: 'Cidade', label: 'Endereço' %>
-        <%= f.input :country, placeholder: 'País', label: "País" %>
+                                  label: false %>
+        <%= f.input :city, placeholder: 'Cidade', label: false %>
+        <%= f.input :country, placeholder: 'País', label: false %>
+        <%= f.input :photo, placeholder: "Profile photo", class: 'btn btn-lg btn-primary', label: false %>
+        <%= f.input :photo_cache, as: :hidden %>
         <%= f.button :submit, 'Atualizar', class: "btn btn-primary" %>
       <% end %>
     </div>
