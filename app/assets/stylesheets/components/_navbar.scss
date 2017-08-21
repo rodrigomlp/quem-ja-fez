@@ -17,10 +17,10 @@
 
   height: 50px;
 
-  // font-weight: bold;
   text-decoration: none;
   color: $red;
   h4 {
+    font-family: $logo-font;
     font-weight: 600;
     margin: 0 !important;
   }

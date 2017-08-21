@@ -5,11 +5,11 @@
   margin: 10px 0;
 }
 
-.card-site-info {
-  @extend .card;
+.card-how-it-works {
 
   .card-banner {
-    height: 200px;
+    // margin-bottom: 50px;
+    height: 120px;
     background-size: cover !important;
     background-position: center;
   }
