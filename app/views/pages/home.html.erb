@@ -1,5 +1,5 @@
 <!-- Banner -->
-<div class="banner" style="background-image: url(<%= image_path 'bw_college_graduation_day.jpg' %>);">
+<div class="banner banner-lg" style="background-image: url(<%= image_path 'bw_college_graduation_day.jpg' %>);">
   <div class="banner-content">
     <h1>Quem Já Fez?</h1>
     <p>Busque e tire suas dúvidas com alunos que fazem o curso que te interessa.</p>
@@ -8,54 +8,9 @@
   </div>
 </div>
 
-<!-- Website description cards -->
-<div class="wrapper">
-  <div class="container margin-v-md">
+<!-- Como funciona? -->
+<%= render 'como-funciona' %>
 
-    <h2 class="text-center">Como funciona?</h2>
 
-    <div class="cards">
-      <div class="row justify-content-center">
-
-        <div class="col-xs-8 col-sm-4 col-xs-offset-2 col-sm-offset-0">
-          <div class="">
-            <div class="card-banner text-center">
-              <img src="https://unsplash.it/200/200/?image=20" class="img-circle">
-            </div>
-            <div class="card-body text-center">
-              <h4>Title</h4>
-              <p>Lorem Ipsum Dolor Ales Gutten Hoffef Dolum Peloponeso</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-xs-8 col-sm-4 col-xs-offset-2 col-sm-offset-0">
-          <div class="">
-            <div class="card-banner text-center">
-              <img src="https://unsplash.it/200/200/?image=40" class="img-circle">
-            </div>
-            <div class="card-body text-center">
-              <h4>Title</h4>
-              <p>Lorem Ipsum Dolor Ales Gutten Hoffef Dolum Peloponeso</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="calendar">
-        </div>
-
-        <div class="col-xs-8 col-sm-4 col-xs-offset-2 col-sm-offset-0">
-          <div class="">
-            <div class="card-banner text-center">
-              <img src="https://unsplash.it/200/200/?image=60" class="img-circle">
-            </div>
-            <div class="card-body text-center">
-              <h4>Title</h4>
-              <p>Lorem Ipsum Dolor Ales Gutten Hoffef Dolum Peloponeso</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<!-- Por quê o Quem Já Fez? -->
+<%= render 'porque-qjf' %>

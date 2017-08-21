@@ -10,8 +10,9 @@
   justify-content: center;
 
   h1 {
+    font-family: 'Pacifico';
     font-size: 50px;
-    font-weight: bold;
+    // font-weight: 300;
     text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
   }
 
@@ -26,6 +27,9 @@
 }
 
 // Small version of banner to be used in users#index
+.banner-lg {
+  height: calc(80vh - 70px);
+}
 .banner-sm {
   height: 20vh;
 }

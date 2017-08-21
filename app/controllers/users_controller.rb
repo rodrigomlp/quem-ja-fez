@@ -25,6 +25,7 @@ class UsersController < ApplicationController
     end
 
     @avg_rating = (count.to_f / @meetings.size).round(2) unless @meetings.size == 0 # If user has no reviews, there is no rating yet.
+
   end
 
   def index

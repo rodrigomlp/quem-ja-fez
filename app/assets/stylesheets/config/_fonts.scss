@@ -1,9 +1,30 @@
 // Import Google fonts
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Raleway:400,100,300,700,500");
+
+// Not working!
+// @import "https://fonts.googleapis.com/css?family=Alegreya+Sans:300,400|Indie+Flower.css";
 
 // Define fonts for body and headers
-$body-font: "Open Sans", "Helvetica", "sans-serif";
-$headers-font: "Raleway", "Helvetica", "sans-serif";
+$body-font: "Titillium Web", "Helvetica", "sans-serif";
+$headers-font: "Didact Gothic", "Helvetica", "sans-serif";
+$logo-font: 'Pacifico', 'cursive';
+
+
+// GLOBAL variables for FONTS
+p {
+  font-weight: 300;
+}
+
+// Changes default font for select2
+.select2-selection__placeholder {
+  font-family: $body-font !important;
+  font-weight: 300;
+}
+
+// Overwrite default form font weight
+.form-group {
+ font-weight: 300;
+}
+
 
 // To use a font file (.woff) uncomment following lines
 // @font-face {

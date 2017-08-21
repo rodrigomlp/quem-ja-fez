@@ -3,7 +3,8 @@
     $(".select-course-w-search").select2({
       placeholder: "Selecione um curso",
       allowClear: true,
-      theme: "bootstrap"
+      theme: "bootstrap",
+      width: "225",
     });
   });
 
@@ -11,6 +12,7 @@
     $(".select-university-w-search").select2({
       placeholder: "Selecione uma universidade",
       allowClear: true,
-      theme: "bootstrap"
+      theme: "bootstrap",
+      width: "300",
     });
   });
