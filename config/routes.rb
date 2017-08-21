@@ -14,8 +14,8 @@ Rails.application.routes.draw do
     # member do
       # get 'schedule', to: 'users#schedule'
       # get '/schedule/confirm', to: 'users#confirm'
+      get '/confirm', to: 'events#confirm'
       resources :events
-
 
   end
   resources :meetings, only: [:create]

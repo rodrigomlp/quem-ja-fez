@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :confirm]
 
   def index
     @user = Resume.find(params[:user_id]).user
@@ -33,6 +33,10 @@ class EventsController < ApplicationController
   def destroy
     # @event = Event.find(:id)
     @event.destroy
+  end
+
+  def confirm
+
   end
 
   private

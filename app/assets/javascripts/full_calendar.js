@@ -76,7 +76,6 @@ $(document).ready(function(){
       },
 
       eventClick: function(event){
-        console.log(typeof(event.color));
 
         /*Check if the current user is a undegraduate and the right user which allows him to delete available time slots */
         if (window.user_undergraduate && is_same_user){
