@@ -15,15 +15,10 @@
           </div>
           <div class="list-group-item">
             <div class="row">
-              <div class="col-xs-6">
-                <h5>Duração prevista da conversa: <strong><%= @diff %> minutos</strong></h5>
-                <p>Data da conversa: <strong><%= @meeting.start_time.strftime("%A, %d %b %y") %></strong></p>
-                <p>Horário agendado: </p>
-                <p><%= @meeting.start_time.strftime("%R") %> - <%= @meeting.end_time.strftime("%R") %></p>
-              </div>
-              <div class="col-xs-6">
-                <%= link_to "Entrar na sala virtual", @link_to_vitural_room, target: "_blank", rel: "nofollow", class: "btn btn-primary btn-xs"  %>
-              </div>
+              <h5>Duração prevista da conversa: <strong><%= @diff %> minutos</strong></h5>
+              <p>Data da conversa: <strong><%= @meeting.start_time.strftime("%A, %d %b %y") %></strong></p>
+              <p>Horário agendado: </p>
+              <p><%= @meeting.start_time.strftime("%R") %> - <%= @meeting.end_time.strftime("%R") %></p>
             </div>
           </div>
         </div>

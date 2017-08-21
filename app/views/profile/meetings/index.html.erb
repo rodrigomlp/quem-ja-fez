@@ -13,8 +13,8 @@
 
       <div class="list-group">
         <% @meetings.each do |meeting| %>
-          <%= link_to profile_meeting_path(meeting), class: "list-group-item" do %>
-            <div class="content">
+
+            <div class="content list-group-item">
               <div class="row">
                 <div class="col-xs-4">
                   <strong><%= meeting.start_time.strftime("%A, %d %b %y") %></strong>
@@ -30,29 +30,36 @@
                     <p><%= meeting.university_name %></p>
                 </div>
                 <div class="col-xs-4 text-center">
+
                   <div class="row">
-                    <strong>Informações</strong>
-                  </div>
-                  <div class="row">
+                    <!-- Meetings that have ratings have already past -->
                     <% if meeting.rating %>
-                      <button type="button" class="btn btn-default btn-xs"><%=  meeting.rating %></button>
+                      <button type="button" class="btn btn-default btn-xs"><%=  meeting.rating %></button> <!-- TO-DO: não é para ser um botão, estou usando botão penas por estética #TO-DO: Refatorar usando métodos em meeting model-->
                     <% else %>
-                      <% if meeting.start_time < Time.now %>
-                        <button type="button" class="btn btn-danger btn-xs">Conversa não avaliada</button>
+                      <!-- Condition when the meeting has already past but don't have any rating -->
+                      <% if (meeting.end_time + 5.minutes) < Time.now %>
+                        <!-- <button type="button" class="btn btn-danger btn-xs">Gostou da conversa? Deixe um feedback</button> --> <!-- TO-DO: não é para ser um botão, estou usando botão penas por estética #TO-DO: Refatorar usando métodos em meeting model-->
+                        <%= link_to "Gostou da conversa? Deixe um feedback", profile_meeting_path(meeting)%>
+                      <!-- Meetings that are in the future or happening now -->
                       <% else %>
-                        <button type="button" class="btn btn-success btn-xs">Conversa agendada</button>
+                        <!-- Meetings that are happening now -->
+                        <% if (meeting.start_time - 10.minutes) <= Time.now && Time.now <= (meeting.end_time + 5.minutes)  %> <!-- #TO-DO: Refatorar usando métodos em meeting model -->
+                          <%= link_to "Entrar na sala virtual", @link_to_vitural_room, target: "_blank", rel: "nofollow", class: "btn btn-primary btn-xs"  %>
+                        <!-- When we are 1 hour from receiving the link -->
+                        <% elsif (meeting.start_time - 10.minutes - 1.hour) < Time.now && (meeting.start_time - 10.minutes) < Time.now %>  <!-- #TO-DO: Refatorar usando métodos em meeting model -->
+                          <p> O link estará disponível em <%= (((meeting.start_time - 10.minutes) - Time.now)/60).round(0) %> minutos</p>
+                        <% else %>
+                          <p> O link estará disponível 10 minutos antes do horário agendado</p>
+                        <% end %>
                       <% end %>
                     <% end %>
                   </div>
                 </div>
               </div>
             </div>
-          <% end %>
-        <% end %>
+
+        <% end %> <!-- end de iteração do meeting -->
       </div>
-
-
-
     </div>
 
   </div>
