@@ -11,9 +11,9 @@
         <%= f.input :first_name, placeholder: 'Nome', label: false %>
         <%= f.input :last_name, placeholder: 'Sobrenome', label: false %>
         <div class="form-group"> <!--Uma vez que o current user atualiza o gender para 'Male' ou 'Female' nós não perguntamos mais -->
-          <% if !current_user.gender.present? || ( ['Male', 'Female'].include?(current_user.gender) == false ) %>
+          <% if !current_user.gender.present? || ( ['Homem', 'Mulher'].include?(current_user.gender) == false ) %>
             <%= f.select :gender, class: "form-control" do %> <!-- TO-DO: apesar de a classe ser form-control, o input ainda não está com o mesmo dos outros... BUG -->
-              <% [['Male', 1], ['Female', 2]].each do |c| -%>
+              <% [['Homem', 1], ['Mulher', 2], ['Outro', 3]].each do |c| -%>
                 <%= content_tag(:option, c.first, value: c.first) %>
               <% end %>
             <% end %>
