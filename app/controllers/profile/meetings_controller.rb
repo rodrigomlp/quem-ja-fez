@@ -7,7 +7,6 @@ class Profile::MeetingsController < ApplicationController
   helper_method :edit, :current_class?
   helper_method :show, :current_class?
 
-  # lógica ainda não terminada
   def index
     @meetings_accepted = current_user.meetings_accepted
     @meetings_proposed = current_user.meetings_proposed
@@ -20,9 +19,10 @@ class Profile::MeetingsController < ApplicationController
     @past_meetings_accepted = @meetings_accepted.where('end_time < ?', Time.now)
     @past_meetings_proposed = @meetings_proposed.where('end_time < ?', Time.now)
     @past_meetings = @past_meetings_accepted + @past_meetings_proposed
-    @past_meetings.sort! { |a, b|  a.start_time <=> b.start_time }
+    @past_meetings.sort! { |a, b|  b.start_time <=> a.start_time }
     # All the meetings together
     @meetings = @future_meetings + @past_meetings
+
   end
 
   def create
@@ -47,7 +47,6 @@ class Profile::MeetingsController < ApplicationController
     @diff = ((@meeting.end_time - @meeting.start_time) / 60).round
     @university = @meeting.university_name
     @course = @meeting.course_name
-    @link_to_vitural_room = VirtualRoom.create_url(@meeting)
   end
 
   def new

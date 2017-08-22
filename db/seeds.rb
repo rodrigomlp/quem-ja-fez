@@ -10,7 +10,7 @@ password = 123456
 gender = ['masculino', 'feminino', 'other']
 
 highschollers_number = 10
-undergraduates_number = 50
+undergraduates_number = 10
 
 highschollers_emails = []
 undergraduates_emails = []
@@ -25,31 +25,39 @@ end
 
 #Creating highschoolers
 highschollers_emails.each do |email|
+  first = Faker::Name.first_name
+  last = Faker::Name.last_name
   User.create!(
     email: email,
     password: password,
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.first_name,
+    first_name: first,
+    last_name: last,
     gender: gender.sample,
     birth_date: Faker::Date.birthday(15, 20),
     city: Faker::Address.city,
     country: Faker::Address.country,
-    personal_description: Faker::HowIMetYourMother.quote)
+    personal_description: Faker::HowIMetYourMother.quote,
+    skype: "#{first}_#{last}_h"
+    )
 end
 
 #Creating undergraduates
 undergraduates_emails.each do |email|
+  first = Faker::Name.first_name
+  last = Faker::Name.last_name
   User.create!(
     email: email,
     password: password,
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.first_name,
+    first_name: first,
+    last_name: last,
     gender: gender.sample,
     birth_date: Faker::Date.birthday(17, 25),
     city: Faker::Address.city,
     country: Faker::Address.country,
     personal_description: Faker::HowIMetYourMother.quote,
-    undergraduate: true)
+    undergraduate: true,
+    skype: "#{first}_#{last}_u"
+    )
 end
 
 # TO-DO: Fill out all universities emails!
@@ -193,8 +201,8 @@ User.all.where(undergraduate: true).each do |undergraduate|
   (rand(3) + 1).times do
     Resume.create!(
       user: undergraduate,
-      university: University.order("RANDOM()").first,
-      course: Course.order("RANDOM()").first,
+      university: University.all.sample,
+      course: Course.all.sample,
       school_email: Faker::Internet.email,
       relative_completion: rand(0..100),
       academic_description: Faker::HitchhikersGuideToTheGalaxy.quote,
@@ -222,14 +230,15 @@ for i in 1..meetings_number
   randon_times << Faker::Time.forward(rand(8), :all) # random time in the next 7 days
   randon_times << Faker::Time.backward(rand(8), :all) # random time in the last 7 days
   start_time = randon_times.sample
+  end_time = start_time + duration.sample.hour
 
-  random_undergraduates = User.where(undergraduate: true).order("RANDOM()")
+  random_undergraduates_first, random_undergraduates_second = User.where(undergraduate: true).order("RANDOM()").sample(2)
   highschooler = User.where(undergraduate: false).order("RANDOM()").first
 
   review_title = nil
   review_content = nil
   rating = nil
-  if start_time < Time.now
+  if (end_time + 5.minutes) < Time.now
     rating = ratings.sample
     if rating && rand(0) < 0.8
       review_title = Faker::MostInterestingManInTheWorld.quote
@@ -239,13 +248,13 @@ for i in 1..meetings_number
 
   Meeting.create!(
     start_time: start_time,
-    end_time: start_time + duration.sample.hour,
+    end_time: end_time,
     review_title: review_title,
     review_content: review_content,
     rating: rating,
-    undergraduate: random_undergraduates.first,
-    highschooler: [highschooler, random_undergraduates.first].sample,
-    resume: random_undergraduates.first.resumes.sample
+    undergraduate: random_undergraduates_first,
+    highschooler: [highschooler, random_undergraduates_second].sample,
+    resume: random_undergraduates_first.resumes.sample
     )
 end
 
