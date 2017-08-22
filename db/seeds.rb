@@ -269,8 +269,8 @@ Meeting.create!(
 
 # Creating a meeting between u2@t.c and h2@t.c that will happen 12 minutes from now
 Meeting.create!(
-    start_time: Time.now + 12.minutes,
-    end_time: Time.now + 12.minutes + 1.hour,
+    start_time: Time.now + 40.minutes,
+    end_time: Time.now + 40.minutes + 1.hour,
     undergraduate: User.find_by(email: "u2@t.c"),
     highschooler: User.find_by(email: "h2@t.c"),
     resume: User.find_by(email: "u2@t.c").resumes.first
