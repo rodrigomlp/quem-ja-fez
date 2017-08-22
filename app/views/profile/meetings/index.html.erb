@@ -33,12 +33,12 @@
 
                   <div class="row">
                     <!-- Meetings that have ratings have already past -->
-                    <% if meeting.rating %>
+                    <% if meeting.rating && current_user.id == meeting.highschooler.id %>
                       <button type="button" class="btn btn-default btn-xs"><%=  meeting.rating %></button> <!-- TO-DO: não é para ser um botão, estou usando botão penas por estética #TO-DO: Refatorar usando métodos em meeting model-->
                     <% else %>
                       <!-- Condition when the meeting has already past but don't have any rating -->
-                      <% if (meeting.end_time + 5.minutes) < Time.now %>
-                        <!-- <button type="button" class="btn btn-danger btn-xs">Gostou da conversa? Deixe um feedback</button> --> <!-- TO-DO: não é para ser um botão, estou usando botão penas por estética #TO-DO: Refatorar usando métodos em meeting model-->
+                      <% if (meeting.end_time + 5.minutes) < Time.now && current_user.id == meeting.highschooler.id %>
+                         <!-- #TO-DO: Refatorar usando métodos em meeting model-->
                         <%= link_to "Gostou da conversa? Deixe um feedback", profile_meeting_path(meeting)%>
                       <!-- Meetings that are in the future or happening now -->
                       <% else %>
@@ -50,14 +50,13 @@
                             <i class="fa fa-envelope" aria-hidden="true"></i>
                             <p><%= meeting.undergraduate.email %></p>
                             <i class="fa fa-skype" aria-hidden="true"></i>
-                            <p><%= meeting.undergraduat.skype %></p>
+                            <p><%= meeting.undergraduate.skype %></p>
                           <% else %>
                             <p><%= meeting.highschooler.email %></p>
                             <p><%= meeting.highschooler.skype %></p>
                           <% end %>
                         <!-- When we are 1 hour from receiving the link -->
-                        <!-- TO-DO: CONTADOR REGRESSIVO -->
-                        <% elsif (meeting.start_time - 10.minutes - 1.hour) <= Time.now && (meeting.start_time - 10.minutes) < Time.now %>  <!-- #TO-DO: Refatorar usando métodos em meeting model -->
+                        <% elsif (meeting.start_time - 70.minutes) <= Time.now && (meeting.start_time - 10.minutes) > Time.now %>  <!-- #TO-DO: Refatorar usando métodos em meeting model -->
                           <p> O link estará disponível em <%= (((meeting.start_time - 10.minutes) - Time.now)/60).round(0) %> minutos</p>
                         <% else %>
                           <p> O link estará disponível 10 minutos antes do horário agendado</p>
