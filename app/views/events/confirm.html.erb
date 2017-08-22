@@ -1,0 +1,52 @@
+<h3>How many selected spots?</h3>
+<%= @events.count %>
+<h3>Final Price</h3>
+<%=  (@events.count * 19.99) %>
+
+<h3>Name of mentor</h3>
+<%= @user.first_name + " " + @user.last_name %>
+
+<h3>Hours Selecteds</h3>
+
+
+<% @events.each do  |event| %>
+  <p>Start Time</p>
+  <%= event.start %>
+  <p>End Time</p>
+  <%= event.end %>
+<% end %>
+
+<form id="wps-bn" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+  <input type="hidden" name="cmd" value="_xclick" />
+  <input type="hidden" name="business" value="rodrigomlp@gmail.com" />
+  <input type="hidden" name="return" value="http://www.quemjafez.com.br/profile/meetings" />
+  <input type="hidden" name="cancel" value="http://www.quemjafez.com.br/profile/meetings" />
+  <input type="hidden" name="notify_url" value="http://loja.com.br/notificacao" />
+
+  <input type="hidden" name="charset" value="utf-8" />
+  <input type="hidden" name="lc" value="BR" />
+  <input type="hidden" name="country_code" value="BR" />
+  <input type="hidden" name="currency_code" value="BRL" />
+
+  <input type="hidden" name="amount" value="1.99" />
+  <input type="hidden" name="item_name" value="Servico" />
+  <input type="hidden" name="quantity" value="1" />
+
+   <input type="image" src="https://www.paypalobjects.com/pt_BR/BR/i/btn/btn_buynowCC_LG.gif" border="0" />
+</form>
+
+
+<%= form_for(@meeting, :url => profile_meetings_path, :action => "POST") do |f| %>
+
+  <%= f.hidden_field :resume, :value => @resume.id %>
+  <%= f.hidden_field :event, :value => @events.map(&:id)  %>
+
+  <%= f.submit %>
+<% end %>
+
+
+
+
+<!-- IF POST IS SUCCESSFUL DELETE FROM DATABSE event.destroy-->
+<button method="POST" class="btn btn-danger btn-lg">Confirmar</button>
+
