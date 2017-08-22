@@ -14,14 +14,18 @@
       <div class="list-group">
         <% @meetings.each do |meeting| %>
           <div class="content list-group-item meeting-card <%= meeting.status %>">
-            <div class="row all-complete-height-row">
-              <div class="col-xs-4 with-right-border all-complete-height-col">
-                <strong class="text-gray"><%= meeting.date_in_words %></strong>
-                <p><%= (meeting.start_time).strftime("%R") %> - <%= (meeting.end_time).strftime("%R") %></p>
-                <strong class="text-gray">Status</strong>
-                <p class="<%= meeting.status %>_text" ><%= meeting_status(meeting) %></p>
+            <div class="flex-test">
+              <div class="sec-t1 with-right-border">
+                <div>
+                  <strong class="text-gray"><%= meeting.date_in_words %></strong>
+                  <p><%= (meeting.start_time).strftime("%R") %> - <%= (meeting.end_time).strftime("%R") %></p>
+                </div>
+                <div>
+                  <strong class="text-gray">Status</strong>
+                  <p class="<%= meeting.status %>_text" ><%= meeting_status(meeting) %></p>
+                </div>
               </div>
-              <div class="col-xs-4 text-center with-right-border all-complete-height-col">
+              <div class="sec-t2 text-center">
                 <!-- In the case the current user is an udnergraduate -->
                   <div class="name-top text-left">
                     <strong>
@@ -34,7 +38,7 @@
                     <strong><%= current_user == meeting.highschooler ? "Eu" : meeting.highschooler.first_name %></strong>
                   </div>
               </div>
-              <div class="col-xs-4 text-center all-complete-height-col">
+              <div class="sec-t3 text-center">
                 <!-- Meetings that have ratings have already past -->
                 <% if meeting.rating && current_user == meeting.highschooler %>
                   <button type="button" class="btn btn-default btn-xs"><%=  meeting.rating %></button>

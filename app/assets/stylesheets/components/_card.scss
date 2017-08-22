@@ -51,6 +51,7 @@
   border-bottom: none;
   border-right: none;
   margin-bottom: 10px;
+  height: 175px;
 
   .on_going_text {
     color: $my-yellow;
@@ -100,5 +101,48 @@
     float: none;
     display: table-cell;
   }
+
+  .flex-test {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+
+  }
+
+  .sec-t1 {
+    flex-basis: 150px;
+    padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    p {
+      margin-bottom: 0px;
+      font-size: 16px;
+    }
+  }
+
+  .sec-t2 {
+    flex-grow: 2;
+    padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: flex-start;
+    p {
+      margin-bottom: 0px;
+      font-size: 16px;
+    }
+    .name-top {
+      border-bottom: 1px solid $light-gray;
+    }
+  }
+
+  .sec-t3 {
+    flex-basis: 250px;
+    padding: 0 15px;
+    border-left: 1px solid $light-gray;
+  }
+
+
 
 }
