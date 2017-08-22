@@ -29,15 +29,16 @@ $(document).ready(function(){
       buttonText: {
         week: "Semana",
      },
+     timezone: 'UTC',
 
      monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
      monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
      dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'],
      dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
-      events: '/results/' +  resume_id + '/events.json',
-
+     events: '/results/' +  resume_id + '/events.json',
 
       select: function(start, end, event) {
+         console.log($(this))
          if (window.user_undergraduate && is_same_user){
             $.ajax({
             type: "POST",
@@ -77,7 +78,7 @@ $(document).ready(function(){
 
       eventClick: function(event){
 
-        /*Check if the current user is a undegraduate which allows him to delete available time slots */
+        /*Check if the current user is a undegraduate and the right user which allows him to delete available time slots */
         if (window.user_undergraduate && is_same_user){
            var answer = confirm('Você quer deletar esse horário?');
            if (answer) {
@@ -90,24 +91,41 @@ $(document).ready(function(){
         }
 
 
-       /*Highschoolers that want to schedule a time*/
+       /*Highschoolers want sto schedule a time*/
        else {
-          var answer = confirm('Você quer marcar esses horários?');
-          if (answer) {
-            $.ajax({
-              type: "PATCH",
-              url: "/results/" + resume_id + "/events/ " + event.id,
-              data: {
-                event: {
-                  color: "red"
-                }
-              }
-            });
-            window.location.reload();
-         }
-       }
-
-
+          /*if he has not clicked yet (event is green) change it to red*/
+          if (event.color == "green"){
+                var answer = confirm('Você quer marcar esse horário?');
+                if (answer) {
+                  $.ajax({
+                    type: "PATCH",
+                    url: "/results/" + resume_id + "/events/ " + event.id,
+                    data: {
+                      event: {
+                        color: "red"
+                      }
+                    }
+                  });
+                  window.location.reload();
+               }
+            }
+          /*if he has not clicked yet (event is green) change it to red*/
+          else if (event.color == "red"){
+              var answer = confirm('Você quer desmarcar esse horário?');
+                if (answer) {
+                  $.ajax({
+                    type: "PATCH",
+                    url: "/results/" + resume_id + "/events/ " + event.id,
+                    data: {
+                      event: {
+                        color: "green"
+                      }
+                    }
+                  });
+                  window.location.reload();
+               }
+           }
+        }
       }
 
     });

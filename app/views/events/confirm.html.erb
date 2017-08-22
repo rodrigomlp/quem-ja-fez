@@ -1,0 +1,33 @@
+<h3>How many selected spots?</h3>
+<%= @events.count %>
+<h3>Final Price</h3>
+<%=  (@events.count * 19.99) %>
+
+<h3>Name of mentor</h3>
+<%= @user.first_name + " " + @user.last_name %>
+
+<h3>Hours Selecteds</h3>
+
+
+<% @events.each do  |event| %>
+  <p>Start Time</p>
+  <%= event.start %>
+  <p>End Time</p>
+  <%= event.end %>
+<% end %>
+
+<%= form_for(@meeting, :url => profile_meetings_path, :action => "POST") do |f| %>
+
+  <%= f.hidden_field :resume, :value => @resume.id %>
+  <%= f.hidden_field :event, :value => @events.map(&:id)  %>
+
+  <%= f.submit %>
+<% end %>
+
+
+
+
+<!-- IF POST IS SUCCESSFUL DELETE FROM DATABSE event.destroy-->
+<button method="POST" class="btn btn-danger btn-lg">Confirmar</button>
+
+

@@ -18,7 +18,7 @@
               <div class="row">
                 <div class="col-xs-4">
                   <strong><%= meeting.start_time.strftime("%A, %d %b %y") %></strong>
-                  <p><%= meeting.start_time.strftime("%R") %> - <%= meeting.end_time.strftime("%R") %></p>
+                  <p><%= (meeting.start_time).strftime("%R") %> - <%= (meeting.end_time).strftime("%R") %></p>
                 </div>
                 <div class="col-xs-4 text-center">
                   <% if current_user.id == meeting.highschooler.id %>

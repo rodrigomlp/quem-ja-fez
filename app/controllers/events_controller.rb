@@ -35,13 +35,20 @@ class EventsController < ApplicationController
     @event.destroy
   end
 
+  def confirm
+    @resume = Resume.find(params[:user_id])
+    @user = @resume.user
+    @events = @user.events.where(color: "red")
+    @meeting = Meeting.new
+  end
+
   private
     def set_event
       @event = Event.find(params[:id])
     end
 
     def event_params
-      params.require(:event).permit(:title, :start, :end, :color)
+      params.require(:event).permit(:title, :start, :end, :color, :user_id)
     end
 
 end
