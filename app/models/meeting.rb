@@ -6,23 +6,55 @@ class Meeting < ApplicationRecord
   after_create :create_virtual_room
 
   def university_name
-    self.resume.university.name
+    resume.university.name
   end
 
   def course_name
-    self.resume.course.name
+    resume.course.name
   end
 
-  def send_emails
-    @next_meetings = Meeting.where('start_time >= ? AND end_time <= ?', Date.tomorrow.beginning_of_day, Date.tomorrow.end_of_day)
-    puts "The number of meetings in the next 24 hours is #{@next_meetings.size}"
-
-    # Disparando email para os users das next meetings
-    @next_meetings.each_with_index do |meeting, index|
-      puts "Sending emails for the meeting #{index + 1}"
-      UserMailer.remember_highschooler(meeting).deliver_now
-      UserMailer.remember_undergraduate(meeting).deliver_now
+  def date_in_words
+    if start_time.today?
+      "Hoje"
+    elsif start_time.to_date == Date.tomorrow
+      "Amanhã"
+    elsif start_time.to_date == Date.yesterday
+      "Ontem"
+    else
+      start_time.strftime("%A, %d %b %y")
     end
+  end
+
+  def setup_time
+    start_time - 10.minutes
+  end
+
+  def extra_time
+    end_time + 5.minutes
+  end
+
+  def scheduled?
+    Time.now < setup_time
+  end
+
+  def setting_up?
+    Time.now >= setup_time && Time.now < start_time
+  end
+
+  def on_going?
+    start_time <= Time.now && Time.now <= extra_time
+  end
+
+  def completed?
+    extra_time < Time.now
+  end
+
+  def status
+    return :scheduled if scheduled?
+    return :setting_up if setting_up?
+    return :on_going? if on_going?
+    return :completed if completed?
+    fail "Invalid status"
   end
 
   private
