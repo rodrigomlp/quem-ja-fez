@@ -44,3 +44,31 @@
 .card-border-rd-sm {
   border-radius: 5px;
 }
+
+.meeting-card {
+  border-left: 5px solid;
+  border-top: none;
+  border-bottom: none;
+  border-right: none;
+  margin-bottom: 10px;
+
+  &.on_going {
+    border-color: yellow;
+  }
+
+  &.scheduled {
+    border-color: green;
+  }
+
+  &.completed {
+    border-color: blue;
+  }
+
+  &.setting_up {
+    border-color: yellow;
+  }
+
+  .with-margin {
+    border-right: 1px solid #ccc;
+  }
+}
