@@ -36,8 +36,10 @@ class EventsController < ApplicationController
   end
 
   def confirm
-    @user = Resume.find(params[:user_id]).user
+    @resume = Resume.find(params[:user_id])
+    @user = @resume.user
     @events = @user.events.where(color: "red")
+    @meeting = Meeting.new
   end
 
   private

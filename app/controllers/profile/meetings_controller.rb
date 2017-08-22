@@ -25,6 +25,18 @@ class Profile::MeetingsController < ApplicationController
     @meetings = @future_meetings + @past_meetings
   end
 
+  def create
+    events_id = params[:meeting][:event].split(" ")
+    @resume = Resume.find(params[:meeting][:resume])
+    events_id.each do |event|
+      @event = Event.find(event)
+      start_time = @event.start
+      end_time = @event.end
+      meeting = Meeting.create(start_time: start_time, end_time: end_time, highschooler: current_user, undergraduate: @resume.user, resume: @resume)
+      @event.destroy
+    end
+  end
+
 
   def show
     if current_user.id == @meeting.highschooler.id

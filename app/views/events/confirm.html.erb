@@ -8,6 +8,7 @@
 
 <h3>Hours Selecteds</h3>
 
+
 <% @events.each do  |event| %>
   <p>Start Time</p>
   <%= event.start %>
@@ -15,6 +16,18 @@
   <%= event.end %>
 <% end %>
 
-<button class="btn btn-danger btn-lg">Confirmar</button>
+<%= form_for(@meeting, :url => profile_meetings_path, :action => "POST") do |f| %>
+
+  <%= f.hidden_field :resume, :value => @resume.id %>
+  <%= f.hidden_field :event, :value => @events.map(&:id)  %>
+
+  <%= f.submit %>
+<% end %>
+
+
+
+
+<!-- IF POST IS SUCCESSFUL DELETE FROM DATABSE event.destroy-->
+<button method="POST" class="btn btn-danger btn-lg">Confirmar</button>
 
 

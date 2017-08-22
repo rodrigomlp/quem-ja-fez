@@ -29,15 +29,16 @@ $(document).ready(function(){
       buttonText: {
         week: "Semana",
      },
+     timezone: 'UTC',
 
      monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
      monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
      dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'],
      dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
-      events: '/results/' +  resume_id + '/events.json',
-
+     events: '/results/' +  resume_id + '/events.json',
 
       select: function(start, end, event) {
+         console.log($(this))
          if (window.user_undergraduate && is_same_user){
             $.ajax({
             type: "POST",
