@@ -39,7 +39,7 @@
                     <button type="button" class="btn btn-default btn-xs"><%=  meeting.rating %></button> <!-- TO-DO: não é para ser um botão, estou usando botão penas por estética #TO-DO: Refatorar usando métodos em meeting model-->
                   <% else %>
                     <!-- Condition when the meeting has already past but don't have any rating -->
-                    <% if meeting.chorinho < Time.now && current_user == meeting.highschooler %>
+                    <% if meeting.extra_time < Time.now && current_user == meeting.highschooler %>
                        <!-- #TO-DO: Refatorar usando métodos em meeting model-->
                       <%= link_to "Gostou da conversa? Deixe um feedback", profile_meeting_path(meeting)%>
                     <!-- Meetings that are in the future or happening now -->

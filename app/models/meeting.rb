@@ -6,22 +6,22 @@ class Meeting < ApplicationRecord
   after_create :create_virtual_room
 
   def university_name
-    self.resume.university.name
+    resume.university.name
   end
 
   def course_name
-    self.resume.course.name
+    resume.course.name
   end
 
   def date_in_words
-    if self.start_time.today?
+    if start_time.today?
       "Hoje"
-    elsif self.start_time.to_date == Date.tomorrow
+    elsif start_time.to_date == Date.tomorrow
       "Amanhã"
-    elsif self.start_time.to_date == Date.yesterday
+    elsif start_time.to_date == Date.yesterday
       "Ontem"
     else
-      self.start_time.strftime("%A, %d %b %y")
+      start_time.strftime("%A, %d %b %y")
     end
   end
 
@@ -29,7 +29,7 @@ class Meeting < ApplicationRecord
     start_time - 10.minutes
   end
 
-  def chorinho
+  def extra_time
     end_time + 5.minutes
   end
 
@@ -42,11 +42,11 @@ class Meeting < ApplicationRecord
   end
 
   def on_going?
-    start_time <= Time.now && Time.now <= chorinho
+    start_time <= Time.now && Time.now <= extra_time
   end
 
   def completed?
-    chorinho < Time.now
+    extra_time < Time.now
   end
 
   def status
