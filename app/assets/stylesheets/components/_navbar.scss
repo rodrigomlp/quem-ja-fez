@@ -10,6 +10,13 @@
   justify-content: space-between;
 }
 
+.navbar-home {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, .25), rgba(255, 255, 255, 0));
+  position: absolute;
+  width: 100%;
+  box-shadow: none;
+}
+
 /* Logo */
 .navbar-wagon-brand {
   display: flex;
@@ -59,6 +66,17 @@
 .navbar-wagon-link:hover {
   color: #da552f;
   text-decoration: none;
+}
+
+// Only affects home
+.navbar-home {
+  .navbar-wagon-link {
+    color: white;
+  }
+
+  .navbar-wagon-link:hover {
+    color: white;
+  }
 }
 
 /* Dropdown menu */

@@ -29,6 +29,7 @@
 
     <%= render 'shared/footer' %>
     <%= javascript_include_tag 'application' %>
+    <%= yield(:js) %> <!-- Reload javascript that was called from within an html -->
 
 
   </body>
