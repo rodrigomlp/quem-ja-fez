@@ -18,7 +18,7 @@
   height: 50px;
 
   text-decoration: none;
-  color: $red;
+  color: $brand-primary;
   h4 {
     font-family: $logo-font;
     font-weight: 600;
@@ -27,7 +27,7 @@
 }
 
 .navbar-wagon-brand:hover {
-  color: $red;
+  color: $brand-primary;
   text-decoration: none;
 }
 
