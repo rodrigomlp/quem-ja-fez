@@ -46,29 +46,59 @@
 }
 
 .meeting-card {
-  border-left: 5px solid;
+  border-left: 7px solid;
   border-top: none;
   border-bottom: none;
   border-right: none;
   margin-bottom: 10px;
 
+  .on_going_text {
+    color: $my-yellow;
+  }
+
+  .scheduled_text {
+    color: $my-green;
+  }
+
+  .completed_text {
+    color: $my-dark-blue;
+  }
+
+  .setting_up_text {
+    color: $my-yellow;
+  }
+
   &.on_going {
-    border-color: yellow;
+    border-color: $my-yellow;
   }
 
   &.scheduled {
-    border-color: green;
+    border-color: $my-green;
   }
 
   &.completed {
-    border-color: blue;
+    border-color: $my-dark-blue;
   }
 
   &.setting_up {
-    border-color: yellow;
+    border-color: $my-yellow;
   }
 
-  .with-margin {
-    border-right: 1px solid #ccc;
+  .with-right-border {
+    border-right: 1px solid $light-gray;
   }
+
+  .occupy-all-height {
+    height: 100%;
+  }
+
+  .all-complete-height-row {
+    display: table;
+  }
+
+  .all-complete-height-col {
+    float: none;
+    display: table-cell;
+  }
+
 }

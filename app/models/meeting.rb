@@ -52,7 +52,7 @@ class Meeting < ApplicationRecord
   def status
     return :scheduled if scheduled?
     return :setting_up if setting_up?
-    return :on_going? if on_going?
+    return :on_going if on_going?
     return :completed if completed?
     fail "Invalid status"
   end
