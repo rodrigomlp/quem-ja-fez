@@ -6,11 +6,55 @@ class Meeting < ApplicationRecord
   after_create :create_virtual_room
 
   def university_name
-    self.resume.university.name
+    resume.university.name
   end
 
   def course_name
-    self.resume.course.name
+    resume.course.name
+  end
+
+  def date_in_words
+    if start_time.today?
+      "Hoje"
+    elsif start_time.to_date == Date.tomorrow
+      "Amanhã"
+    elsif start_time.to_date == Date.yesterday
+      "Ontem"
+    else
+      start_time.strftime("%A, %d %b %y")
+    end
+  end
+
+  def setup_time
+    start_time - 10.minutes
+  end
+
+  def extra_time
+    end_time + 5.minutes
+  end
+
+  def scheduled?
+    Time.now < setup_time
+  end
+
+  def setting_up?
+    Time.now >= setup_time && Time.now < start_time
+  end
+
+  def on_going?
+    start_time <= Time.now && Time.now <= extra_time
+  end
+
+  def completed?
+    extra_time < Time.now
+  end
+
+  def status
+    return :scheduled if scheduled?
+    return :setting_up if setting_up?
+    return :on_going? if on_going?
+    return :completed if completed?
+    fail "Invalid status"
   end
 
   private
