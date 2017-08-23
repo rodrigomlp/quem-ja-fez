@@ -1,0 +1,40 @@
+<div class="title">
+  <div class="title-text">
+
+    <!-- thumbs icon -->
+    <div class="title-course-opinion">
+      <% if @resume.stance.to_i == 1 %>
+        <div class="thumb-icon thumb-up" data-toggle="tooltip" data-animation="true" title="<%= @resume.user.first_name %> recomenda esse curso"> <!-- Toggles tooltip if hovered over -->
+          <i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i>
+        </div>
+      <% elsif @resume.stance.to_i == 0 %>
+        <div class="thumb-icon" data-toggle="tooltip" data-animation="true" title="<%= @resume.user.first_name %> não tem posicionamento formado sobre o curso"> <!-- Toggles tooltip if hovered over -->
+          <i class="fa fa-question-circle fa-2x" aria-hidden="true"></i>
+        </div>
+      <% else %>
+        <div class="thumb-icon thumb-down" data-toggle="tooltip" data-animation="true" title="<%= @resume.user.first_name %> não recomenda esse curso"> <!-- Toggles tooltip if hovered over -->
+          <i class="fa fa-thumbs-down fa-2x" aria-hidden="true"></i>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- Title -->
+    <div class="title-course">
+      <h2><%= @resume.course.name %></h2>
+      <p><%= @resume.university.name %></p>
+
+      <div class="progress" data-toggle="tooltip" data-placement="bottom" data-animation="true" title="Quanto <%= @resume.user.first_name %> já cursou">
+        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: <%= @resume.relative_completion %>%;">
+          <p><%= @resume.relative_completion %>%</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Avatar -->
+  <div class="title-avatar text-center">
+    <!-- PERGUNTA: Por quê por default a imagem é 200x200? -->
+    <%= image_tag(user_photo_show(@resume), size: "75x75", class: "img-circle") %>
+    <p><%= @resume.user.first_name %> <%= @resume.user.last_name %></p>
+  </div>
+</div>

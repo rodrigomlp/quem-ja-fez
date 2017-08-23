@@ -132,3 +132,18 @@
   }
 
 }
+
+// -- .users/show.html.erb
+.card-review {
+  display: flex;
+  align-items: flex-start;
+
+  .review-avatar {
+    margin-top: 5px;
+    margin-right: 10px;
+  }
+
+  .review-content {
+
+  }
+}
