@@ -27,7 +27,11 @@
                 </div>
               </div>
               <div class="sec-t2 ">
+                <div class="icon">
+                  <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                </div>
                 <!-- In the case the current user is an udnergraduate -->
+                <div class="names">
                   <div class="name-top text-left">
                     <strong>
                       <%= current_user == meeting.undergraduate ? "Eu" : meeting.undergraduate.first_name %>
@@ -38,6 +42,7 @@
                   <div class="name-bottom text-left">
                     <strong><%= current_user == meeting.highschooler ? "Eu" : meeting.highschooler.first_name %></strong>
                   </div>
+                </div>
               </div>
               <div class="sec-t3 text-center">
                 <!-- Meetings that have ratings have already past -->
@@ -45,7 +50,7 @@
                   <button type="button" class="btn btn-default btn-xs"><%=  meeting.rating %></button>
                 <% else %>
                   <!-- Condition when the meeting has already past but don't have any rating -->
-                  <% if meeting.extra_time < Time.now && current_user == meeting.highschooler %>
+                  <% if meeting.extra_time < Time.current && current_user == meeting.highschooler %>
 
                     <%= link_to "Gostou da conversa? Deixe um feedback", profile_meeting_path(meeting)%>
                   <!-- Meetings that are in the future or happening now -->
@@ -59,8 +64,8 @@
                       <i class="fa fa-skype" aria-hidden="true"></i>
                       <p><%= current_user == meeting.highschooler ? meeting.undergraduate.skype : meeting.highschooler.skype %></p>
                     <!-- When we are 1 hour from receiving the link -->
-                    <% elsif meeting.scheduled? && Time.now >= meeting.setup_time - 1.hour %>
-                      <p> O link estará disponível em <%= (((meeting.setup_time) - Time.now)/60).round(0) %> minutos</p>
+                    <% elsif meeting.scheduled? && Time.current >= meeting.setup_time - 1.hour %>
+                      <p> O link estará disponível em <%= (((meeting.setup_time) - Time.current)/60).round(0) %> minutos</p>
                     <% else %>
                       <p> O link estará disponível 10 minutos antes do horário agendado</p>
                     <% end %>

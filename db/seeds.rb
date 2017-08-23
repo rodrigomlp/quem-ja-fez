@@ -238,7 +238,7 @@ for i in 1..meetings_number
   review_title = nil
   review_content = nil
   rating = nil
-  if (end_time + 5.minutes) < Time.now
+  if (end_time + 5.minutes) < Time.current
     rating = ratings.sample
     if rating && rand(0) < 0.8
       review_title = Faker::MostInterestingManInTheWorld.quote
@@ -260,8 +260,8 @@ end
 
 # Creating a meeting between u1@t.c and h1@t.c now
 Meeting.create!(
-    start_time: Time.now,
-    end_time: Time.now + 1.hour,
+    start_time: Time.current,
+    end_time: Time.current + 1.hour,
     undergraduate: User.find_by(email: "u1@t.c"),
     highschooler: User.find_by(email: "h1@t.c"),
     resume: User.find_by(email: "u1@t.c").resumes.first
@@ -269,8 +269,8 @@ Meeting.create!(
 
 # Creating a meeting between u2@t.c and h2@t.c that will happen 12 minutes from now
 Meeting.create!(
-    start_time: Time.now + 40.minutes,
-    end_time: Time.now + 40.minutes + 1.hour,
+    start_time: Time.current + 40.minutes,
+    end_time: Time.current + 40.minutes + 1.hour,
     undergraduate: User.find_by(email: "u2@t.c"),
     highschooler: User.find_by(email: "h2@t.c"),
     resume: User.find_by(email: "u2@t.c").resumes.first
