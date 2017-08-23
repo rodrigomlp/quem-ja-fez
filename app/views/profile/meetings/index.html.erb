@@ -13,8 +13,9 @@
 
       <div class="list-group">
         <% @meetings.each do |meeting| %>
-          <div class="content list-group-item meeting-card <%= meeting.status %>">
-            <div class="flex-test">
+
+          <div class="list-group-item meeting-card <%= meeting.status %>">
+            <div class="card-flex">
               <div class="sec-t1 with-right-border">
                 <div>
                   <strong class="text-gray"><%= meeting.date_in_words %></strong>
@@ -25,7 +26,7 @@
                   <p class="<%= meeting.status %>_text" ><%= meeting_status(meeting) %></p>
                 </div>
               </div>
-              <div class="sec-t2 text-center">
+              <div class="sec-t2 ">
                 <!-- In the case the current user is an udnergraduate -->
                   <div class="name-top text-left">
                     <strong>
@@ -66,8 +67,8 @@
                   <% end %>
                 <% end %>
               </div>
-            </div>
-          </div>
+            </div> <!-- card-flex div -->
+          </div> <!-- list-group-itme div -->
         <% end %> <!-- end de iteração do meeting -->
       </div>
     </div>
