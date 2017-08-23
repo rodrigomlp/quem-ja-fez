@@ -5,6 +5,33 @@
   margin: 10px 0;
 }
 
+// -- Home page
+.card-plain {
+  background-color: $my-yellow;
+  position: absolute;
+
+  width: 300px;
+  height: 25px;
+
+  z-index: -10;
+}
+
+.plain-lt {
+  left: 0;
+  bottom: 10px;
+}
+
+.plain-mid {
+  // left: 0;
+  bottom: 10px;
+}
+
+.plain-rt {
+  right: 0px;
+  bottom: 10px;
+}
+// -----------
+
 .card-how-it-works {
   .card-banner {
     // margin-bottom: 50px;
@@ -16,6 +43,7 @@
 
   .card-title {
     color: $brand-success;
+    position: relative;
   }
 }
 

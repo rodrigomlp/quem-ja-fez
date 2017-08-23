@@ -1,3 +1,6 @@
+<!-- Changes navbar ONLY for home page -->
+<% content_for(:navbar_class, "navbar-home") %>
+
 <!-- Search Bar -->
 <div class="banner banner-sm" style="background-image: url(<%= image_path 'landing_page.jpg' %>);">
   <%= render '/shared/banner_form' %>
