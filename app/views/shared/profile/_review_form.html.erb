@@ -1,0 +1,22 @@
+<div class="list-group-item">
+  <p>Deixe seu review!</p>
+  <%= simple_form_for @meeting, url: profile_meeting_path(@meeting), method: :patch do |f| %>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="stars">
+          <% (1..5).each do |star| %>
+            <input type="radio" name="meeting[rating]" id="rating<%= star %>" value="<%= star %>" <%= @meeting.rating == star ? "checked" : "" %>>
+            <label for="rating<%= star %>"></label>
+          <% end %>
+        </div>
+        <%= f.input :review_title, label: false, placeholder: "Title" %>
+        <%= f.input :review_content, label: false, placeholder: "Review" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="text-center">
+        <%= f.submit "Salvar alterações", class: "btn btn-primary btn-sm btn" %>
+      </div>
+    </div>
+  <% end %> <!-- end: ~> simple_form_for -->
+</div>

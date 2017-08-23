@@ -47,6 +47,8 @@ class Profile::MeetingsController < ApplicationController
     @diff = ((@meeting.end_time - @meeting.start_time) / 60).round
     @university = @meeting.university_name
     @course = @meeting.course_name
+
+    @rating = @meeting.rating
   end
 
   def new
@@ -55,7 +57,12 @@ class Profile::MeetingsController < ApplicationController
 
   def update
     if @meeting.update(meeting_params)
-      redirect_to profile_meeting_path(@meeting)
+      if request.xhr?
+        render json: { ok: true }
+      else
+        render 'meetings/show'
+      end
+      # redirect_to profile_meeting_path(@meeting)
     else
       render :show
     end
@@ -64,7 +71,7 @@ class Profile::MeetingsController < ApplicationController
   private
 
   def meeting_params
-    params.require(:meeting).permit(:review_title, :review_content)
+    params.require(:meeting).permit(:review_title, :review_content, :rating)
   end
 
   def set_meeting
