@@ -1,6 +1,8 @@
 class Profile::MeetingsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_meeting, only: [:show, :edit, :update]
+  skip_before_action :verify_authenticity_token, only: :confirm_payment
+  skip_before_action :authenticate_user!, only: :confirm_payment
   helper_method :index, :current_class?
   helper_method :update, :current_class?
   helper_method :new, :current_class?
@@ -58,6 +60,25 @@ class Profile::MeetingsController < ApplicationController
       redirect_to profile_meeting_path(@meeting)
     else
       render :show
+    end
+  end
+
+  # {
+  #   "mc_gross"=>"898.00",
+  #   "protection_eligibility"=>"Eligible",
+  #   "address_status"=>"confirmed", "payer_id"=>"S8W2L2W3C98TS", "address_street"=>"1234 Rua Main", "payment_date"=>"08:51:39 Aug 23, 2017 PDT", "payment_status"=>"Completed", "charset"=>"windows-1252", "address_zip"=>"22021-001", "first_name"=>"test", "mc_fee"=>"30.93", "address_country_code"=>"BR", "address_name"=>"test buyer", "notify_version"=>"3.8", "custom"=>"{\"resume_id\":116,\"events_ids\":[549]}", "payer_status"=>"verified", "business"=>"quemjafez-facilitator@gmail.com", "address_country"=>"Brazil", "address_city"=>"Rio De Janeiro", "quantity"=>"1", "verify_sign"=>"Ar65LQ8D4i5231dnJnwTy8lT8UaGAs52nqTBpGY9nwlr3XEdAGKt-TsB", "payer_email"=>"quemjafez-buyer@gmail.com", "txn_id"=>"3CM950676U5037222", "payment_type"=>"instant", "last_name"=>"buyer", "address_state"=>"RJ", "receiver_email"=>"quemjafez-facilitator@gmail.com", "payment_fee"=>"", "receiver_id"=>"2FKKCG56CEC62", "txn_type"=>"web_accept", "item_name"=>"quemjafez", "mc_currency"=>"BRL", "item_number"=>"", "residence_country"=>"BR", "test_ipn"=>"1", "transaction_subject"=>"", "payment_gross"=>"", "shipping"=>"10.00", "ipn_track_id"=>"e7704aba95864", "controller"=>"profile/meetings", "action"=>"confirm_payment"}
+  def confirm_payment
+     payload = JSON.parse(params[:custom])
+
+     resume = Resume.find(payload["resume_id"])
+     events = Event.where(id: payload["events_ids"])
+     highschooler = User.find(payload["highschooler_id"])
+
+     events.each do |event|
+      start_time = event.start
+      end_time = event.end
+      meeting = Meeting.create(start_time: start_time, end_time: end_time, highschooler: highschooler, undergraduate: resume.user, resume: resume)
+      event.destroy
     end
   end
 

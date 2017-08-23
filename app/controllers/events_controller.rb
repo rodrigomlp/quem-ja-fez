@@ -35,6 +35,10 @@ class EventsController < ApplicationController
     @event.destroy
   end
 
+  def success
+
+  end
+
   def confirm
     @resume = Resume.find(params[:user_id])
     @user = @resume.user
