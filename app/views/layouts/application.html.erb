@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Didact+Gothic|Pacifico|Titillium+Web:300,400" rel="stylesheet">
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <!-- Google fonts -->
+
   </head>
   <body class="<%= controller_name %> <%= action_name %>">
     <%= render 'shared/navbar' %>
@@ -29,6 +30,7 @@
 
     <%= render 'shared/footer' %>
     <%= javascript_include_tag 'application' %>
+    <%= yield(:js) %> <!-- Reload javascript that was called from within an html -->
 
 
   </body>

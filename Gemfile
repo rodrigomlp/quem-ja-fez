@@ -29,6 +29,9 @@ gem 'cloudinary' # gem usada para armazenar as imagens
 gem 'carrierwave', '~> 0.11.2' # gem usada para associar photos aos Models
 gem 'rails-i18n', '5.0.3' # to set our date and time formats
 
+# jQuery
+gem 'parallax-rails' # parallax effects
+
 
 group :development, :test do
   gem "letter_opener" # to preview e-mails to be sent to user
