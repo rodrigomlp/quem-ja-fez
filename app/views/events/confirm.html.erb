@@ -16,7 +16,7 @@
   <%= event.end %>
 <% end %>
 
-<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top" class= 'btn btn-primary'>
   <input type="hidden" name="cmd" value="_s-xclick">
   <input type="hidden" name="custom" value="<%= { resume_id: @resume.id, events_ids: @events.map(&:id), highschooler_id: current_user.id }.to_json %>">
   <input type="hidden" name="hosted_button_id" value="D9P7PAFXJAU84">
@@ -31,12 +31,7 @@
   <%= f.hidden_field :resume, :value => @resume.id %>
   <%= f.hidden_field :event, :value => @events.map(&:id)  %>
 
-  <%= f.submit %>
+  <%= f.submit class: 'btn btn-primary' %>
 <% end %>
 
-
-
-
-<!-- IF POST IS SUCCESSFUL DELETE FROM DATABSE event.destroy-->
-<button method="POST" class="btn btn-danger btn-lg">Confirmar</button>
 
