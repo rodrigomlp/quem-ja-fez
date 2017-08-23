@@ -8,8 +8,18 @@
   color: white;
 }
 .alert-info {
-  background: $green;
+  background: $brand-primary;
+  border: transparent;
 }
 .alert-warning {
-  background: $red;
+  background: $brand-danger;
+  border: transparent;
+}
+
+.alert-home {
+  position: absolute;
+  right: 40px;
+  top: 60px;
+
+  box-shadow: 0px 2px 2px rgba(51,51,51,0.25);
 }
