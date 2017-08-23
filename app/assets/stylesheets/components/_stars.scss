@@ -1,0 +1,35 @@
+.stars {
+  display: inline-block;
+}
+
+.stars.disabled {
+  pointer-events: none;
+}
+
+.stars label {
+  @extend .fa;
+}
+
+.stars label:before, .stars input:checked+label:before {
+  content: "\f005";
+}
+
+.stars input:checked+label ~ label:before {
+  content: "\f006";
+}
+
+.stars:hover label:before {
+  content: "\f005" !important;
+}
+
+.stars label:hover ~ label:before {
+  content: "\f006" !important;
+}
+
+.stars label:hover:before {
+  content: "\f005" !important;
+}
+
+input {
+  display: none;
+}
