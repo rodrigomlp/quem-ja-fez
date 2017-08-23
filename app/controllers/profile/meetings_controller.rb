@@ -13,13 +13,13 @@ class Profile::MeetingsController < ApplicationController
     @meetings_accepted = current_user.meetings_accepted
     @meetings_proposed = current_user.meetings_proposed
     # Future meetings
-    @future_meetings_accepted = @meetings_accepted.where('end_time > ?', Time.current)
-    @future_meetings_proposed = @meetings_proposed.where('end_time > ?', Time.current)
+    @future_meetings_accepted = @meetings_accepted.where('end_time + INTERVAL \'5 min\' > ?', Time.current)
+    @future_meetings_proposed = @meetings_proposed.where('end_time + INTERVAL \'5 min\' > ?', Time.current)
     @future_meetings = @future_meetings_accepted + @future_meetings_proposed
     @future_meetings.sort! { |a, b|  a.start_time <=> b.start_time }
     # Past meetings
-    @past_meetings_accepted = @meetings_accepted.where('end_time < ?', Time.current)
-    @past_meetings_proposed = @meetings_proposed.where('end_time < ?', Time.current)
+    @past_meetings_accepted = @meetings_accepted.where('end_time + INTERVAL \'5 min\'  < ?', Time.current)
+    @past_meetings_proposed = @meetings_proposed.where('end_time + INTERVAL \'5 min\'  < ?', Time.current)
     @past_meetings = @past_meetings_accepted + @past_meetings_proposed
     @past_meetings.sort! { |a, b|  b.start_time <=> a.start_time }
     # All the meetings together
@@ -49,6 +49,8 @@ class Profile::MeetingsController < ApplicationController
     @diff = ((@meeting.end_time - @meeting.start_time) / 60).round
     @university = @meeting.university_name
     @course = @meeting.course_name
+
+    @rating = @meeting.rating
   end
 
   def new
@@ -57,7 +59,12 @@ class Profile::MeetingsController < ApplicationController
 
   def update
     if @meeting.update(meeting_params)
-      redirect_to profile_meeting_path(@meeting)
+      if request.xhr?
+        render json: { ok: true }
+      else
+        render :show
+      end
+      # redirect_to profile_meeting_path(@meeting)
     else
       render :show
     end
@@ -85,7 +92,7 @@ class Profile::MeetingsController < ApplicationController
   private
 
   def meeting_params
-    params.require(:meeting).permit(:review_title, :review_content)
+    params.require(:meeting).permit(:review_title, :review_content, :rating)
   end
 
   def set_meeting

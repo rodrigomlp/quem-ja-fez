@@ -130,4 +130,11 @@
   .navbar-wagon-link:hover {
     color: white;
   }
+
+  // Alert that pops up when logging in and out
+  .alert-info {
+    position: absolute;
+    right: 40px;
+    top: 60px;
+  }
 }

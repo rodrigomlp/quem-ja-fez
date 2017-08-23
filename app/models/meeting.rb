@@ -1,5 +1,5 @@
 class Meeting < ApplicationRecord
-
+  EXTRA_TIME = 5.minutes
   belongs_to :undergraduate, class_name: 'User'
   belongs_to :highschooler, class_name: 'User'
   belongs_to :resume
@@ -30,7 +30,7 @@ class Meeting < ApplicationRecord
   end
 
   def extra_time
-    end_time + 5.minutes
+    end_time + EXTRA_TIME
   end
 
   def scheduled?

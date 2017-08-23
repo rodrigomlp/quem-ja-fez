@@ -1,11 +1,18 @@
-<div class="container">
-  <h3>Cadastre um novo currículo</h3>
+<div class="container margin-v-md">
+  <div class="col-xs-12 col-md-6 col-md-offset-3">
+    <div class="card padding-v-md padding-h-md">
+      <div class="margin-bottom-sm">
+        <h3><strong>Olá!</strong></h3>
+        <h4>Para se tornar um universitário, primeiro precisamos cadastrar um currículo seu.</h4>
+      </div>
 
-  <!-- Adicionar university email -->
-  <%= simple_form_for @resume, url: profile_verification_path, method: :post do |f| %>
-    <%= f.association :university, label: false, prompt: "Universidade" %>
-    <%= f.association :course, label: false, prompt: "Curso" %>
-    <%= f.input :school_email, label: false, placeholder: "Email acadêmico" %>
-    <%= f.button :submit, "Adicionar Currículo" %>
-  <% end %>
+      <!-- Adicionar university email -->
+      <%= simple_form_for @resume, url: profile_verification_path, method: :post do |f| %>
+        <%= f.association :university, label: false, prompt: "Universidade" %>
+        <%= f.association :course, label: false, prompt: "Curso" %>
+        <%= f.input :school_email, label: false, placeholder: "Email acadêmico" %>
+        <%= f.button :submit, "Adicionar Currículo", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
 </div>
