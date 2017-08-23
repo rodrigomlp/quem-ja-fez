@@ -1,4 +1,17 @@
 <div class="container">
-  <div class="calendar">
+
+  <!-- Se for undergraduate ele vai ter a opção de clicar nos seus horários disponíveis e voltar ao seu perfil -->
+  <% if current_user.undergraduate %>
+    <h1 class="well">Qual é a sua disponibilidade para essa semana?</h1>
+    <%= link_to "Confirmar disponibilidade", edit_profile_info_path, :class => "btn btn-danger btn-lg" %>
+  <!-- Se for highschooler ele vai ter a opção de marcar os horários em que ele pode conversar -->
+  <% else %>
+    <h1 class="well">Qual horário você quer falar com o seu mentor?</h1>
+    <%= link_to "Confirmar horários", confirm_user_events_path, :class => "btn btn-danger btn-lg" %>
+  <% end %>
+
+  <div class="calendar col-xs-8">
   </div>
+
 </div>
+
