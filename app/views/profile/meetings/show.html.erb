@@ -1,3 +1,4 @@
+
 <div class="container margin-v-md">
   <div class="row">
 
@@ -6,7 +7,7 @@
       <%= render 'shared/profile/profile_side_bar' %>
     </div>
     <!-- Template if meeting is yet to come, or is happening, meaning that it don't have any reviews yet -->
-    <% if @meeting.end_time > Time.now %>
+    <% if @meeting.end_time > Time.current %>
       <div class="col-xs-8">
         <div class="list-group">
           <h3>Detalhes da sua conversa </h3>

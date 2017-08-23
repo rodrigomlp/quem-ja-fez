@@ -1,5 +1,5 @@
 class Meeting < ApplicationRecord
-
+  EXTRA_TIME = 5.minutes
   belongs_to :undergraduate, class_name: 'User'
   belongs_to :highschooler, class_name: 'User'
   belongs_to :resume
@@ -30,23 +30,23 @@ class Meeting < ApplicationRecord
   end
 
   def extra_time
-    end_time + 5.minutes
+    end_time + EXTRA_TIME
   end
 
   def scheduled?
-    Time.now < setup_time
+    Time.current < setup_time
   end
 
   def setting_up?
-    Time.now >= setup_time && Time.now < start_time
+    Time.current >= setup_time && Time.current < start_time
   end
 
   def on_going?
-    start_time <= Time.now && Time.now <= extra_time
+    start_time <= Time.current && Time.current <= extra_time
   end
 
   def completed?
-    extra_time < Time.now
+    extra_time < Time.current
   end
 
   def status

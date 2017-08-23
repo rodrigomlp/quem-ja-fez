@@ -13,16 +13,25 @@
 
       <div class="list-group">
         <% @meetings.each do |meeting| %>
-          <div class="content list-group-item meeting-card <%= meeting.status %>">
-            <div class="row all-complete-height-row">
-              <div class="col-xs-4 with-right-border all-complete-height-col">
-                <strong class="text-gray"><%= meeting.date_in_words %></strong>
-                <p><%= (meeting.start_time).strftime("%R") %> - <%= (meeting.end_time).strftime("%R") %></p>
-                <strong class="text-gray">Status</strong>
-                <p class="<%= meeting.status %>_text" ><%= meeting_status(meeting) %></p>
+
+          <div class="list-group-item meeting-card <%= meeting.status %>">
+            <div class="card-flex">
+              <div class="sec-t1 with-right-border">
+                <div>
+                  <strong class="text-gray"><%= meeting.date_in_words %></strong>
+                  <p><%= (meeting.start_time).strftime("%R") %> - <%= (meeting.end_time).strftime("%R") %></p>
+                </div>
+                <div>
+                  <strong class="text-gray">Status</strong>
+                  <p class="<%= meeting.status %>_text" ><%= meeting_status(meeting) %></p>
+                </div>
               </div>
-              <div class="col-xs-4 text-center with-right-border all-complete-height-col">
+              <div class="sec-t2 ">
+                <div class="icon">
+                  <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                </div>
                 <!-- In the case the current user is an udnergraduate -->
+                <div class="names">
                   <div class="name-top text-left">
                     <strong>
                       <%= current_user == meeting.undergraduate ? "Eu" : meeting.undergraduate.first_name %>
@@ -33,37 +42,45 @@
                   <div class="name-bottom text-left">
                     <strong><%= current_user == meeting.highschooler ? "Eu" : meeting.highschooler.first_name %></strong>
                   </div>
+                </div>
               </div>
-              <div class="col-xs-4 text-center all-complete-height-col">
+              <div class="sec-t3 ">
                 <!-- Meetings that have ratings have already past -->
                 <% if meeting.rating && current_user == meeting.highschooler %>
                   <button type="button" class="btn btn-default btn-xs"><%=  meeting.rating %></button>
                 <% else %>
                   <!-- Condition when the meeting has already past but don't have any rating -->
-                  <% if meeting.extra_time < Time.now && current_user == meeting.highschooler %>
+                  <% if meeting.extra_time < Time.current && current_user == meeting.highschooler %>
 
-                    <%= link_to "Gostou da conversa? Deixe um feedback", profile_meeting_path(meeting)%>
+                    <%= link_to "Gostou da conversa? Deixe um feedback", profile_meeting_path(meeting), class: "link"%>
                   <!-- Meetings that are in the future or happening now -->
                   <% else %>
                     <!-- Meetings that are happening now -->
                     <% if meeting.setting_up? || meeting.on_going? %>
-                      <%= link_to "Entrar na sala virtual", meeting.virtual_room, target: "_blank", rel: "nofollow", class: "btn btn-primary btn-xs"  %>
-                      <p>Problemas com seu link?</p>
-                      <i class="fa fa-envelope" aria-hidden="true"></i>
-                      <p><%= current_user == meeting.highschooler ? meeting.undergraduate.email : meeting.highschooler.email %></p>
-                      <i class="fa fa-skype" aria-hidden="true"></i>
-                      <p><%= current_user == meeting.highschooler ? meeting.undergraduate.skype : meeting.highschooler.skype %></p>
+
+                      <%= link_to "Entrar na sala virtual", meeting.virtual_room, target: "_blank", rel: "nofollow", class: "link text-center"  %>
+                      <div>
+                        <small>
+                          Problemas com seu link?
+                          <br>
+                          <i class="fa fa-envelope" aria-hidden="true"></i>
+                          <span><%= current_user == meeting.highschooler ? meeting.undergraduate.email : meeting.highschooler.email %></span>
+                          <br>
+                          <i class="fa fa-skype" aria-hidden="true"></i>
+                          <span><%= current_user == meeting.highschooler ? meeting.undergraduate.skype : meeting.highschooler.skype %></span>
+                      </small>
+                      </div>
                     <!-- When we are 1 hour from receiving the link -->
-                    <% elsif meeting.scheduled? && Time.now >= meeting.setup_time - 1.hour %>
-                      <p> O link estará disponível em <%= (((meeting.setup_time) - Time.now)/60).round(0) %> minutos</p>
+                    <% elsif meeting.scheduled? && Time.current >= meeting.setup_time - 1.hour %>
+                      <small> O link estará disponível em <strong> <%= (((meeting.setup_time) - Time.current)/60).round(0) %> </strong> minutos </small>
                     <% else %>
-                      <p> O link estará disponível 10 minutos antes do horário agendado</p>
+                      <small> O link estará disponível <strong>10 minutos</strong> antes do horário agendado</small>
                     <% end %>
                   <% end %>
                 <% end %>
               </div>
-            </div>
-          </div>
+            </div> <!-- card-flex div -->
+          </div> <!-- list-group-itme div -->
         <% end %> <!-- end de iteração do meeting -->
       </div>
     </div>

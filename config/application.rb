@@ -27,6 +27,7 @@ module QuemJaFez
     config.action_view.embed_authenticity_token_in_remote_forms = true
 
     config.i18n.default_locale = :"pt-BR"
+    config.time_zone = 'Brasilia'
 
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
