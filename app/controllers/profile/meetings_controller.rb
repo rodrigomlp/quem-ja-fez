@@ -62,7 +62,7 @@ class Profile::MeetingsController < ApplicationController
       if request.xhr?
         render json: { ok: true }
       else
-        render 'meetings/show'
+        render :show
       end
       # redirect_to profile_meeting_path(@meeting)
     else
