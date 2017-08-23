@@ -25,6 +25,7 @@ module QuemJaFez
     end
 
     config.i18n.default_locale = :"pt-BR"
+    config.time_zone = 'Brasilia'
 
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
