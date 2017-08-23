@@ -21,8 +21,8 @@
             <% end %>
           <% end %>
         </div>
-        <%= f.input :birth_date, as: :date, start_year: Date.today.year - 90,
-                                  end_year: Date.today.year - 10,
+        <%= f.input :birth_date, as: :date, start_year: Date.current.year - 90,
+                                  end_year: Date.current.year - 10,
                                   order: [:day, :month, :year],
                                   label: false %>
         <%= f.input :city, placeholder: 'Cidade', label: false %>
