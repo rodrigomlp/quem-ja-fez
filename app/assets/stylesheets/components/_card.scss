@@ -5,17 +5,47 @@
   margin: 10px 0;
 }
 
+// -- Home page
+.card-plain {
+  background-color: $my-yellow;
+  position: absolute;
+
+  width: 300px;
+  height: 25px;
+
+  z-index: -1;
+}
+
+.plain-lt {
+  left: 0;
+  bottom: 10px;
+}
+
+.plain-mid {
+  // left: 0;
+  bottom: 10px;
+}
+
+.plain-rt {
+  right: 0px;
+  bottom: 10px;
+}
+// -----------
+
 .card-how-it-works {
+  z-index: 1;
+
   .card-banner {
     // margin-bottom: 50px;
     height: 60px;
     background-size: cover !important;
     background-position: center;
-    color: $red;
+    color: $brand-success;
   }
 
   .card-title {
-    color: $red;
+    color: $brand-success;
+    position: relative;
   }
 }
 
@@ -43,4 +73,62 @@
 
 .card-border-rd-sm {
   border-radius: 5px;
+}
+
+.meeting-card {
+  border-left: 7px solid;
+  border-top: none;
+  border-bottom: none;
+  border-right: none;
+  margin-bottom: 10px;
+
+  .on_going_text {
+    color: $my-yellow;
+  }
+
+  .scheduled_text {
+    color: $my-green;
+  }
+
+  .completed_text {
+    color: $my-dark-blue;
+  }
+
+  .setting_up_text {
+    color: $my-yellow;
+  }
+
+  &.on_going {
+    border-color: $my-yellow;
+  }
+
+  &.scheduled {
+    border-color: $my-green;
+  }
+
+  &.completed {
+    border-color: $my-dark-blue;
+  }
+
+  &.setting_up {
+    border-color: $my-yellow;
+  }
+
+  .with-right-border {
+    border-right: 1px solid $light-gray;
+  }
+
+  .occupy-all-height {
+    height: 100%;
+  }
+
+  .all-complete-height-row {
+    display: table;
+  }
+
+  .all-complete-height-col {
+    float: none;
+    display: table-cell;
+  }
+
 }

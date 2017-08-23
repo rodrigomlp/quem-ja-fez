@@ -13,61 +13,57 @@
 
       <div class="list-group">
         <% @meetings.each do |meeting| %>
-
-            <div class="content list-group-item">
-              <div class="row">
-                <div class="col-xs-4">
-                  <strong><%= meeting.start_time.strftime("%A, %d %b %y") %></strong>
-                  <p><%= (meeting.start_time).strftime("%R") %> - <%= (meeting.end_time).strftime("%R") %></p>
-                </div>
-                <div class="col-xs-4 text-center">
-                  <% if current_user.id == meeting.highschooler.id %>
-                    <strong>Conversa com <%= meeting.undergraduate.first_name %></strong>
-                  <% else %>
-                    <strong>Conversa com <%= meeting.highschooler.first_name %></strong>
-                  <% end %>
-                    <p><%= meeting.course_name %></p>
-                    <p><%= meeting.university_name %></p>
-                </div>
-                <div class="col-xs-4 text-center">
-
-                  <div class="row">
-                    <!-- Meetings that have ratings have already past -->
-                    <% if meeting.rating && current_user.id == meeting.highschooler.id %>
-                      <button type="button" class="btn btn-default btn-xs"><%=  meeting.rating %></button> <!-- TO-DO: não é para ser um botão, estou usando botão penas por estética #TO-DO: Refatorar usando métodos em meeting model-->
-                    <% else %>
-                      <!-- Condition when the meeting has already past but don't have any rating -->
-                      <% if (meeting.end_time + 5.minutes) < Time.now && current_user.id == meeting.highschooler.id %>
-                         <!-- #TO-DO: Refatorar usando métodos em meeting model-->
-                        <%= link_to "Gostou da conversa? Deixe um feedback", profile_meeting_path(meeting)%>
-                      <!-- Meetings that are in the future or happening now -->
-                      <% else %>
-                        <!-- Meetings that are happening now -->
-                        <% if (meeting.start_time - 10.minutes) <= Time.now && Time.now <= (meeting.end_time + 5.minutes)  %> <!-- #TO-DO: Refatorar usando métodos em meeting model -->
-                          <%= link_to "Entrar na sala virtual", meeting.virtual_room, target: "_blank", rel: "nofollow", class: "btn btn-primary btn-xs"  %>
-                          <p>Problemas com seu link?</p>
-                          <% if current_user.id == meeting.highschooler.id %>
-                            <i class="fa fa-envelope" aria-hidden="true"></i>
-                            <p><%= meeting.undergraduate.email %></p>
-                            <i class="fa fa-skype" aria-hidden="true"></i>
-                            <p><%= meeting.undergraduate.skype %></p>
-                          <% else %>
-                            <p><%= meeting.highschooler.email %></p>
-                            <p><%= meeting.highschooler.skype %></p>
-                          <% end %>
-                        <!-- When we are 1 hour from receiving the link -->
-                        <% elsif (meeting.start_time - 70.minutes) <= Time.now && (meeting.start_time - 10.minutes) > Time.now %>  <!-- #TO-DO: Refatorar usando métodos em meeting model -->
-                          <p> O link estará disponível em <%= (((meeting.start_time - 10.minutes) - Time.now)/60).round(0) %> minutos</p>
-                        <% else %>
-                          <p> O link estará disponível 10 minutos antes do horário agendado</p>
-                        <% end %>
-                      <% end %>
-                    <% end %>
+          <div class="content list-group-item meeting-card <%= meeting.status %>">
+            <div class="row all-complete-height-row">
+              <div class="col-xs-4 with-right-border all-complete-height-col">
+                <strong class="text-gray"><%= meeting.date_in_words %></strong>
+                <p><%= (meeting.start_time).strftime("%R") %> - <%= (meeting.end_time).strftime("%R") %></p>
+                <strong class="text-gray">Status</strong>
+                <p class="<%= meeting.status %>_text" ><%= meeting_status(meeting) %></p>
+              </div>
+              <div class="col-xs-4 text-center with-right-border all-complete-height-col">
+                <!-- In the case the current user is an udnergraduate -->
+                  <div class="name-top text-left">
+                    <strong>
+                      <%= current_user == meeting.undergraduate ? "Eu" : meeting.undergraduate.first_name %>
+                    </strong>
+                    <p class="text-gray"><%= meeting.course_name %></p>
+                    <p class="text-gray"><%= meeting.university_name %></p>
                   </div>
-                </div>
+                  <div class="name-bottom text-left">
+                    <strong><%= current_user == meeting.highschooler ? "Eu" : meeting.highschooler.first_name %></strong>
+                  </div>
+              </div>
+              <div class="col-xs-4 text-center all-complete-height-col">
+                <!-- Meetings that have ratings have already past -->
+                <% if meeting.rating && current_user == meeting.highschooler %>
+                  <button type="button" class="btn btn-default btn-xs"><%=  meeting.rating %></button>
+                <% else %>
+                  <!-- Condition when the meeting has already past but don't have any rating -->
+                  <% if meeting.extra_time < Time.now && current_user == meeting.highschooler %>
+
+                    <%= link_to "Gostou da conversa? Deixe um feedback", profile_meeting_path(meeting)%>
+                  <!-- Meetings that are in the future or happening now -->
+                  <% else %>
+                    <!-- Meetings that are happening now -->
+                    <% if meeting.setting_up? || meeting.on_going? %>
+                      <%= link_to "Entrar na sala virtual", meeting.virtual_room, target: "_blank", rel: "nofollow", class: "btn btn-primary btn-xs"  %>
+                      <p>Problemas com seu link?</p>
+                      <i class="fa fa-envelope" aria-hidden="true"></i>
+                      <p><%= current_user == meeting.highschooler ? meeting.undergraduate.email : meeting.highschooler.email %></p>
+                      <i class="fa fa-skype" aria-hidden="true"></i>
+                      <p><%= current_user == meeting.highschooler ? meeting.undergraduate.skype : meeting.highschooler.skype %></p>
+                    <!-- When we are 1 hour from receiving the link -->
+                    <% elsif meeting.scheduled? && Time.now >= meeting.setup_time - 1.hour %>
+                      <p> O link estará disponível em <%= (((meeting.setup_time) - Time.now)/60).round(0) %> minutos</p>
+                    <% else %>
+                      <p> O link estará disponível 10 minutos antes do horário agendado</p>
+                    <% end %>
+                  <% end %>
+                <% end %>
               </div>
             </div>
-
+          </div>
         <% end %> <!-- end de iteração do meeting -->
       </div>
     </div>
