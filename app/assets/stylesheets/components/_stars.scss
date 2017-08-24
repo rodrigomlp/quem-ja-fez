@@ -1,6 +1,7 @@
 .stars {
   display: inline-block;
 
+
   input {
     display: none;
   }
@@ -17,25 +18,25 @@
 
 .stars label:before, .stars input:checked+label:before {
   content: "\f005";
-  color: $my-yellow;
+  color: $brand-primary;
 }
 
 .stars input:checked+label ~ label:before {
-  content: "\f006";
-  color: $black;
+  content: "\f005";
+  color: $light-gray;
 }
 
 .stars:hover label:before {
   content: "\f005" !important;
-  color: $my-yellow;
+  color: $brand-primary;
 }
 
 .stars label:hover ~ label:before {
-  content: "\f006" !important;
-  color: $black;
+  content: "\f005" !important;
+  color: $light-gray;
 }
 
 .stars label:hover:before {
   content: "\f005" !important;
-  color: $my-yellow;
+  color: $brand-primary;
 }
