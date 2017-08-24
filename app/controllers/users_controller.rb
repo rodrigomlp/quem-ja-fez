@@ -30,20 +30,19 @@ class UsersController < ApplicationController
 
   def index
     # Displays this on banner form
-    @university = params[:university]
-    @course = params[:course]
+    # @university = University.find(params[:university])
+    # @course = Course.find(params[:course])
 
     @resumes = Resume.all
     @resumes = @resumes.joins(:course, :university, :user) # joins all tables onto resume PERGUNTA: por que eu preciso dar join?
     @resumes = @resumes.where(email_checked: true) # only show resumes that have been verified
 
     if params[:university].present? # has the user entered anything in the 'university' search field?
-      @resumes = @resumes.where("LOWER(universities.name) ILIKE ?", "%#{params[:university]}%") #PERGUNTA: por que o ilike e nao só like? O que é esse lower?
+      @resumes = @resumes.where("LOWER(universities.name) ILIKE ?", "%#{University.find(params[:university])}%") #PERGUNTA: por que o ilike e nao só like? O que é esse lower?
     end
     if params[:course].present? # has the user entered anything in the 'course' search field?
-      @resumes = @resumes.where("LOWER(courses.name) ILIKE ?", "%#{params[:course]}%")
+      @resumes = @resumes.where("LOWER(courses.name) ILIKE ?", "%#{Course.find(params[:course]).name.downcase}%")
     end
-
   end
 
   def schedule
