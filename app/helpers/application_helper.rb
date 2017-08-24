@@ -22,6 +22,18 @@ module ApplicationHelper
     end
   end
 
+  def date_in_words(meeting)
+    if meeting.start_time.today?
+      "Hoje"
+    elsif meeting.start_time.to_date == Date.tomorrow
+      "Amanhã"
+    elsif meeting.start_time.to_date == Date.yesterday
+      "Ontem"
+    else
+      l meeting.start_time.to_date, format: :short
+    end
+  end
+
   def result_search(params)
     if (params["course"] == "") && (params["university"] == "")
       @result = "resultados"
@@ -32,7 +44,9 @@ module ApplicationHelper
     else
       @result = "resultados na busca pelo curso #{params['course']} na #{params['university']}"
     end
-
     return @result
   end
+
 end
+
+

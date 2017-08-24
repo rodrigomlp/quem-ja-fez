@@ -222,7 +222,7 @@ end
 
 # Creating Meetings
 duration = [0.5, 1, 1.5, 2]
-ratings = [nil, 0, 1, 2, 3, 4, 5]
+ratings = [nil, 1, 2, 3, 4, 5]
 meetings_number = 200
 
 for i in 1..meetings_number
