@@ -24,3 +24,12 @@ $border-radius-large: 2px;
 $border-radius-small: 2px;
 
 // Override other variables below!
+
+// Manually overwrite btn-group colors (used in resumes cards)
+.btn-group {
+  .active {
+    background-color: $my-green !important;
+    color: white !important;
+    border-color: transparent !important;
+  }
+}
