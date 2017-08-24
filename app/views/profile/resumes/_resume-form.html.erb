@@ -1,0 +1,83 @@
+<!-- List of the courses pending verification -->
+<% @resumes.each do |resume| %>
+  <% if !resume.email_checked %>
+    <!-- panel boilerplate classes -->
+    <div class="panel panel-warning">
+      <div class="panel-heading">
+        <h3 class="panel-title">E-mail precisa ser verificado</h3>
+      </div>
+      <div class="panel-body">
+        <%= simple_form_for resume, url: profile_resume_path(resume), method: :patch do |f| %>
+
+          <!-- Curso, universidade e e-mail acadêmico -->
+          <div class="row">
+            <div class="col-xs-6 col-xs-offset-3">
+              <p><%= f.association :course, label: "Curso", prompt: "Curso" %></p>
+              <p><%= f.association :university, label: "Faculdade", prompt: "Universidade" %></p>
+              <p><%= f.input :school_email, label: "E-mail universitário", placeholder: "E-mail da instituição de ensino", hint: 'Não será exibido para usuários.' %></p>
+
+              <hr class="margin-v-sm">
+            </div>
+          </div>
+
+          <!-- Recomenda o curso ou não -->
+          <div class="row">
+            <div class="col-xs-8 col-xs-offset-2">
+              <div class="">
+                <h4 class="text-center no-margin">
+                  Você recomendaria seu curso/faculdade para outras pessoas?
+                </h4>
+
+                <!-- TO-DO: Adicionar boolean selection, 'sim' ou 'não' -->
+              </div>
+
+              <hr class="margin-v-sm">
+            </div>
+          </div>
+
+          <!-- % do curso completado -->
+          <div class="row">
+            <div class="col-xs-8 col-xs-offset-2">
+              <div class="">
+                <h4 class="text-center no-margin">
+                  Em termos gerais, quanto do curso você já completou?
+                </h4>
+
+                <!-- TO-DO: Add draggable progress bar para o 'relative completion' -->
+              </div>
+
+              <hr class="margin-v-sm">
+            </div>
+          </div>
+
+          <!-- Descrição pessoal sobre o curso -->
+          <div class="row">
+            <div class="col-xs-8 col-xs-offset-2">
+              <div class="text-center margin-bottom-sm">
+                <h4 class="no-margin">
+                  Fale um pouco sobre você e das suas atividades atuais e passadas na faculdade.
+                </h4>
+
+                <small class="text-gray">
+                  Você participou da empresa júnior? Trabalha enquanto estuda? É introvertido? Veio do interior para a cidade grande?
+                  <br>
+                  Essas informações farão o vestibulando se conectar com você na hora de escolher com quem conversar.
+                </small>
+              </div>
+
+                <%= f.input :academic_description, label: false, :input_html => {:rows => 20}  %>
+            </div>
+          </div>
+
+          <!-- Botões -->
+          <div class="margin-v-xs text-center">
+            <%= f.submit "Salvar alterações", class: "btn btn-primary" %>
+            <p class="margin-v-xs">
+              <%= link_to "Excluir curso", profile_resume_path(resume), data: { confirm: "Are you sure?" }, method: :delete , class: ""%>
+            </p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
