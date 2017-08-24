@@ -225,6 +225,11 @@ end
 # ratings = [nil, 0, 1, 2, 3, 4, 5]
 # meetings_number = 200
 
+# duration = [0.5, 1, 1.5, 2]
+# ratings = [nil, 1, 2, 3, 4, 5]
+# meetings_number = 200
+
+
 # for i in 1..meetings_number
 #   randon_times = []
 #   randon_times << Faker::Time.forward(rand(8), :all) # random time in the next 7 days
