@@ -44,7 +44,6 @@ class UsersController < ApplicationController
       @resumes = @resumes.where("LOWER(courses.name) ILIKE ?", "%#{params[:course]}%")
     end
 
-    # binding.pry
   end
 
   def schedule
