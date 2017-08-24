@@ -79,7 +79,7 @@
   border-bottom: none;
   border-right: none;
   margin-bottom: 20px;
-  height: 150px;
+  // height: 150px;
   padding: 5px 5px;
 
   small {
@@ -135,7 +135,6 @@
     height: 100%;
     display: flex;
     justify-content: space-between;
-
   }
 
   .sec-t1 {
@@ -220,6 +219,10 @@
 
       }
     }
+  }
+
+  .review-card {
+    display: none;
   }
 }
 

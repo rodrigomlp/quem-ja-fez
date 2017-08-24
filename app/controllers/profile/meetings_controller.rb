@@ -1,6 +1,7 @@
 class Profile::MeetingsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_meeting, only: [:show, :edit, :update]
+  before_action :set_meeting, only: [:show, :update]
+  before_action :set_meetings, only: [:index, :update]
   skip_before_action :verify_authenticity_token, only: :confirm_payment
   skip_before_action :authenticate_user!, only: :confirm_payment
   helper_method :index, :current_class?
@@ -10,21 +11,10 @@ class Profile::MeetingsController < ApplicationController
   helper_method :show, :current_class?
 
   def index
-    @meetings_accepted = current_user.meetings_accepted
-    @meetings_proposed = current_user.meetings_proposed
-    # Future meetings
-    @future_meetings_accepted = @meetings_accepted.where('end_time + INTERVAL \'5 min\' > ?', Time.current)
-    @future_meetings_proposed = @meetings_proposed.where('end_time + INTERVAL \'5 min\' > ?', Time.current)
-    @future_meetings = @future_meetings_accepted + @future_meetings_proposed
-    @future_meetings.sort! { |a, b|  a.start_time <=> b.start_time }
-    # Past meetings
-    @past_meetings_accepted = @meetings_accepted.where('end_time + INTERVAL \'5 min\'  < ?', Time.current)
-    @past_meetings_proposed = @meetings_proposed.where('end_time + INTERVAL \'5 min\'  < ?', Time.current)
-    @past_meetings = @past_meetings_accepted + @past_meetings_proposed
-    @past_meetings.sort! { |a, b|  b.start_time <=> a.start_time }
-    # All the meetings together
-    @meetings = @future_meetings + @past_meetings
+  end
 
+  def new
+    @meeting = Meeting.new
   end
 
   def create
@@ -54,20 +44,15 @@ class Profile::MeetingsController < ApplicationController
     @rating = @meeting.rating
   end
 
-  def new
-    @meeting = Meeting.new
-  end
-
   def update
     if @meeting.update(meeting_params)
       if request.xhr?
         render json: { ok: true }
       else
-        render :show
+        redirect_to profile_meetings_path(anchor: "meeting#{@meeting.id}")
       end
-      # redirect_to profile_meeting_path(@meeting)
     else
-      render :show
+      redirect_to profile_meetings_path(anchor: "meeting#{@meeting.id}")
     end
   end
 
@@ -100,14 +85,29 @@ class Profile::MeetingsController < ApplicationController
     @meeting = Meeting.find(params[:id])
   end
 
-  def current_class?(test_path)
+  def set_meetings
+    @meetings_accepted = current_user.meetings_accepted
+    @meetings_proposed = current_user.meetings_proposed
+    # Future meetings
+    @future_meetings_accepted = @meetings_accepted.where('end_time + INTERVAL \'5 min\' > ?', Time.current)
+    @future_meetings_proposed = @meetings_proposed.where('end_time + INTERVAL \'5 min\' > ?', Time.current)
+    @future_meetings = @future_meetings_accepted + @future_meetings_proposed
+    @future_meetings.sort! { |a, b|  a.start_time <=> b.start_time }
+    # Past meetings
+    @past_meetings_accepted = @meetings_accepted.where('end_time + INTERVAL \'5 min\'  < ?', Time.current)
+    @past_meetings_proposed = @meetings_proposed.where('end_time + INTERVAL \'5 min\'  < ?', Time.current)
+    @past_meetings = @past_meetings_accepted + @past_meetings_proposed
+    @past_meetings.sort! { |a, b|  b.start_time <=> a.start_time }
+    # All the meetings together
+    @meetings = @future_meetings + @past_meetings
+  end
 
+  def current_class?(test_path)
     if (request.path == test_path) || (request.path == "#{test_path}/#{params[:id]}")
       return 'list-group-item active'
     else
       return 'list-group-item'
     end
-
   end
 
 end
