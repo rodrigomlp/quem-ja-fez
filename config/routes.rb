@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   get '/success_page', to: 'events#success'
   resources :meetings, only: [:create]
 
-  post "/profile/meetings/confirm_payment", to: "profile/meetings#confirm_payment"
+  get "/profile/meetings/confirm_payment", to: "profile/meetings#confirm_payment"
 
   namespace :profile do
     resources :resumes, only: [:index, :create, :update, :destroy]
