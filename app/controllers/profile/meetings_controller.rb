@@ -1,6 +1,6 @@
 class Profile::MeetingsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_meeting, only: [:show, :edit, :update]
+  before_action :set_meeting, only: [:update]
   skip_before_action :verify_authenticity_token, only: :confirm_payment
   skip_before_action :authenticate_user!, only: :confirm_payment
   helper_method :index, :current_class?
@@ -24,7 +24,10 @@ class Profile::MeetingsController < ApplicationController
     @past_meetings.sort! { |a, b|  b.start_time <=> a.start_time }
     # All the meetings together
     @meetings = @future_meetings + @past_meetings
+  end
 
+  def new
+    @meeting = Meeting.new
   end
 
   def create
@@ -40,34 +43,15 @@ class Profile::MeetingsController < ApplicationController
     redirect_to profile_meetings_path
   end
 
-
-  def show
-    if current_user.id == @meeting.highschooler.id
-      @name = @meeting.undergraduate.first_name
-    else
-      @name = @meeting.highschooler.first_name
-    end
-    @diff = ((@meeting.end_time - @meeting.start_time) / 60).round
-    @university = @meeting.university_name
-    @course = @meeting.course_name
-
-    @rating = @meeting.rating
-  end
-
-  def new
-    @meeting = Meeting.new
-  end
-
   def update
     if @meeting.update(meeting_params)
       if request.xhr?
         render json: { ok: true }
       else
-        render :show
+        redirect_to profile_meetings_path(anchor: "meeting#{@meeting.id}")
       end
-      # redirect_to profile_meeting_path(@meeting)
     else
-      render :show
+      redirect_to profile_meetings_path(anchor: "meeting#{@meeting.id}")
     end
   end
 
@@ -101,13 +85,11 @@ class Profile::MeetingsController < ApplicationController
   end
 
   def current_class?(test_path)
-
     if (request.path == test_path) || (request.path == "#{test_path}/#{params[:id]}")
       return 'list-group-item active'
     else
       return 'list-group-item'
     end
-
   end
 
 end
