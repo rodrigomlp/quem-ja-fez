@@ -92,6 +92,7 @@
 
   ul.list-inline {
     margin-bottom: 0px;
+    display: none;
   }
 
   .on_going_text {
@@ -103,7 +104,7 @@
   }
 
   .completed_text {
-    color: $my-dark-blue;
+    color: $gray;
   }
 
   .setting_up_text {
@@ -119,7 +120,7 @@
   }
 
   &.completed {
-    border-color: $my-dark-blue;
+    border-color: $gray;
   }
 
   &.setting_up {
