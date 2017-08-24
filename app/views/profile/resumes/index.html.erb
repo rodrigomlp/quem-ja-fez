@@ -1,3 +1,10 @@
+<!-- Tooltip display -->
+<% content_for(:js) do %>
+  <%= javascript_tag do %>
+    $('.range-slider').tooltip();
+  <% end %>
+<% end %>
+
 <div class="container margin-v-md">
   <div class="row">
 
@@ -10,7 +17,7 @@
     <div class="col-xs-8">
       <h3>Meus cursos</h3>
 
-      <!-- List of my checked courses -->
+      <!-- List of the courses with e-mail validated -->
       <% @resumes.each do |resume| %>
         <% if resume.email_checked %>
           <div class="panel panel-success">
@@ -18,82 +25,27 @@
               <h3 class="panel-title">E-mail verificado</h3>
             </div>
             <div class="panel-body">
-              <%= simple_form_for resume, url: profile_resume_path(resume), method: :patch do |f| %>
-                <div class="row">
-                  <div class="col-xs-6 col-xs-offset-3">
-                    <p><%= f.input :course, readonly: true, label: false, prompt: "Curso" %></p>
-                    <p><%= f.input :university, readonly: true, label: false, prompt: "Universidade" %></p>
-                    <p><%= f.input :school_email, readonly: true, label: false, placeholder: "E-mail da instituição de ensino",  hint: 'Não pode ser alterado depois de verificado.' %></p>
-
-                  <hr class="margin-v-sm">
-                  </div>
-                </div>
-
-                <!-- Recomenda o curso ou não -->
-                <div class="row">
-                  <div class="col-xs-8 col-xs-offset-2">
-                    <div class="">
-                      <h4 class="text-center no-margin">
-                        Você recomendaria seu curso/faculdade para outras pessoas?
-                      </h4>
-
-                      <!-- TO-DO: Adicionar boolean selection, 'sim' ou 'não' -->
-                    </div>
-
-                    <hr class="margin-v-sm">
-                  </div>
-                </div>
-
-                <!-- % do curso completado -->
-                <div class="row">
-                  <div class="col-xs-8 col-xs-offset-2">
-                    <div class="">
-                      <h4 class="text-center no-margin">
-                        Em termos gerais, quanto do curso você já completou?
-                      </h4>
-
-                      <!-- TO-DO: Add draggable progress bar para o 'relative completion' -->
-                    </div>
-
-                    <hr class="margin-v-sm">
-                  </div>
-                </div>
-
-                <!-- Descrição pessoal sobre o curso -->
-                <div class="row">
-                  <div class="col-xs-8 col-xs-offset-2">
-                    <div class="text-center margin-bottom-sm">
-                      <h4 class="no-margin">
-                        Fale um pouco sobre você e das suas atividades atuais e passadas na faculdade.
-                      </h4>
-
-                      <small class="text-gray">
-                        Você participou da empresa júnior? Trabalha enquanto estuda? É introvertido? Veio do interior para a cidade grande?
-                        <br>
-                        Essas informações farão o vestibulando se conectar com você na hora de escolher com quem conversar.
-                      </small>
-                    </div>
-
-                      <%= f.input :academic_description, label: false, :input_html => {:rows => 20}  %>
-                  </div>
-                </div>
-
-                <!-- Botões -->
-                <div class="margin-v-xs text-center">
-                  <%= f.submit "Salvar alterações", class: "btn btn-primary" %>
-                  <p class="margin-v-xs">
-                    <%= link_to "Excluir curso", profile_resume_path(resume), data: { confirm: "Are you sure?" }, method: :delete , class: ""%>
-                  </p>
-                </div>
-              <% end %>
+              <%= render 'resume-form', resume: resume, readonly: true, lock_course_info: true %>
             </div>
           </div>
         <% end %>
       <% end %>
 
       <!-- List of the courses pending verification -->
-      <%= render 'resume-form' %>
+      <% @resumes.each do |resume| %>
+        <% if !resume.email_checked %>
+          <div class="panel panel-warning">
+            <div class="panel-heading">
+              <h3 class="panel-title">E-mail precisa ser verificado</h3>
+            </div>
+            <div class="panel-body">
+            <%= render 'resume-form', resume: resume, readonly: false, lock_course_info: false %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
 
+      <!-- TO-DO: Refatorar essa budega -->
       <!-- Add a new course -->
       <div class="panel panel-info">
         <div class="panel-heading">
@@ -101,20 +53,72 @@
         </div>
         <div class="panel-body">
           <%= simple_form_for @new_resume, url:  profile_resumes_path, method: :post do |f| %>
+            <!-- Curso, universidade e e-mail acadêmico -->
             <div class="row">
-              <div class="col-xs-6">
-                <p><%= f.association :university, label: false, prompt: "Universidade" %></p>
-                <p><%= f.association :course, label: false, prompt: "Curso" %></p>
-                <p><%= f.input :school_email, label: false, placeholder: "E-mail da instituição de ensino" %></p>
-              </div>
-              <div class="col-xs-6">
-                <p><%= f.input :relative_completion, label: false, prompt: "Nível de completude do curso", as: :select, collection: Resume::RELATIVE_COMPLETION %></p>
-                <p><%= f.input :stance, label: false, prompt: "Posicionamento", as: :select, collection: [true, false] %></p>
-                <p><%= f.input :academic_description, label: false, placeholder: "Descrição breve da sua experiência", :input_html => {:rows => 3}  %></p>
+              <div class="col-xs-6 col-xs-offset-3">
+
+              <p><%= f.association :course, readonly: false, label: "Curso", prompt: "Curso" %></p>
+              <p><%= f.association :university, readonly: false, label: "Universidade", prompt: "Universidade" %></p>
+              <p><%= f.input :school_email, readonly: false, label: "E-mail acadêmico", placeholder: "E-mail da instituição de ensino", hint: 'Não será exibido para usuários.' %></p>
+
+                <hr class="margin-v-sm">
               </div>
             </div>
-            <div class="text-center">
-              <%= f.submit "Submeter para validação de e-mail", class: "btn btn-primary btn-xs" %>
+
+            <!-- Recomenda o curso ou não -->
+            <div class="row">
+              <div class="col-xs-8 col-xs-offset-2">
+                <div class="">
+                  <h4 class="text-center no-margin">
+                    Você recomendaria seu curso/faculdade para outras pessoas?
+                  </h4>
+
+                  <!-- TO-DO: Adicionar boolean selection, 'sim' ou 'não' -->
+                </div>
+
+                <hr class="margin-v-sm">
+              </div>
+            </div>
+
+            <!-- % do curso completado -->
+            <div class="row">
+              <div class="col-xs-8 col-xs-offset-2">
+                <div class="">
+                  <h4 class="text-center no-margin">
+                    Em termos gerais, quanto do curso você já completou?
+                  </h4>
+
+                  <div class="margin-top-sm col-xs-8 col-xs-offset-2">
+                    <%= f.input :relative_completion, label: false, as: :range, input_html: { min: 10, max: 100, step: 5 } %>
+                  </div>
+                </div>
+
+                <hr class="margin-v-sm">
+              </div>
+            </div>
+
+            <!-- Descrição pessoal sobre o curso -->
+            <div class="row">
+              <div class="col-xs-8 col-xs-offset-2">
+                <div class="text-center margin-bottom-sm">
+                  <h4 class="no-margin">
+                    Fale um pouco sobre você e das suas atividades atuais e passadas na faculdade.
+                  </h4>
+
+                  <small class="text-gray">
+                    Você participou da empresa júnior? Trabalha enquanto estuda? É introvertido? Veio do interior para a cidade grande?
+                    <br>
+                    Essas informações farão o vestibulando se conectar com você na hora de escolher com quem conversar.
+                  </small>
+                </div>
+
+                  <%= f.input :academic_description, label: false, :input_html => {:rows => 20}  %>
+              </div>
+            </div>
+
+            <!-- Botões -->
+            <div class="margin-v-xs text-center">
+              <%= f.submit "Salvar alterações", class: "btn btn-primary" %>
             </div>
           <% end %>
         </div>

@@ -12,8 +12,9 @@
 <!-- Body -->
 <div class="container margin-v-md">
   <!-- If there's some result -->
-
-  <% if @resumes.present? %>
+  <div class="col-sm-10 col-sm-offset-1">
+    <p class="pull-right"><%= @resumes.size %> <%= result_search(params) %></p>
+  </div>
     <!-- Search Results if there's some resume-->
     <% @resumes.each do |resume| %>
       <% @meetings = Meeting.where(undergraduate_id: resume.user.id)  %>
@@ -103,10 +104,4 @@
         </div>
       </div> <!-- end: ~> col-sm-10 -->
     <% end %> <!-- end: ~> @resumes iterator-->
-    <% else %>
-      <div class="col-sm-10 col-sm-offset-1 text-center">
-        <h4>Ixi... Nenhum resultado encontrado</h4>
-        <h4>Dá uma melhorada na busca aê ;)</h4>
-      </div>
-  <% end %>
 </div> <!-- end: ~> Body  -->
