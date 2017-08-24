@@ -79,7 +79,7 @@
   border-bottom: none;
   border-right: none;
   margin-bottom: 20px;
-  height: 140px;
+  height: 150px;
   padding: 5px 5px;
 
   small {
@@ -88,6 +88,10 @@
     .xs{
       font-size: 12px;
     }
+  }
+
+  ul.list-inline {
+    margin-bottom: 0px;
   }
 
   .on_going_text {
@@ -125,19 +129,6 @@
   .with-right-border {
     border-right: 1px solid $light-gray;
   }
-
-  // .occupy-all-height {
-  //   height: 100%;
-  // }
-
-  // .all-complete-height-row {
-  //   display: table;
-  // }
-
-  // .all-complete-height-col {
-  //   float: none;
-  //   display: table-cell;
-  // }
 
   .card-flex {
     height: 100%;
@@ -178,6 +169,7 @@
       justify-content: center;
       align-self: flex-start;
       flex: 1;
+      padding-right: 30px;
 
       p {
         margin-bottom: 0px;
