@@ -21,9 +21,9 @@
               <%= simple_form_for resume, url: profile_resume_path(resume), method: :patch do |f| %>
                 <div class="row">
                   <div class="col-xs-6 col-xs-offset-3">
-                    <p><%= f.input :course, readonly: true, label: "Curso", prompt: "Curso" %></p>
-                    <p><%= f.input :university, readonly: true, label: "Universidade", prompt: "Universidade" %></p>
-                    <p><%= f.input :school_email, readonly: true, label: "E-mail acadêmico", placeholder: "E-mail da instituição de ensino",  hint: 'Não pode ser alterado depois de confirmado.' %></p>
+                    <p><%= f.input :course, readonly: true, label: false, prompt: "Curso" %></p>
+                    <p><%= f.input :university, readonly: true, label: false, prompt: "Universidade" %></p>
+                    <p><%= f.input :school_email, readonly: true, label: false, placeholder: "E-mail da instituição de ensino",  hint: 'Não pode ser alterado depois de verificado.' %></p>
 
                   <hr class="margin-v-sm">
                   </div>
