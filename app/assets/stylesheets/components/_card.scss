@@ -78,9 +78,17 @@
   border-top: none;
   border-bottom: none;
   border-right: none;
-  margin-bottom: 10px;
-  height: 175px;
+  margin-bottom: 20px;
+  height: 140px;
   padding: 5px 5px;
+
+  small {
+    font-size: 80%;
+
+    .xs{
+      font-size: 12px;
+    }
+  }
 
   .on_going_text {
     color: $my-yellow;
@@ -193,14 +201,10 @@
     flex-direction: column;
     justify-content: space-between;
 
-    .link {
-      // text-decoration: none;
-      font-size: 15px;
+    .font-blue {
       color: $my-light-blue;
-
     }
   }
-
 }
 
 // -- .users/show.html.erb
