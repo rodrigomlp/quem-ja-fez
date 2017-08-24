@@ -44,13 +44,10 @@
                     <p>Posicionamento: </p>
                   </div>
                   <div class="stances">
-                    <% if resume.stance == "1" %>
+                    <% if resume.stance %>
                     <a class="btn btn-md btn-success" style="cursor: pointer;">
                       <i class="fa fa-thumbs-up"></i></a>
                       <!-- <a style="cursor: pointer;"><i class="fa fa-thumbs-up fa-2x"></i></a> -->
-                    <% elsif resume.stance == "0" %>
-                      <a class="btn btn-md btn-primary" style="cursor: pointer;">
-                      <i class="fa fa-question"></i></a>
                     <% else %>
                       <a class="btn btn-md btn-danger" style="cursor: pointer;">
                       <i class="fa fa-thumbs-down"></i></a>
