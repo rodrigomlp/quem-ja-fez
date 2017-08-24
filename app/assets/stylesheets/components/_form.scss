@@ -1,3 +1,4 @@
+// Range Slider (START)
 input[type=range] {
   -webkit-appearance: none;
   width: 100%;
@@ -82,3 +83,11 @@ input[type=range]:focus::-ms-fill-lower {
 input[type=range]:focus::-ms-fill-upper {
   background: rgba(28, 28, 28, 0.08);
 }
+// Range Slider (END)
+
+// Button Group (START)
+.btn-group {
+  display: flex;
+  justify-content: center;
+}
+// Button Group (END)
