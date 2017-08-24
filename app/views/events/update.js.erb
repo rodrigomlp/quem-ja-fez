@@ -1,0 +1,9 @@
+$( document ).ready(function() {
+  <% if @red_events == 0 %>
+    $("#confirm_button").addClass("disabled").text("Selecionar horários");
+  <% else %>
+     $("#confirm_button").removeClass("disabled").text("Confirmar horários");
+  <% end %>
+});
+
+
