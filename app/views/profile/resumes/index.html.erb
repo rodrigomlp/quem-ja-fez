@@ -109,7 +109,7 @@
               </div>
               <div class="col-xs-6">
                 <p><%= f.input :relative_completion, label: false, prompt: "Nível de completude do curso", as: :select, collection: Resume::RELATIVE_COMPLETION %></p>
-                <p><%= f.input :stance, label: false, prompt: "Posicionamento", as: :select, collection: Resume::STANCE %></p>
+                <p><%= f.input :stance, label: false, prompt: "Posicionamento", as: :select, collection: [true, false] %></p>
                 <p><%= f.input :academic_description, label: false, placeholder: "Descrição breve da sua experiência", :input_html => {:rows => 3}  %></p>
               </div>
             </div>
