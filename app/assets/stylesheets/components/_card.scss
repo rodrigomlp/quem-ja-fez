@@ -201,42 +201,14 @@
       color: $my-light-blue;
     }
 
-    .stars {
-      flex: 1;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-
-      .fa-star {
-        padding: 0 5px;
-        color: $my-yellow;
-
-      }
-
-      .fa-star-o {
-        padding: 0 5px;
-
-      }
-    }
   }
 
   .review-card {
     display: none;
-  }
-}
-
-// -- .users/show.html.erb
-.card-review {
-  display: flex;
-  align-items: flex-start;
-
-  .review-avatar {
-    margin-top: 5px;
-    margin-right: 10px;
-  }
-
-  .review-content {
+    margin-top: 20px;
+    border-top: 1px solid $light-gray;
 
   }
 }
+
+

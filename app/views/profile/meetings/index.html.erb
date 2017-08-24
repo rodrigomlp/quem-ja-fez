@@ -49,7 +49,7 @@
                 <% if meeting.rating %>
                   <% if current_user == meeting.highschooler %>
                     <!-- <button type="button" class="btn btn-default btn-xs"><%#=  meeting.rating %></button> -->
-                    <div class="stars">
+                    <div class="review-stars">
                       <%= render 'shared/stars', avg_rating: meeting.rating %>
                     </div>
                   <% end %>
@@ -87,17 +87,22 @@
                 <% end %>
               </div>
             </div> <!-- card-flex div -->
-            <div class="review-card">
+            <div class="review-card margin-v-xs margin-h-xs">
+
               <%= simple_form_for meeting, url: profile_meeting_path(meeting), method: :patch do |f| %>
                 <div class="row">
-                  <div class="col-xs-12">
-                    <%= f.input :review_title, label: false, placeholder: "Título" %>
-                    <div class="stars">
+                  <div class="col-xs-12 text-center">
+                    <div class="stars margin-v-xs">
                       <% (1..5).each do |star| %>
                         <input type="radio" name="meeting[rating]" id="rating_<%= meeting.id %>_<%= star %>" value="<%= star %>" <%= meeting.rating == star ? "checked" : "" %>>
                         <label for="rating_<%= meeting.id %>_<%= star %>"></label>
                       <% end %>
                     </div>
+                  </div>
+                  <div class="col-xs-12">
+                    <%= f.input :review_title, as: :string, label: false, placeholder: "Título" %>
+                  </div>
+                  <div class="col-xs-12">
                     <%= f.input :review_content, label: false, placeholder: "Review" %>
                   </div>
                 </div>

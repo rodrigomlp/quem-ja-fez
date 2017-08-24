@@ -34,15 +34,22 @@ module ApplicationHelper
     end
   end
 
-  def result_search(params)
-    if (params["course"] == "") && (params["university"] == "")
-      @result = "resultados"
-    elsif (params["course"] != "") && (params["university"] == "")
-      @result = "resultados na busca pelo curso #{params['course']}"
-    elsif (params["course"] == "") && (params["university"] != "")
-      @result = "resultados na busca pela #{params['university']}"
+  def result_search(params, resumes)
+    if resumes.size == 1
+      resultados = "resultado"
     else
-      @result = "resultados na busca pelo curso #{params['course']} na #{params['university']}"
+      resultados = "resultados"
+    end
+
+
+    if (params["course"] == "") && (params["university"] == "")
+      @result = "#{resultados}"
+    elsif (params["course"] != "") && (params["university"] == "")
+      @result = "#{resultados} na busca pelo curso #{Course.find(params['course'])}"
+    elsif (params["course"] == "") && (params["university"] != "")
+      @result = "#{resultados} na busca pela #{University.find(params['university'])}"
+    else
+      @result = "#{resultados} na busca pelo curso #{Course.find(params['course'])} na #{University.find(params['university'])}"
     end
     return @result
   end
