@@ -1,6 +1,6 @@
 <!-- List of the courses pending verification -->
 <!-- panel boilerplate classes -->
-<%= simple_form_for resume, url: profile_resume_path(resume), method: :patch do |f| %>
+<%= simple_form_for resume, url: profile_resume_path(resume), method: :patch, wrapper: :horizontal_form do |f| %>
 
   <!-- Curso, universidade e e-mail acadêmico -->
   <div class="row">
@@ -33,16 +33,15 @@
           Você recomendaria seu curso/faculdade para outras pessoas?
         </h4>
 
-        <!-- TO-DO: Adicionar boolean selection, 'sim' ou 'não' -->
+        <!-- TO-DO: Isso aqui ainda vai dar merda, não está usando o simple_form! -->
         <div class="btn-group margin-v-xs" data-toggle="buttons">
-          <label class="btn btn-primary active margin-h-xs">
-            <input type="radio" name="options" id="option1" autocomplete="off" checked> <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+          <label class="btn btn-primary margin-h-xs  <%= 'active' if resume.stance %>">
+            <input type="radio" name="resume[stance]" value="true" id="option1" autocomplete="off" <%= 'checked' if resume.stance %>> <i class="fa fa-thumbs-up" aria-hidden="true"></i>
           </label>
 
-          <label class="btn btn-primary margin-h-xs">
-            <input type="radio" name="options" id="option2" autocomplete="off"> <i class="fa fa-thumbs-down" aria-hidden="true"></i>
+          <label class="btn btn-primary <%= 'active' unless resume.stance %>">
+            <input type="radio" name="resume[stance]" value="false" id="option2" autocomplete="off" <%= 'checked' unless resume.stance %>> <i class="fa fa-thumbs-down" aria-hidden="true"></i>
           </label>
-
         </div>
       </div>
 
@@ -59,7 +58,7 @@
         </h4>
 
         <div class="range-slider margin-top-sm col-xs-8 col-xs-offset-2">
-          <%= f.input :relative_completion, label: false, as: :range, input_html: { min: 10, max: 100, step: 5 } %>
+          <%= f.input_field :relative_completion, label: false, as: :range, input_html: { min: 10, max: 100, step: 5 } %>
         </div>
       </div>
 
