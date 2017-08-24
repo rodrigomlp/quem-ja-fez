@@ -27,9 +27,15 @@ $border-radius-small: 2px;
 
 // Manually overwrite btn-group colors (used in resumes cards)
 .btn-group {
+  .btn {
+    color: $gray;
+    background-color: $lighter-gray;
+    border: transparent;
+  }
+
   .active {
     background-color: $my-green !important;
     color: white !important;
-    border-color: transparent !important;
+    border: transparent !important;
   }
 }
