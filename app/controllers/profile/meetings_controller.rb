@@ -72,6 +72,8 @@ class Profile::MeetingsController < ApplicationController
       meeting = Meeting.create(start_time: start_time, end_time: end_time, highschooler: highschooler, undergraduate: resume.user, resume: resume)
       event.destroy
     end
+
+    redirect_to profile_meetings_path
   end
 
   private
