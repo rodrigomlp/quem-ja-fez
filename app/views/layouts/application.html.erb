@@ -9,6 +9,8 @@
     <!-- Google fonts -->
     <!-- <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:300,400|Pacifico" rel="stylesheet"> -->
     <link href="https://fonts.googleapis.com/css?family=Didact+Gothic|Pacifico|Titillium+Web:300,400" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <!-- Google fonts -->
 
@@ -31,6 +33,7 @@
     <%= render 'shared/footer' %>
     <%= javascript_include_tag 'application' %>
     <%= yield(:js) %> <!-- Reload javascript that was called from within an html -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 
 
   </body>
