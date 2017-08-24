@@ -6,6 +6,7 @@
 //= require pages/home
 //= require parallax
 //= require jquery.parallax
+//= require affix
 
 // Gem usada para fazer o autocomplete da searchbar
 
