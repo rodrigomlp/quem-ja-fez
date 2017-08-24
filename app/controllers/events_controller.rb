@@ -5,16 +5,20 @@ class EventsController < ApplicationController
     @user = Resume.find(params[:user_id]).user
     # @events = Event.where(start: params[:start]..params[:end])
     @events = Event.where(user: @user)
-
-
+    @red_events = @user.events.where(color: "red").count
   end
 
   def show
+    @user = Resume.find(params[:user_id]).user
+    @event = Event.find(params[:id])
+    @red_events = @user.events.where(color: "red").count
+
   end
 
   def new
     @event = Event.new
     @user = Resume.find(params[:user_id]).user
+
   end
 
   def edit
@@ -27,7 +31,12 @@ class EventsController < ApplicationController
   end
 
   def update
+    @user = Resume.find(params[:user_id]).user
     @event.update(event_params)
+    @red_events = @user.events.where(color: "red").count
+    respond_to do |format|
+        format.js
+    end
   end
 
   def destroy
