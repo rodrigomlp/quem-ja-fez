@@ -1,8 +1,8 @@
 <div class="title">
-  <div class="title-text">
+  <div class="header-resume">
 
     <!-- thumbs icon -->
-    <div class="title-course-opinion">
+    <div class="resume-stance">
       <% if @resume.stance %>
         <div class="thumb-icon thumb-up" data-toggle="tooltip" data-animation="true" title="<%= @resume.user.first_name %> recomenda esse curso"> <!-- Toggles tooltip if hovered over -->
           <i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i>
@@ -16,7 +16,7 @@
     </div>
 
     <!-- Title -->
-    <div class="title-course">
+    <div class="resume-title">
       <h2><%= @resume.course.name %></h2>
       <p><%= @resume.university.name %></p>
 

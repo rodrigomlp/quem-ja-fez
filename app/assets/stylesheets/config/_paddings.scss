@@ -1,11 +1,7 @@
+// Vertical only
 .padding-v-sm {
   padding-top:    20px;
   padding-bottom: 20px;
-}
-
-.padding-h-sm {
-  padding-left:    20px;
-  padding-right:   20px;
 }
 
 .padding-v-md {
@@ -13,7 +9,27 @@
   padding-bottom: 40px;
 }
 
+// Horizontal only
+.padding-h-sm {
+  padding-left:    20px;
+  padding-right:   20px;
+}
+
+
 .padding-h-md {
   padding-left:    40px;
   padding-right:   40px;
+}
+
+// All sides
+.padding-xs {
+  padding: 10px;
+}
+
+.padding-sm {
+  padding: 20px;
+}
+
+.padding-md {
+  padding: 40px;
 }

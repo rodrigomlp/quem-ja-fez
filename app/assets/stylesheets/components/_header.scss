@@ -1,0 +1,25 @@
+.header-resume {
+  display: flex;
+
+  .resume-stance {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+  }
+
+  .resume-title {
+    align-items: flex-start;
+
+    h2 {
+      margin: 0;
+      padding-right: 20px;
+    }
+    p {
+      margin: 0;
+    }
+  }
+}
+
+.header-undergrad-profile {
+
+}
