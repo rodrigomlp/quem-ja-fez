@@ -1,5 +1,5 @@
 <div class="panel panel-default">
-  <div class="panel-heading">Profile</div>
+  <div class="panel-heading">Perfil</div>
   <!-- TO-DO: Indicate which page the user is currently in by highlighting the list -->
   <div class="list-group">
     <%= link_to "Informações básicas", edit_profile_info_path, class: current_class?(edit_profile_info_path) %>
@@ -16,8 +16,4 @@
     <% end %>
   </div>
 
-  <div class="panel-heading">Dados financeiros</div>
-  <div class="list-group">
-    <%= link_to "Transações", root_path, class: current_class?(root_path) %> <!-- TO-DO: Link missing -->
-  </div>
 </div>

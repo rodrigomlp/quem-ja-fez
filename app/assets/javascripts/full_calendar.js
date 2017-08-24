@@ -30,6 +30,7 @@ $(document).ready(function(){
         week: "Semana",
      },
      timezone: 'local',
+     allDayText: '',
 
      monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
      monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
@@ -76,17 +77,15 @@ $(document).ready(function(){
       },
 
       eventClick: function(event){
-
         /*Check if the current user is a undegraduate and the right user which allows him to delete available time slots */
         if (window.user_undergraduate && is_same_user){
-           var answer = confirm('Você quer deletar esse horário?');
-           if (answer) {
                $.ajax({
                type: 'DELETE',
-               url: "/results/" + resume_id + "/events/ " + event.id
+               url: "/results/" + resume_id + "/events/ " + event.id,
+               success: function() {
+                            $('.calendar').fullCalendar( 'refetchEvents' );
+                }
              });
-             window.location.reload()
-           }
         }
 
 
@@ -94,24 +93,34 @@ $(document).ready(function(){
        else {
           /*if he has not clicked yet (event is green) change it to red*/
           if (event.color == "green"){
-                var answer = confirm('Você quer marcar esse horário?');
-                if (answer) {
                   $.ajax({
                     type: "PATCH",
-                    url: "/results/" + resume_id + "/events/ " + event.id,
+                    url: "/results/" + resume_id + "/events/ " + event.id + ".js",
                     data: {
                       event: {
                         color: "red"
                       }
-                    }
+                    },
+                    success: function() {
+                            $('.calendar').fullCalendar( 'refetchEvents' );
+
+                            // $('.calendar').fullCalendar( 'refetchEvents' );
+                            // $('.calendar').fullCalendar({
+                            //     events: events
+                            // });
+                            // console.log(events);
+                            // $('.calendar').fullCalendar('destroy');
+                            // $('.calendar').fullCalendar();
+                        }
+
+                      // event.color does not update when clicked although updated on DB.
+                      // Is the problem the fact I'm using Javascript? Why?                    }
                   });
-                  window.location.reload();
-               }
+                  // window.location.reload()
+
             }
           /*if he has not clicked yet (event is green) change it to red*/
           else if (event.color == "red"){
-              var answer = confirm('Você quer desmarcar esse horário?');
-                if (answer) {
                   $.ajax({
                     type: "PATCH",
                     url: "/results/" + resume_id + "/events/ " + event.id,
@@ -119,10 +128,11 @@ $(document).ready(function(){
                       event: {
                         color: "green"
                       }
-                    }
-                  });
-                  window.location.reload();
-               }
+                    },
+                    success: function() {
+                            $('.calendar').fullCalendar( 'refetchEvents' );
+                  }
+                });
            }
         }
       }
