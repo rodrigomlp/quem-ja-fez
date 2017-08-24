@@ -52,7 +52,11 @@
                         Em termos gerais, quanto do curso você já completou?
                       </h4>
 
+                      <!-- <input type="range" min="-10" max="10"> -->
                       <!-- TO-DO: Add draggable progress bar para o 'relative completion' -->
+                      <div class="margin-top-sm col-xs-8 col-xs-offset-2">
+                        <%= f.input :relative_completion, label: false, as: :range %>
+                      </div>
                     </div>
 
                     <hr class="margin-v-sm">
