@@ -1,13 +1,102 @@
-<h3>How many selected spots?</h3>
-<%= @events.count %>
-<h3>Final Price</h3>
-<%=  (@events.count * 19.99) %>
+<div class="container margin-v-sm">
+  <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
+    <div class="card padding-md">
+      <div class="title flex-center-column margin-bottom-xs">
+        <!-- Avatar -->
+        <div class="header-undergrad-profile text-center">
+          <!-- PERGUNTA: Por quê por default a imagem é 200x200? -->
+          <%= image_tag(user_photo_show(@resume), size: "75x75", class: "img-circle") %>
+          <p><%= @resume.user.first_name %> <%= @resume.user.last_name %></p>
+          <!-- TO-DO: Implement star rating -->
+        </div>
 
-<h3>Name of mentor</h3>
-<%= @user.first_name + " " + @user.last_name %>
+        <div class="header-resume">
+          <!-- thumbs icon -->
+          <div class="resume-stance">
+            <% if @resume.stance %>
+              <div class="thumb-icon thumb-up" data-toggle="tooltip" data-animation="true" title="<%= @resume.user.first_name %> recomenda esse curso"> <!-- Toggles tooltip if hovered over -->
+                <i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i>
+              </div>
 
-<h3>Hours Selecteds</h3>
+            <% else %>
+              <div class="thumb-icon thumb-down" data-toggle="tooltip" data-animation="true" title="<%= @resume.user.first_name %> não recomenda esse curso"> <!-- Toggles tooltip if hovered over -->
+                <i class="fa fa-thumbs-down fa-2x" aria-hidden="true"></i>
+              </div>
+            <% end %>
+          </div>
+          <!-- thumbs icon -->
 
+          <!-- Title -->
+          <div class="resume-title">
+            <h2><%= @resume.course.name %></h2>
+            <p><%= @resume.university.name %></p>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+      <!-- 1.Detalhes -->
+      <div class="flex-center-column margin-bottom-sm">
+        <h4 class=""><strong>1. Detalhes</strong></h4>
+        <br>
+        <!-- Datas seecionadas -->
+        <p>Datas selecionadas</p>
+        <% @events.each do  |event| %>
+          <div class= "flex-row">
+            <div class="well margin-bottom-xs padding-xs">
+              <!-- day/month -->
+              <span><%= event.start.day %>/<%= event.start.month %></span>
+              <!-- start time -->
+            </div>
+
+            <div class="well margin-bottom-xs padding-xs">
+              <span> <%= '%02d' % event.start.hour %>:<%= '%02d' % event.start.min %> </span> -
+              <!-- end time -->
+              <span> <%= '%02d' % event.end.hour %>:<%= '%02d' % event.end.min %> </span>
+            </div>
+          </div>
+        <% end %>
+        <br>
+
+        <!-- Preço final -->
+        <p>Preço final</p>
+        <div class="well margin-bottom-xs padding-xs">
+          <% if(@events.count.zero?) %>
+            <span>R$ 0</span>
+          <% else %>
+            <span>R$ <%=  (@events.count * 19.99) %></span>
+          <% end %>
+        </div>
+      </div>
+
+      <hr>
+
+      <!-- 2.Formas de pagamento -->
+      <div class="flex-center-column">
+        <div class="">
+          <h4 class=""><strong>2. Formas de Pagamento</strong></h4>
+          <br>
+        </div>
+      </div>
+
+      <!-- Botões -->
+      <div class="flex-center-column margin-v-sm">
+        <div class="">
+        <%= form_for(@meeting, :url => profile_meetings_path, :action => "POST") do |f| %>
+
+          <%= f.hidden_field :resume, :value => @resume.id %>
+          <%= f.hidden_field :event, :value => @events.map(&:id)  %>
+
+          <%= f.submit class: 'btn btn-primary' %>
+        <% end %>
+        </div>
+      </div>
+      <!-- Botões -->
+    </div>
+  </div>
+</div>
+
+<!-- Paypal -->
 <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
   <input type="hidden" name="cmd" value="_s-xclick">
   <input type="hidden" name="custom" value="<%= { resume_id: @resume.id, events_ids: @events.map(&:id), highschooler_id: current_user.id }.to_json %>">
@@ -15,22 +104,4 @@
   <input type="image" src="https://www.sandbox.paypal.com/pt_BR/BR/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - A maneira fácil e segura de enviar pagamentos online!">
   <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
 </form>
-
-<% @events.each do  |event| %>
-  <p>Start Time</p>
-  <%= event.start %>
-  <p>End Time</p>
-  <%= event.end %>
-<% end %>
-
-
-
-<%= form_for(@meeting, :url => profile_meetings_path, :action => "POST") do |f| %>
-
-  <%= f.hidden_field :resume, :value => @resume.id %>
-  <%= f.hidden_field :event, :value => @events.map(&:id)  %>
-
-  <%= f.submit class: 'btn btn-primary' %>
-<% end %>
-
-
+<!-- Paypal -->

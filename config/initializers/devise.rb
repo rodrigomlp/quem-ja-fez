@@ -5,7 +5,7 @@ Devise.setup do |config|
   # Facebook connection code
   config.omniauth :facebook, ENV["FB_ID"], ENV["FB_SECRET"],
     scope: 'email',
-    info_fields: 'email, first_name, last_name, gender',
+    info_fields: 'email, first_name, last_name',
     image_size: 'square',  # 50x50, guaranteed ratio
     secure_image_url: true
   # ~> end: Facebook connection code
