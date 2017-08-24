@@ -40,3 +40,23 @@
   content: "\f005" !important;
   color: $brand-primary;
 }
+
+.review-stars {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  .fa-star {
+    padding: 0 5px;
+    color: $brand-primary;
+
+  }
+
+  .fa-star.empty-star {
+    padding: 0 5px;
+    color: $light-gray;
+
+  }
+}
