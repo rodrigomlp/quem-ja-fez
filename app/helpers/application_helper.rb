@@ -6,7 +6,7 @@ module ApplicationHelper
     elsif resume.user.photo.file != nil
       user_photo_url = resume.user.photo
     else
-      user_photo_url = "http://placehold.it/100x100"
+      user_photo_url = "http://placehold.it/150x150"
     end
 
     user_photo_url
@@ -40,13 +40,16 @@ module ApplicationHelper
     elsif (params["course"] != "") && (params["university"] == "")
       @result = "resultados na busca pelo curso #{params['course']}"
     elsif (params["course"] == "") && (params["university"] != "")
-      @result = "resultados na busca pela universidade #{params['university']}"
+      @result = "resultados na busca pela #{params['university']}"
     else
       @result = "resultados na busca pelo curso #{params['course']} na #{params['university']}"
     end
     return @result
   end
 
+  def age_calculator(user)
+    @age = ((Date.today - user.birth_date).to_i / 365) unless user.birth_date.nil?
+  end
 end
 
 
