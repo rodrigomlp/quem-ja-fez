@@ -20,7 +20,9 @@
       <h4>
         Minhas experiências
       </h4>
-      <p><%= @resume.academic_description %></p>
+      <div class="formatted-text">
+        <p> <%= simple_format @resume.academic_description %> </p>
+      </div>
     </div>
 
     <!-- <hr class='margin-v-sm'> -->

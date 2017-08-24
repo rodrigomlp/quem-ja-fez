@@ -29,6 +29,12 @@ p {
   color: $light-gray;
 }
 
+.formatted-text {
+  p {
+    white-space: pre-wrap;
+  }
+}
+
 
 // To use a font file (.woff) uncomment following lines
 // @font-face {
