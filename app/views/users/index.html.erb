@@ -12,7 +12,9 @@
 <!-- Body -->
 <div class="container margin-v-md">
   <!-- If there's some result -->
-
+  <div class="col-sm-10 col-sm-offset-1">
+    <p class="pull-right"><%= @resumes.size %> resultados</p>
+  </div>
   <% if @resumes.present? %>
     <!-- Search Results if there's some resume-->
     <% @resumes.each do |resume| %>
