@@ -78,9 +78,22 @@
   border-top: none;
   border-bottom: none;
   border-right: none;
-  margin-bottom: 10px;
-  height: 175px;
+  margin-bottom: 20px;
+  height: 150px;
   padding: 5px 5px;
+
+  small {
+    font-size: 80%;
+
+    .xs{
+      font-size: 12px;
+    }
+  }
+
+  ul.list-inline {
+    margin-bottom: 0px;
+    display: none;
+  }
 
   .on_going_text {
     color: $my-yellow;
@@ -91,7 +104,7 @@
   }
 
   .completed_text {
-    color: $my-dark-blue;
+    color: $gray;
   }
 
   .setting_up_text {
@@ -107,7 +120,7 @@
   }
 
   &.completed {
-    border-color: $my-dark-blue;
+    border-color: $gray;
   }
 
   &.setting_up {
@@ -117,19 +130,6 @@
   .with-right-border {
     border-right: 1px solid $light-gray;
   }
-
-  // .occupy-all-height {
-  //   height: 100%;
-  // }
-
-  // .all-complete-height-row {
-  //   display: table;
-  // }
-
-  // .all-complete-height-col {
-  //   float: none;
-  //   display: table-cell;
-  // }
 
   .card-flex {
     height: 100%;
@@ -169,7 +169,8 @@
       flex-direction: column;
       justify-content: center;
       align-self: flex-start;
-      flex: 1 0 auto;
+      flex: 1;
+      padding-right: 30px;
 
       p {
         margin-bottom: 0px;
@@ -190,17 +191,36 @@
     padding: 0 15px;
     border-left: 1px solid $light-gray;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 
-    .link {
-      // text-decoration: none;
-      font-size: 15px;
+    .links {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .font-blue {
       color: $my-light-blue;
+    }
 
+    .stars {
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+
+      .fa-star {
+        padding: 0 5px;
+        color: $my-yellow;
+
+      }
+
+      .fa-star-o {
+        padding: 0 5px;
+
+      }
     }
   }
-
 }
 
 // -- .users/show.html.erb

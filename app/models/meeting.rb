@@ -13,18 +13,6 @@ class Meeting < ApplicationRecord
     resume.course.name
   end
 
-  def date_in_words
-    if start_time.today?
-      "Hoje"
-    elsif start_time.to_date == Date.tomorrow
-      "Amanhã"
-    elsif start_time.to_date == Date.yesterday
-      "Ontem"
-    else
-      start_time.strftime("%A, %d %b %y")
-    end
-  end
-
   def setup_time
     start_time - 10.minutes
   end

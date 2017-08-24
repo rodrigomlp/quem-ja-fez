@@ -12,8 +12,9 @@
 <!-- Body -->
 <div class="container margin-v-md">
   <!-- If there's some result -->
-
-  <% if @resumes.present? %>
+  <div class="col-sm-10 col-sm-offset-1">
+    <p class="pull-right"><%= @resumes.size %> <%= result_search(params) %></p>
+  </div>
     <!-- Search Results if there's some resume-->
     <% @resumes.each do |resume| %>
       <% @meetings = Meeting.where(undergraduate_id: resume.user.id)  %>
@@ -44,13 +45,10 @@
                     <p>Posicionamento: </p>
                   </div>
                   <div class="stances">
-                    <% if resume.stance == "1" %>
+                    <% if resume.stance %>
                     <a class="btn btn-md btn-success" style="cursor: pointer;">
                       <i class="fa fa-thumbs-up"></i></a>
                       <!-- <a style="cursor: pointer;"><i class="fa fa-thumbs-up fa-2x"></i></a> -->
-                    <% elsif resume.stance == "0" %>
-                      <a class="btn btn-md btn-primary" style="cursor: pointer;">
-                      <i class="fa fa-question"></i></a>
                     <% else %>
                       <a class="btn btn-md btn-danger" style="cursor: pointer;">
                       <i class="fa fa-thumbs-down"></i></a>
@@ -106,10 +104,4 @@
         </div>
       </div> <!-- end: ~> col-sm-10 -->
     <% end %> <!-- end: ~> @resumes iterator-->
-    <% else %>
-      <div class="col-sm-10 col-sm-offset-1 text-center">
-        <h4>Ixi... Nenhum resultado encontrado</h4>
-        <h4>Dá uma melhorada na busca aê ;)</h4>
-      </div>
-  <% end %>
 </div> <!-- end: ~> Body  -->

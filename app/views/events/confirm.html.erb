@@ -25,18 +25,12 @@
 
 
 
-
-
 <%= form_for(@meeting, :url => profile_meetings_path, :action => "POST") do |f| %>
 
   <%= f.hidden_field :resume, :value => @resume.id %>
   <%= f.hidden_field :event, :value => @events.map(&:id)  %>
 
-  <%= f.submit %>
+  <%= f.submit class: 'btn btn-primary' %>
 <% end %>
 
-
-
-
-<!-- IF POST IS SUCCESSFUL DELETE FROM DATABSE event.destroy-->
 

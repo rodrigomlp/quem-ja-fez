@@ -3,14 +3,11 @@
 
     <!-- thumbs icon -->
     <div class="title-course-opinion">
-      <% if @resume.stance.to_i == 1 %>
+      <% if @resume.stance %>
         <div class="thumb-icon thumb-up" data-toggle="tooltip" data-animation="true" title="<%= @resume.user.first_name %> recomenda esse curso"> <!-- Toggles tooltip if hovered over -->
           <i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i>
         </div>
-      <% elsif @resume.stance.to_i == 0 %>
-        <div class="thumb-icon" data-toggle="tooltip" data-animation="true" title="<%= @resume.user.first_name %> não tem posicionamento formado sobre o curso"> <!-- Toggles tooltip if hovered over -->
-          <i class="fa fa-question-circle fa-2x" aria-hidden="true"></i>
-        </div>
+
       <% else %>
         <div class="thumb-icon thumb-down" data-toggle="tooltip" data-animation="true" title="<%= @resume.user.first_name %> não recomenda esse curso"> <!-- Toggles tooltip if hovered over -->
           <i class="fa fa-thumbs-down fa-2x" aria-hidden="true"></i>

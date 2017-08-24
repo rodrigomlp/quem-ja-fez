@@ -1,10 +1,6 @@
 
 $(document).ready(function(){
 
-
-
-
-
   $('.calendar').each(function(){
     var calendar = $(this);
     calendar.fullCalendar({

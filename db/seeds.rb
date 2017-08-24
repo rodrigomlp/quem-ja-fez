@@ -206,7 +206,7 @@ User.all.where(undergraduate: true).each do |undergraduate|
       school_email: Faker::Internet.email,
       relative_completion: rand(0..100),
       academic_description: Faker::HitchhikersGuideToTheGalaxy.quote,
-      stance: Resume::STANCE.sample,
+      stance: [true, false].sample,
       email_checked: [true, false].sample
     )
   end
@@ -222,7 +222,7 @@ end
 
 # Creating Meetings
 duration = [0.5, 1, 1.5, 2]
-ratings = [nil, 0, 1, 2, 3, 4, 5]
+ratings = [nil, 1, 2, 3, 4, 5]
 meetings_number = 200
 
 for i in 1..meetings_number
