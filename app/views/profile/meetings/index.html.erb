@@ -14,7 +14,7 @@
       <div class="list-group">
         <% @meetings.each do |meeting| %>
 
-          <div class="list-group-item meeting-card <%= meeting.status %>">
+          <div class="list-group-item meeting-card <%= meeting.status %>" id="meeting<%= meeting.id %>">
             <div class="card-flex">
               <div class="sec-t1 with-right-border">
                 <div>
@@ -58,7 +58,9 @@
                     <!-- Condition when the meeting has already past but don't have any rating -->
                     <% if meeting.extra_time < Time.current%>
                       <% if current_user == meeting.highschooler  %>
-                        <small><%= link_to "Gostou da conversa? Deixe um feedback", profile_meeting_path(meeting), class: "font-blue"%></small>
+                        <small class="feedback-button">
+                          <a class="font-blue" href="#">Gostou da conversa? Deixe um feedback</a>
+                        </small>
                       <% end %>
                     <!-- Meetings that are in the future or happening now -->
                     <% else %>
@@ -67,7 +69,7 @@
                         <small> <%= link_to "Entrar na sala virtual", meeting.virtual_room, target: "_blank", rel: "nofollow", class: "font-blue"  %> </small>
                         <div>
                           <small class="skype-help">
-                            <a class="font-blue xs">Problemas com seu link?</a>
+                            <a class="font-blue xs" href="#">Problemas com seu link?</a>
                             <ul class="list-inline">
                               <li><i class="fa fa-envelope" aria-hidden="true"></i> <%= current_user == meeting.highschooler ? meeting.undergraduate.email : meeting.highschooler.email %></li>
                               <li><i class="fa fa-skype" aria-hidden="true"></i> <%= current_user == meeting.highschooler ? meeting.undergraduate.skype : meeting.highschooler.skype %></li>
@@ -85,6 +87,27 @@
                 <% end %>
               </div>
             </div> <!-- card-flex div -->
+            <div class="review-card">
+              <%= simple_form_for meeting, url: profile_meeting_path(meeting), method: :patch do |f| %>
+                <div class="row">
+                  <div class="col-xs-12">
+                    <%= f.input :review_title, label: false, placeholder: "Título" %>
+                    <div class="stars">
+                      <% (1..5).each do |star| %>
+                        <input type="radio" name="meeting[rating]" id="rating_<%= meeting.id %>_<%= star %>" value="<%= star %>" <%= meeting.rating == star ? "checked" : "" %>>
+                        <label for="rating_<%= meeting.id %>_<%= star %>"></label>
+                      <% end %>
+                    </div>
+                    <%= f.input :review_content, label: false, placeholder: "Review" %>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="text-center">
+                    <%= f.submit "Salvar review", class: "btn btn-primary btn-xs" %>
+                  </div>
+                </div>
+              <% end %> <!-- end: ~> simple_form_for -->
+            </div>
           </div> <!-- list-group-itme div -->
 
         <% end %> <!-- end de iteração do meeting -->

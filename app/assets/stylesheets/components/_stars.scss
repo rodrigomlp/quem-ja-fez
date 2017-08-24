@@ -12,24 +12,30 @@
 
 .stars label {
   @extend .fa;
+  cursor: pointer;
 }
 
 .stars label:before, .stars input:checked+label:before {
   content: "\f005";
+  color: $my-yellow;
 }
 
 .stars input:checked+label ~ label:before {
   content: "\f006";
+  color: $black;
 }
 
 .stars:hover label:before {
   content: "\f005" !important;
+  color: $my-yellow;
 }
 
 .stars label:hover ~ label:before {
   content: "\f006" !important;
+  color: $black;
 }
 
 .stars label:hover:before {
   content: "\f005" !important;
+  color: $my-yellow;
 }
