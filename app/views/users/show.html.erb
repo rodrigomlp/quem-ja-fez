@@ -20,7 +20,9 @@
       <h4>
         Minhas experiências
       </h4>
-      <p><%= @resume.academic_description %></p>
+      <div class="formatted-text">
+        <p> <%= simple_format @resume.academic_description %> </p>
+      </div>
     </div>
 
     <!-- <hr class='margin-v-sm'> -->
@@ -39,7 +41,7 @@
     <div class="schedule text-center margin-v-xs">
       <div class="schedule-price margin-bottom-sm">
         <h2>R$19,99</h2>
-        <small class="text-gray">por 1 hora</small>
+        <small class="text-gray">por 30 minutos</small>
       </div>
 
       <div class="schedule button">

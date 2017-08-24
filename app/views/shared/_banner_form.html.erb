@@ -1,8 +1,8 @@
 <form class="form-inline" method="GET" action="/results">
   <select class="form-control select-course-w-search" type="text" name="course" id="course" >
-    <option></option> <%# The first otion must be empty to the placeholder work%>
+    <option value=""></option> <%# The first otion must be empty to the placeholder work%>
     <% Course.all.each do |course| %>
-      <option><%= course.name %></option>
+      <option value="<%= course.id %>"><%= course.name %></option>
     <% end %>
   </select>
   <select class="form-control select-university-w-search" type="text" name="university" id="university" >

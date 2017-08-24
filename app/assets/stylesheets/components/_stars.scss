@@ -1,5 +1,9 @@
 .stars {
   display: inline-block;
+
+  input {
+    display: none;
+  }
 }
 
 .stars.disabled {
@@ -34,8 +38,4 @@
 .stars label:hover:before {
   content: "\f005" !important;
   color: $my-yellow;
-}
-
-input {
-  display: none;
 }

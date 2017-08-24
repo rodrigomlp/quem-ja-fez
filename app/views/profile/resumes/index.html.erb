@@ -59,7 +59,7 @@
 
               <p><%= f.association :course, readonly: false, label: "Curso", prompt: "Curso" %></p>
               <p><%= f.association :university, readonly: false, label: "Universidade", prompt: "Universidade" %></p>
-              <p><%= f.input :school_email, readonly: false, label: "E-mail acadêmico", placeholder: "E-mail da instituição de ensino", hint: 'Não será exibido para usuários.' %></p>
+              <p><%= f.input :school_email, readonly: false, label: "E-mail acadêmico", placeholder: "E-mail da instituição de ensino", hint: 'Não será exibido para os usuários.' %></p>
 
                 <hr class="margin-v-sm">
               </div>
@@ -73,7 +73,16 @@
                     Você recomendaria seu curso/faculdade para outras pessoas?
                   </h4>
 
-                  <!-- TO-DO: Adicionar boolean selection, 'sim' ou 'não' -->
+                  <!-- TO-DO: Isso aqui ainda vai dar merda, não está usando o simple_form! -->
+                  <div class="btn-group margin-v-xs" data-toggle="buttons">
+                    <label class="btn btn-primary  <%= 'active' if @new_resume.stance %>">
+                      <input type="radio" name="resume[stance]" value="true" id="option1" autocomplete="off" <%= 'checked' if @new_resume.stance %>> <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                    </label>
+
+                    <label class="btn btn-primary <%= 'active' unless @new_resume.stance %>">
+                      <input type="radio" name="resume[stance]" value="false" id="option2" autocomplete="off" <%= 'checked' unless @new_resume.stance %>> <i class="fa fa-thumbs-down" aria-hidden="true"></i>
+                    </label>
+                  </div>
                 </div>
 
                 <hr class="margin-v-sm">
@@ -88,8 +97,8 @@
                     Em termos gerais, quanto do curso você já completou?
                   </h4>
 
-                  <div class="margin-top-sm col-xs-8 col-xs-offset-2">
-                    <%= f.input :relative_completion, label: false, as: :range, input_html: { min: 10, max: 100, step: 5 } %>
+                  <div class="range-slider margin-v-sm col-xs-8 col-xs-offset-2">
+                    <%= f.input_field :relative_completion, label: false, as: :range, input_html: { min: 10, max: 100, step: 5 } %>
                   </div>
                 </div>
 
