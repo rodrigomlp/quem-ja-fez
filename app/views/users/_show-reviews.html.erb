@@ -10,8 +10,10 @@
 
       <div class="margin-h-xs">
         <!-- stars -->
-        <%= render 'shared/stars', avg_rating: @avg_rating %>
-        <!-- <h1><%= @avg_rating %></h1> -->
+        <div class="review-stars">
+          <%= render 'shared/stars', avg_rating: @avg_rating %>
+        <h1><%= @avg_rating %></h1>
+        </div>
       </div>
     </div>
   </div>
