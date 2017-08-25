@@ -52,7 +52,24 @@ class EventsController < ApplicationController
     @resume = Resume.find(params[:user_id])
     @user = @resume.user
     @events = @user.events.where(color: "red")
+
+    # !- Stars -!
+    @meetings = Meeting.where(undergraduate: @resume.user)
     @meeting = Meeting.new
+
+    meetings_rated = 0
+    total_rating = 0
+
+
+    @meetings.each do |meeting|
+      if meeting.rating.present?
+        total_rating += meeting.rating
+        meetings_rated += 1
+      end
+    end
+
+    @avg_rating = meetings_rated.zero? ? nil : round_point5(total_rating.to_f / meetings_rated)
+    # !- Stars -!
   end
 
   private
@@ -64,4 +81,11 @@ class EventsController < ApplicationController
       params.require(:event).permit(:title, :start, :end, :color, :user_id)
     end
 
+    private
+
+    # !- Stars -!
+    def round_point5(number)
+      (number*2).round / 2.0
+    end
+    # !- Stars -!
 end
