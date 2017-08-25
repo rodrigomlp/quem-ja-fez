@@ -6,7 +6,7 @@ module ApplicationHelper
     elsif resume.user.photo.file != nil
       user_photo_url = resume.user.photo
     else
-      user_photo_url = "http://placehold.it/150x150"
+      user_photo_url = "http://placehold.it/100x100"
     end
 
     user_photo_url
