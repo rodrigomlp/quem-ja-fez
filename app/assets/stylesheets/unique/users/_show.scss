@@ -1,8 +1,6 @@
 .users.show {
-  .left-box {
-    padding: 25px 50px;
-    background-color: white;
-    border-radius: 5px;
+  .card {
+    padding-right: 40px;
   }
   .title {
     display: flex;
@@ -56,5 +54,11 @@
     .schedule-button {
 
     }
+  }
+
+  .reviews-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
   }
 }

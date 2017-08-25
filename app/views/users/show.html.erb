@@ -8,37 +8,39 @@
 
 <div class="container margin-v-sm">
   <!-- School, análise do curso e reviews -->
-  <div class="col-xs-12 col-sm-8 col-md-7 col-md-offset-1">
-    <div class="left-box">
-    <!-- School, course and avatar -->
-    <div class="row margin-bottom-md">
-      <%= render 'show-header' %>
-    </div>
+  <div class="col-xs-12 col-sm-8 col-md-8 col-md-offset-1">
+    <div class="card padding-v-md">
+      <!-- School, course and avatar -->
+      <div class="row">
+        <%= render 'show-header' %>
+      </div>
 
-    <!-- Opnião do undergrad sobre o curso -->
-    <div class="row margin-bottom-md">
-      <h4>
-        Minhas experiências
-      </h4>
-      <div class="formatted-text">
-        <p> <%= simple_format @resume.academic_description %> </p>
+      <!-- Opnião do undergrad sobre o curso -->
+      <div class="row">
+        <div class="col-xs-10 col-xs-offset-2">
+          <div>
+            <h4>
+              Minhas experiências
+            </h4>
+            <div class="formatted-text">
+              <%= simple_format @resume.academic_description %>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- <hr class='margin-v-sm'> -->
-
-    <!-- Reviews -->
-    <div class="row">
+    <div class="card margin-v-xs padding-v-sm">
+      <!-- Reviews -->
       <%= render 'show-reviews' %>
-    </div>
     </div>
   </div>
 
   <!-- Pagamento & Schedule -->
   <div class="col-xs-12 col-sm-4 col-md-3">
     <!-- <hr> -->
-    <div class="left-box">
-    <div class="schedule text-center margin-v-xs">
+    <div class="card padding-md text-center">
+    <div class="schedule text-center">
       <div class="schedule-price margin-bottom-sm">
         <h2>R$19,99</h2>
         <small class="text-gray">por 30 minutos</small>

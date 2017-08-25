@@ -1,21 +1,45 @@
 <!-- Display number of reviews -->
-<% if @count_reviews == 1 %>
-  <h4><%= @count_reviews %> Comentário sobre <%= @resume.user.first_name %></h4>
-<% elsif @count_reviews > 1 || @count_reviews == 0 %>
-  <h4><%= @count_reviews %> Comentários sobre <%= @resume.user.first_name %></h4>
-<% end %>
+<div class="row">
+  <div class="col-xs-10 col-xs-offset-2">
+    <div class="reviews-title">
+      <% if @count_reviews == 1 %>
+        <h4><%= @count_reviews %> Comentário sobre <%= @resume.user.first_name %></h4>
+      <% elsif @count_reviews > 1 || @count_reviews == 0 %>
+        <h4><%= @count_reviews %> Comentários sobre <%= @resume.user.first_name %></h4>
+      <% end %>
+
+      <div class="margin-h-xs">
+        <!-- stars -->
+        <div class="review-stars">
+          <%= render 'shared/stars', avg_rating: @avg_rating %>
+        <h1><%= @avg_rating %></h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- stars -->
 
 <!-- Display all reviews -->
 <% @meetings.each do |meeting| %>
   <% if !meeting.review_title.nil? && !meeting.review_content.nil?  %>
-    <div class="card-review  margin-bottom-sm">
-      <div class="review-avatar">
-        <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
-      </div>
+      <div class="card-review margin-bottom-sm">
+    <div class="row">
+          <!-- Avatar image -->
+          <div class="col-xs-2">
+            <div class="review-avatar">
+              <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
+            </div>
+          </div>
 
-      <div class="review-content">
-        <strong><%= meeting.review_title %></strong>
-        <p><%= meeting.review_content %></p>
+          <!-- Review content -->
+          <div class="col-xs-10">
+            <div class="review-content">
+              <strong><%= meeting.review_title %></strong>
+              <p><%= meeting.review_content %></p>
+            </div>
+          </div>
       </div>
     </div>
   <% end %>
