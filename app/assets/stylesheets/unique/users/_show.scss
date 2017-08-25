@@ -15,34 +15,14 @@
       margin: 0;
     }
 
-    .title-text {
-    display: flex;
-      .title-course {
-        // display: flex;
-        align-items: center;
-
-        h2 {
-          padding-right: 20px;
-        }
-      }
-
-      .title-course-opinion {
-        align-items: flex-start;
-        margin-right: 10px;
-        margin-bottom: 20px;
-      }
-
-      .progress {
-        margin: 0;
-        width: 50%;
-      }
+    // Progress bar
+    .progress {
+      margin: 0;
+      width: 50%;
     }
   }
 
   .schedule {
-    // background-color: white;
-    // border-radius: 5px;
-    // position: fixed;
     h2, p {
       margin: 0;
     }

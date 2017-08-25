@@ -52,6 +52,8 @@ class EventsController < ApplicationController
     @resume = Resume.find(params[:user_id])
     @user = @resume.user
     @events = @user.events.where(color: "red")
+
+    # !- Stars -!
     @meetings = Meeting.where(undergraduate: @resume.user)
     @meeting = Meeting.new
 
@@ -67,6 +69,7 @@ class EventsController < ApplicationController
     end
 
     @avg_rating = meetings_rated.zero? ? nil : round_point5(total_rating.to_f / meetings_rated)
+    # !- Stars -!
   end
 
   private
@@ -80,8 +83,9 @@ class EventsController < ApplicationController
 
     private
 
+    # !- Stars -!
     def round_point5(number)
       (number*2).round / 2.0
     end
-
+    # !- Stars -!
 end
