@@ -2,8 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def show
-    user = User.find(params[:id])
-    @resume = Resume.find_by(user: user)
+    @resume = Resume.find(params[:id])
     @meetings = Meeting.where(undergraduate: @resume.user)
 
     meetings_rated = 0
@@ -21,21 +20,6 @@ class UsersController < ApplicationController
 
     @count_reviews = meetings_rated
 
-    # @meetings.each do |meeting|
-    #   if !meeting.rating.nil?
-    #     count += meeting.rating
-    #   end
-    # end
-
-    # @meetings.each do |meeting|
-    #   if meeting.review_title.nil?
-    #     @count_reviews
-    #   else
-    #     @count_reviews += 1
-    #   end
-    # end
-
-    # @avg_rating = (count.to_f / @meetings.size).round(2) unless @meetings.size == 0 # If user has no reviews, there is no rating yet.
   end
 
   def index
