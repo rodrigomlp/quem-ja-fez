@@ -1,5 +1,5 @@
 Rails.application.configure do
-  config.action_mailer.default_url_options = { host: "http://TODO_PUT_YOUR_DOMAIN_HERE" }
+  # config.action_mailer.default_url_options = { host: "http://TODO_PUT_YOUR_DOMAIN_HERE" }
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -18,7 +18,9 @@ Rails.application.configure do
   # E-mail automatic sender
   config.action_mailer.delivery_method = :postmark
   config.action_mailer.postmark_settings = { api_token: ENV['POSTMARK_API_KEY'] } # this key is only in heroku, not in our code
-  config.action_mailer.default_url_options = { host: "quemjafez.com.br" }
+  config.force_ssl = true
+  config.action_mailer.default_url_options = { host: "www.quemjafez.com" }
+
 
   # Attempt to read encrypted secrets from `config/secrets.yml.enc`.
   # Requires an encryption key in `ENV["RAILS_MASTER_KEY"]` or
