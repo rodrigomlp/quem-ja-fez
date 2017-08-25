@@ -57,6 +57,10 @@ module ApplicationHelper
   def age_calculator(user)
     @age = ((Date.today - user.birth_date).to_i / 365) unless user.birth_date.nil?
   end
+
+  def stars_generator(avg_rating)
+
+  end
 end
 
 
