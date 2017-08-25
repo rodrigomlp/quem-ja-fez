@@ -6,25 +6,36 @@ class UsersController < ApplicationController
     @resume = Resume.find_by(user_id: user.id)
     @meetings = Meeting.where(undergraduate_id: @resume.user.id)
 
-    count = 0
+    meetings_rated = 0
+    total_rating = 0
+
 
     @meetings.each do |meeting|
-      if !meeting.rating.nil?
-        count += meeting.rating
+      if meeting.rating.present?
+        total_rating += meeting.rating
+        meetings_rated += 1
       end
     end
 
-    @count_reviews = 0
+    @avg_rating = meetings_rated.zero? ? nil : round_point5(total_rating.to_f / meetings_rated)
 
-    @meetings.each do |meeting|
-      if meeting.review_title.nil?
-        @count_reviews
-      else
-        @count_reviews += 1
-      end
-    end
+    @count_reviews = meetings_rated
 
-    @avg_rating = (count.to_f / @meetings.size).round(2) unless @meetings.size == 0 # If user has no reviews, there is no rating yet.
+    # @meetings.each do |meeting|
+    #   if !meeting.rating.nil?
+    #     count += meeting.rating
+    #   end
+    # end
+
+    # @meetings.each do |meeting|
+    #   if meeting.review_title.nil?
+    #     @count_reviews
+    #   else
+    #     @count_reviews += 1
+    #   end
+    # end
+
+    # @avg_rating = (count.to_f / @meetings.size).round(2) unless @meetings.size == 0 # If user has no reviews, there is no rating yet.
 
   end
 
@@ -50,5 +61,10 @@ class UsersController < ApplicationController
 
   end
 
+  private
+
+  def round_point5(number)
+    (number*2).round / 2.0
+  end
 
 end
