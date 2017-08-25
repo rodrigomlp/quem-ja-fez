@@ -1,0 +1,82 @@
+<!-- Resume card -->
+<div class="col-sm-10 col-sm-offset-1">
+  <div class="card-resume margin-v-xs padding-md">
+    <div class="row">
+      <%= link_to "", user_path(resume), class: 'card-link'%>
+
+
+      <!-- User picture, name & rating -->
+      <div class="col-xs-4">
+        <div class="card-resume-user-info flex-column">
+
+          <!-- Picture -->
+          <div class="">
+            <%= image_tag user_photo_index(resume), class: "img-thumbnail img-responsive img-circle" %>
+          </div>
+
+          <!-- First & Last name -->
+          <div class="">
+            <h4><strong><%= resume.user.first_name %> <%= resume.user.last_name %></strong><%= ", #{age_calculator(resume.user)}" %></h4>
+          </div>
+
+          <!-- Stars -->
+          <div class="review flex-column flex-align-start">
+            <div class="review-stars">
+              <%= render 'shared/stars', avg_rating: avg_rating %>
+            </div>
+
+            <p><%= @count_reviews %> análises</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Curso, faculdade, e stance -->
+      <div class="col-xs-4 content right-column">
+
+          <div class="row">
+            <div class="col-xs-2"></div>
+            <div class="col-xs-10">
+              <small class="text-gray">Curso</small>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-2">
+              <% if resume.stance %>
+              <a class="btn btn-sm btn-success" style="cursor: pointer; margin-right: 25px;">
+                <i class="fa fa-thumbs-up"></i></a></a>
+              <% else %>
+                <a class="btn btn-sm btn-danger" style="cursor: pointer; margin-right: 25px;">
+                <i class="fa fa-thumbs-down"></i></a></a>
+              <% end %>
+            </div>
+
+            <div class="col-xs-10">
+              <div class="course-body">
+                <h6><%= resume.course.name %></h6>
+                <h5><strong><%= resume.university.name %></strong></h5>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-2"></div>
+            <div class="col-xs-10">
+              <div class="progress" style="width: 70%; margin: 3px auto;">
+                <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: <%= resume.relative_completion %>%;">
+                  <p><%= resume.relative_completion %>%</p>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+
+      <!-- Opinião sobre o curso -->
+      <div class="col-xs-4">
+        <small class="text-gray">Minhas experiências</small>
+        <h6 class="user-description"><%= resume.user.personal_description %></h6>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Resume card -->
