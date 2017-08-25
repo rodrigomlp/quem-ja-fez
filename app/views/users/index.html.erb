@@ -72,7 +72,11 @@
 
 
           <div class="col-xs-4">
-            <h6 class="user-description"><%= resume.academic_description[0..200] + "..." %></h6>
+            <% if resume.academic_description.present? %>
+              <h6 class="user-description"><%= resume.academic_description[0..200] + "..." %></h6>
+            <% else %>
+              <h6></h6>
+            <% end %>
           </div>
         </div>
       </div> <!-- end: ~> col-sm-10 -->
