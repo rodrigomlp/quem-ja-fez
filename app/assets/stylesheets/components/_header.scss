@@ -1,7 +1,18 @@
+.header-resume {
+  display: flex;
+}
+
 .resume-stance {
   display: flex;
   justify-content: flex-end;
+  // z-index: 10;
   // margin-right: 10px;
+}
+
+.resume-stance-mid {
+  @extend .resume-stance;
+  align-items: center;
+  margin-right: 10px;
 }
 
 .resume-title {
@@ -18,5 +29,13 @@
 
 
 .header-undergrad-profile {
+  position: relative;
+  top: -38px;
 
+  z-index: 100;
+
+  img {
+    border: 2px solid white;
+  }
 }
+
