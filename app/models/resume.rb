@@ -5,7 +5,7 @@ class Resume < ApplicationRecord
   validates :school_email, uniqueness: true
   validates :university, presence: true
   validates :course, presence: true
-  # validate :validate_email
+  validate :validate_email
 
   before_create :set_confirmation_token
   after_create :send_confirmation_email
