@@ -3,24 +3,28 @@
 
     <!-- thumbs icon -->
     <div class="col-xs-2">
-      <div class="resume-stance">
-        <% if @resume.stance %>
-          <div class="thumb-icon thumb-up" data-toggle="tooltip" data-animation="true" title="<%= @resume.user.first_name %> recomenda esse curso"> <!-- Toggles tooltip if hovered over -->
-            <i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i>
-          </div>
 
-        <% else %>
-          <div class="thumb-icon thumb-down" data-toggle="tooltip" data-animation="true" title="<%= @resume.user.first_name %> não recomenda esse curso"> <!-- Toggles tooltip if hovered over -->
-            <i class="fa fa-thumbs-down fa-2x" aria-hidden="true"></i>
-          </div>
-        <% end %>
-      </div>
     </div>
 
     <!-- Title -->
     <div class="col-xs-7">
       <div class="resume-title">
-        <h2><%= @resume.course.name %></h2>
+        <div class="flex-row">
+          <h2><%= @resume.course.name %></h2>
+          <div class="resume-stance">
+            <% if @resume.stance %>
+              <div class="thumb-icon thumb-up" data-toggle="tooltip" data-animation="true" title="<%= @resume.user.first_name %> recomenda esse curso"> <!-- Toggles tooltip if hovered over -->
+                <i class="fa fa-thumbs-up fa" aria-hidden="true"></i>
+              </div>
+
+            <% else %>
+              <div class="thumb-icon thumb-down" data-toggle="tooltip" data-animation="true" title="<%= @resume.user.first_name %> não recomenda esse curso"> <!-- Toggles tooltip if hovered over -->
+                <i class="fa fa-thumbs-down fa" aria-hidden="true"></i>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
         <p><%= @resume.university.name %></p>
 
         <div class="progress" data-toggle="tooltip" data-placement="bottom" data-animation="true" title="Quanto <%= @resume.user.first_name %> já cursou">

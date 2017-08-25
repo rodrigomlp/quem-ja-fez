@@ -8,28 +8,33 @@
           <!-- PERGUNTA: Por quê por default a imagem é 200x200? -->
           <%= image_tag(user_photo_show(@resume), size: "75x75", class: "img-circle") %>
           <p><%= @resume.user.first_name %> <%= @resume.user.last_name %></p>
+
           <!-- TO-DO: Implement star rating -->
+          <div class="review-stars">
+            <%= render 'shared/stars', avg_rating: @avg_rating %>
+          </div>
         </div>
 
         <div class="header-resume">
-          <!-- thumbs icon -->
-          <div class="resume-stance-mid">
-            <% if @resume.stance %>
-              <div class="thumb-icon thumb-up" data-toggle="tooltip" data-animation="true" title="<%= @resume.user.first_name %> recomenda esse curso"> <!-- Toggles tooltip if hovered over -->
-                <i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i>
-              </div>
-
-            <% else %>
-              <div class="thumb-icon thumb-down" data-toggle="tooltip" data-animation="true" title="<%= @resume.user.first_name %> não recomenda esse curso"> <!-- Toggles tooltip if hovered over -->
-                <i class="fa fa-thumbs-down fa-2x" aria-hidden="true"></i>
-              </div>
-            <% end %>
-          </div>
-          <!-- thumbs icon -->
-
           <!-- Title -->
           <div class="resume-title">
+            <div class="flex-row">
+              <!-- thumbs icon -->
+              <div class="resume-stance-mid">
+                <% if @resume.stance %>
+                  <div class="thumb-icon thumb-up" data-toggle="tooltip" data-animation="true" title="<%= @resume.user.first_name %> recomenda esse curso"> <!-- Toggles tooltip if hovered over -->
+                    <i class="fa fa-thumbs-up fa" aria-hidden="true"></i>
+                  </div>
+
+                <% else %>
+                  <div class="thumb-icon thumb-down" data-toggle="tooltip" data-animation="true" title="<%= @resume.user.first_name %> não recomenda esse curso"> <!-- Toggles tooltip if hovered over -->
+                    <i class="fa fa-thumbs-down fa" aria-hidden="true"></i>
+                  </div>
+                <% end %>
+              </div>
+
             <h2><%= @resume.course.name %></h2>
+            </div>
             <p><%= @resume.university.name %></p>
           </div>
         </div>
@@ -89,6 +94,8 @@
       <br>
       </div>
 
+
+      <!-- Paypal -->
       <form id="paypal_button" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
         <input type="hidden" name="cmd" value="_s-xclick">
         <input type="hidden" name="custom" value="<%= { resume_id: @resume.id, events_ids: @events.map(&:id), highschooler_id: current_user.id }.to_json %>">
@@ -96,9 +103,11 @@
         <input type="image" src="https://www.sandbox.paypal.com/pt_BR/BR/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - A maneira fácil e segura de enviar pagamentos online!">
         <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
       </form>
-<!-- Paypal -->
+      <!-- Paypal -->
+
       <!-- Botões -->
-      <div class="flex-center-column">
+      <!-- REMOVER ? -->
+      <div class="flex-algin-center">
         <div class="">
         <%= form_for(@meeting, :url => profile_meetings_path, :action => "POST") do |f| %>
 
@@ -113,6 +122,3 @@
     </div>
   </div>
 </div>
-
-<!-- Paypal -->
-

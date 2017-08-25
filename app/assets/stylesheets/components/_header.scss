@@ -5,8 +5,6 @@
 .resume-stance {
   display: flex;
   justify-content: flex-end;
-  // z-index: 10;
-  // margin-right: 10px;
 }
 
 .resume-stance-mid {
@@ -33,9 +31,12 @@
   top: -38px;
 
   z-index: 100;
-
   img {
     border: 2px solid white;
+  }
+
+  p {
+    margin: 0;
   }
 }
 
