@@ -19,12 +19,19 @@
   </div>
     <!-- Search Results if there's some resume-->
     <% @resumes.each do |resume| %>
-      <% @meetings = Meeting.where(undergraduate_id: resume.user.id)  %>
-      <% @count = 0 %>
-      <% @count_reviews = 0 %>
-      <% @meetings.each { |meeting| @count += meeting.rating if !meeting.rating.nil? } %>
-      <% @meetings.each { |meeting| @count_reviews += 1 if !meeting.review_title.nil? } %>
-      <% @avg_rating = (@count.to_f / @meetings.size).round(1) unless @meetings.size == 0 %>
+      <% @meetings = Meeting.where(undergraduate: resume.user)  %>
+      <% meetings_rated = 0 %>
+      <% total_rating = 0 %>
+      <% @meetings.each do |meeting| %>
+        <% if meeting.rating.present? %>
+          <% total_rating += meeting.rating %>
+          <% meetings_rated += 1 %>
+        <% end %>
+      <% end %>
+      <% @avg_rating = meetings_rated.zero? ? nil : total_rating.to_f / meetings_rated %>
+      <% @avg_rating = (@avg_rating*2).round / 2.0 %>
+      <% @count_reviews = meetings_rated %>
+
       <div class="col-sm-12">
         <div class="row undergrad-card">
           <p><%= resume.id %></p>
@@ -37,11 +44,11 @@
             <div class="row">
               <h4><%= resume.user.first_name %> <%= resume.user.last_name %><%= ", #{age_calculator(resume.user)}" %></h4>
             </div>
-            <div class="row">
-              <%= render '/shared/users/avg' %>
+            <div class="row review-stars">
+              <%= render 'shared/stars', avg_rating: @avg_rating %>
             </div>
             <div class="row">
-              <p><strong><%= @avg_rating %></strong> - <%= @count_reviews %> análises</p>
+              <p><%= @count_reviews %> análises</p>
             </div>
           </div>
 

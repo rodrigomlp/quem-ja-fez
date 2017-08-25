@@ -94,7 +94,7 @@ universities.each do |university|
   University.create!(name: university[:name], email: university[:email])
 end
 # DEBUG
-University.create!(name: "Gmail", email: 'gmail.com')
+# University.create!(name: "Gmail", email: 'gmail.com')
 
 # Seed for a restricted number of universities
 universities_number = 10

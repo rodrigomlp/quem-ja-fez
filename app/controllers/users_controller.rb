@@ -23,10 +23,6 @@ class UsersController < ApplicationController
   end
 
   def index
-    # Displays this on banner form
-    # @university = University.find(params[:university])
-    # @course = Course.find(params[:course])
-
     @resumes = Resume.all
     @resumes = @resumes.joins(:course, :university, :user) # joins all tables onto resume PERGUNTA: por que eu preciso dar join?
     @resumes = @resumes.where(email_checked: true) # only show resumes that have been verified
@@ -37,11 +33,9 @@ class UsersController < ApplicationController
     if params[:course].present? # has the user entered anything in the 'course' search field?
       @resumes = @resumes.where("LOWER(courses.name) ILIKE ?", "%#{Course.find(params[:course]).name.downcase}%")
     end
-
   end
 
   def schedule
-
   end
 
   private
