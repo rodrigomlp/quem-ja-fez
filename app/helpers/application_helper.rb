@@ -45,11 +45,11 @@ module ApplicationHelper
     if (params["course"] == "") && (params["university"] == "")
       @result = "#{resultados}"
     elsif (params["course"] != "") && (params["university"] == "")
-      @result = "#{resultados} na busca pelo curso #{Course.find(params['course'])}"
+      @result = "#{resultados} na busca pelo curso #{Course.find(params['course']).name}"
     elsif (params["course"] == "") && (params["university"] != "")
-      @result = "#{resultados} na busca pela #{University.find(params['university'])}"
+      @result = "#{resultados} na busca pela #{University.find_by_name(params[:university])}"
     else
-      @result = "#{resultados} na busca pelo curso #{Course.find(params['course'])} na #{University.find(params['university'])}"
+      @result = "#{resultados} na busca pelo curso #{Course.find(params['course']).name} na #{University.find_by_name(params[:university])}"
     end
     return @result
   end

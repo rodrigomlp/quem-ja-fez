@@ -6,23 +6,36 @@ class UsersController < ApplicationController
     @resume = Resume.find_by(user: user)
     @meetings = Meeting.where(undergraduate: @resume.user)
 
-    count = 0
+    meetings_rated = 0
+    total_rating = 0
+
 
     @meetings.each do |meeting|
-      count += meeting.rating unless meeting.rating.nil?
-    end
-
-    @count_reviews = 0
-
-    @meetings.each do |meeting|
-      if meeting.review_title.nil?
-        @count_reviews
-      else
-        @count_reviews += 1
+      if meeting.rating.present?
+        total_rating += meeting.rating
+        meetings_rated += 1
       end
     end
 
-    @avg_rating = (count.to_f / @meetings.size).round(2) unless @meetings.size == 0 # If user has no reviews, there is no rating yet.
+    @avg_rating = meetings_rated.zero? ? nil : round_point5(total_rating.to_f / meetings_rated)
+
+    @count_reviews = meetings_rated
+
+    # @meetings.each do |meeting|
+    #   if !meeting.rating.nil?
+    #     count += meeting.rating
+    #   end
+    # end
+
+    # @meetings.each do |meeting|
+    #   if meeting.review_title.nil?
+    #     @count_reviews
+    #   else
+    #     @count_reviews += 1
+    #   end
+    # end
+
+    # @avg_rating = (count.to_f / @meetings.size).round(2) unless @meetings.size == 0 # If user has no reviews, there is no rating yet.
   end
 
   def index
@@ -35,16 +48,22 @@ class UsersController < ApplicationController
     @resumes = @resumes.where(email_checked: true) # only show resumes that have been verified
 
     if params[:university].present? # has the user entered anything in the 'university' search field?
-      @resumes = @resumes.where("LOWER(universities.name) ILIKE ?", "%#{University.find(params[:university]).name.downcase}%") #PERGUNTA: por que o ilike e nao só like? O que é esse lower?
+      @resumes = @resumes.where("LOWER(universities.name) ILIKE ?", "%#{University.find_by_name(params[:university])}%") #PERGUNTA: por que o ilike e nao só like? O que é esse lower?
     end
     if params[:course].present? # has the user entered anything in the 'course' search field?
       @resumes = @resumes.where("LOWER(courses.name) ILIKE ?", "%#{Course.find(params[:course]).name.downcase}%")
     end
+
   end
 
   def schedule
 
   end
 
+  private
+
+  def round_point5(number)
+    (number*2).round / 2.0
+  end
 
 end

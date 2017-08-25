@@ -6,59 +6,59 @@ University.destroy_all
 Course.destroy_all
 
 #Creating basic info
-# password = 123456
-# gender = ['masculino', 'feminino', 'other']
+password = 123456
+gender = ['masculino', 'feminino', 'other']
 
-# highschollers_number = 10
-# undergraduates_number = 10
+highschollers_number = 10
+undergraduates_number = 10
 
-# highschollers_emails = []
-# undergraduates_emails = []
+highschollers_emails = []
+undergraduates_emails = []
 
-# for i in 1..highschollers_number
-#   highschollers_emails << "h#{i}@t.c"
-# end
+for i in 1..highschollers_number
+  highschollers_emails << "h#{i}@t.c"
+end
 
-# for i in 1..undergraduates_number
-#   undergraduates_emails << "u#{i}@t.c"
-# end
+for i in 1..undergraduates_number
+  undergraduates_emails << "u#{i}@t.c"
+end
 
 #Creating highschoolers
-# highschollers_emails.each do |email|
-#   first = Faker::Name.first_name
-#   last = Faker::Name.last_name
-#   User.create!(
-#     email: email,
-#     password: password,
-#     first_name: first,
-#     last_name: last,
-#     gender: gender.sample,
-#     birth_date: Faker::Date.birthday(15, 20),
-#     city: Faker::Address.city,
-#     country: Faker::Address.country,
-#     personal_description: Faker::HowIMetYourMother.quote,
-#     skype: "#{first}_#{last}_h"
-#     )
-# end
+highschollers_emails.each do |email|
+  first = Faker::Name.first_name
+  last = Faker::Name.last_name
+  User.create!(
+    email: email,
+    password: password,
+    first_name: first,
+    last_name: last,
+    gender: gender.sample,
+    birth_date: Faker::Date.birthday(15, 20),
+    city: Faker::Address.city,
+    country: Faker::Address.country,
+    personal_description: Faker::HowIMetYourMother.quote,
+    skype: "#{first}_#{last}_h"
+    )
+end
 
 #Creating undergraduates
-# undergraduates_emails.each do |email|
-#   first = Faker::Name.first_name
-#   last = Faker::Name.last_name
-#   User.create!(
-#     email: email,
-#     password: password,
-#     first_name: first,
-#     last_name: last,
-#     gender: gender.sample,
-#     birth_date: Faker::Date.birthday(17, 25),
-#     city: Faker::Address.city,
-#     country: Faker::Address.country,
-#     personal_description: Faker::HowIMetYourMother.quote,
-#     undergraduate: true,
-#     skype: "#{first}_#{last}_u"
-#     )
-# end
+undergraduates_emails.each do |email|
+  first = Faker::Name.first_name
+  last = Faker::Name.last_name
+  User.create!(
+    email: email,
+    password: password,
+    first_name: first,
+    last_name: last,
+    gender: gender.sample,
+    birth_date: Faker::Date.birthday(17, 25),
+    city: Faker::Address.city,
+    country: Faker::Address.country,
+    personal_description: Faker::HowIMetYourMother.quote,
+    undergraduate: true,
+    skype: "#{first}_#{last}_u"
+    )
+end
 
 # TO-DO: Fill out all universities emails!
 # DO NOT DELETE THIS!!
@@ -94,13 +94,13 @@ universities.each do |university|
   University.create!(name: university[:name], email: university[:email])
 end
 # DEBUG
-# University.create!(name: "Gmail", email: 'gmail.com')
+University.create!(name: "Gmail", email: 'gmail.com')
 
 # Seed for a restricted number of universities
-# universities_number = 10
-# for i in 1..universities_number
-#   University.create(name: universities.sample)
-# end
+universities_number = 10
+for i in 1..universities_number
+  University.create(name: universities.sample)
+end
 
 
 #Creating courses
@@ -191,94 +191,94 @@ courses.each do |course|
 end
 
 # Seed for a restricted number of courses
-# courses_number = 10
-# for i in 1..courses_number
-#   Universitie.create(name: courses.sample)
-# end
+courses_number = 10
+for i in 1..courses_number
+  University.create(name: courses.sample)
+end
 
 # Creating Resumes
-# User.all.where(undergraduate: true).each do |undergraduate|
-#   (rand(3) + 1).times do
-#     Resume.create!(
-#       user: undergraduate,
-#       university: University.all.sample,
-#       course: Course.all.sample,
-#       school_email: Faker::Internet.email,
-#       relative_completion: rand(0..100),
-#       academic_description: Faker::HitchhikersGuideToTheGalaxy.quote,
-#       stance: [true, false].sample,
-#       email_checked: [true, false].sample
-#     )
-#   end
-# end
+User.all.where(undergraduate: true).each do |undergraduate|
+  (rand(3) + 1).times do
+    Resume.create!(
+      user: undergraduate,
+      university: University.all.sample,
+      course: Course.all.sample,
+      school_email: Faker::Internet.email,
+      relative_completion: rand(0..100),
+      academic_description: Faker::HitchhikersGuideToTheGalaxy.quote,
+      stance: [true, false].sample,
+      email_checked: [true, false].sample
+    )
+  end
+end
 
 # TESTE: E-mail do marco pra testar se o postmark está mandando e-mails corretamente
-# Resume.create!(
-#     user: User.last,
-#     university: University.last,
-#     course: Course.last,
-#     school_email: "beduschimarco@gmail.com"
-# )
+Resume.create!(
+    user: User.last,
+    university: University.last,
+    course: Course.last,
+    school_email: "beduschimarco@gmail.com"
+)
 
 # Creating Meetings
-# duration = [0.5, 1, 1.5, 2]
-# ratings = [nil, 0, 1, 2, 3, 4, 5]
-# meetings_number = 200
+duration = [0.5, 1, 1.5, 2]
+ratings = [nil, 0, 1, 2, 3, 4, 5]
+meetings_number = 200
 
-# duration = [0.5, 1, 1.5, 2]
-# ratings = [nil, 1, 2, 3, 4, 5]
-# meetings_number = 200
+duration = [0.5, 1, 1.5, 2]
+ratings = [nil, 1, 2, 3, 4, 5]
+meetings_number = 200
 
 
-# for i in 1..meetings_number
-#   randon_times = []
-#   randon_times << Faker::Time.forward(rand(8), :all) # random time in the next 7 days
-#   randon_times << Faker::Time.backward(rand(8), :all) # random time in the last 7 days
-#   start_time = randon_times.sample
-#   end_time = start_time + duration.sample.hour
+for i in 1..meetings_number
+  randon_times = []
+  randon_times << Faker::Time.forward(rand(8), :all) # random time in the next 7 days
+  randon_times << Faker::Time.backward(rand(8), :all) # random time in the last 7 days
+  start_time = randon_times.sample
+  end_time = start_time + duration.sample.hour
 
-#   random_undergraduates_first, random_undergraduates_second = User.where(undergraduate: true).order("RANDOM()").sample(2)
-#   highschooler = User.where(undergraduate: false).order("RANDOM()").first
+  random_undergraduates_first, random_undergraduates_second = User.where(undergraduate: true).order("RANDOM()").sample(2)
+  highschooler = User.where(undergraduate: false).order("RANDOM()").first
 
-#   review_title = nil
-#   review_content = nil
-#   rating = nil
-#   if (end_time + 5.minutes) < Time.current
-#     rating = ratings.sample
-#     if rating && rand(0) < 0.8
-#       review_title = Faker::MostInterestingManInTheWorld.quote
-#       review_content = Faker::Hacker.say_something_smart
-#     end
-#   end
+  review_title = nil
+  review_content = nil
+  rating = nil
+  if (end_time + 5.minutes) < Time.current
+    rating = ratings.sample
+    if rating && rand(0) < 0.8
+      review_title = Faker::MostInterestingManInTheWorld.quote
+      review_content = Faker::Hacker.say_something_smart
+    end
+  end
 
-#   Meeting.create!(
-#     start_time: start_time,
-#     end_time: end_time,
-#     review_title: review_title,
-#     review_content: review_content,
-#     rating: rating,
-#     undergraduate: random_undergraduates_first,
-#     highschooler: [highschooler, random_undergraduates_second].sample,
-#     resume: random_undergraduates_first.resumes.sample
-#     )
-# end
+  Meeting.create!(
+    start_time: start_time,
+    end_time: end_time,
+    review_title: review_title,
+    review_content: review_content,
+    rating: rating,
+    undergraduate: random_undergraduates_first,
+    highschooler: [highschooler, random_undergraduates_second].sample,
+    resume: random_undergraduates_first.resumes.sample
+    )
+end
 
 # Creating a meeting between u1@t.c and h1@t.c now
-# Meeting.create!(
-#     start_time: Time.current,
-#     end_time: Time.current + 1.hour,
-#     undergraduate: User.find_by(email: "u1@t.c"),
-#     highschooler: User.find_by(email: "h1@t.c"),
-#     resume: User.find_by(email: "u1@t.c").resumes.first
-#     )
+Meeting.create!(
+    start_time: Time.current,
+    end_time: Time.current + 1.hour,
+    undergraduate: User.find_by(email: "u1@t.c"),
+    highschooler: User.find_by(email: "h1@t.c"),
+    resume: User.find_by(email: "u1@t.c").resumes.first
+    )
 
 # Creating a meeting between u2@t.c and h2@t.c that will happen 12 minutes from now
-# Meeting.create!(
-#     start_time: Time.current + 40.minutes,
-#     end_time: Time.current + 40.minutes + 1.hour,
-#     undergraduate: User.find_by(email: "u2@t.c"),
-#     highschooler: User.find_by(email: "h2@t.c"),
-#     resume: User.find_by(email: "u2@t.c").resumes.first
-#     )
+Meeting.create!(
+    start_time: Time.current + 40.minutes,
+    end_time: Time.current + 40.minutes + 1.hour,
+    undergraduate: User.find_by(email: "u2@t.c"),
+    highschooler: User.find_by(email: "h2@t.c"),
+    resume: User.find_by(email: "u2@t.c").resumes.first
+    )
 
 
