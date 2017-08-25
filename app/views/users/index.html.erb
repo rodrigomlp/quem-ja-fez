@@ -14,7 +14,7 @@
   <!-- If there's some result -->
   <div class="row">
     <div class="col-sm-10 col-sm-offset-1">
-      <p class="pull-right"><%= @resumes.size %> <%= result_search(params, @resumes) %></p>
+      <h4 class="flex flex-justify-center"><%= @resumes.size %> <%= result_search(params, @resumes) %></h4>
     </div>
   </div>
     <!-- Search Results if there's some resume-->
@@ -32,53 +32,7 @@
       <% @avg_rating = @avg_rating.present? ? ((@avg_rating*2).round / 2.0) : nil %>
       <% @count_reviews = meetings_rated %>
 
-      <div class="col-sm-10 col-sm-offset-1">
-        <div class="row undergrad-card margin-v-xs">
-
-          <%= link_to "", user_path(resume), class: 'card-link'%>
-
-          <div class="col-xs-4 content text-center">
-            <div class="row">
-              <%= image_tag user_photo_index(resume), class: "img-thumbnail img-responsive img-circle" %>
-            </div>
-            <div class="row">
-              <h4><%= resume.user.first_name %> <%= resume.user.last_name %><%= ", #{age_calculator(resume.user)}" %></h4>
-            </div>
-            <div class="row review-stars">
-              <%= render 'shared/stars', avg_rating: @avg_rating %>
-            </div>
-            <div class="row">
-              <p><%= @count_reviews %> análises</p>
-            </div>
-          </div>
-
-          <div class="col-xs-4 text-center content right-column">
-            <h4 class="user-name">
-              <% if resume.stance %>
-              <a class="btn btn-sm btn-success" style="cursor: pointer; margin-right: 25px;">
-                <i class="fa fa-thumbs-up"></i></a></a><%= resume.course.name %>
-              <% else %>
-                <a class="btn btn-sm btn-danger" style="cursor: pointer; margin-right: 25px;">
-                <i class="fa fa-thumbs-down"></i></a></a><%= resume.course.name %>
-              <% end %>
-            </h4>
-            <h6><%= resume.university.name %></h6>
-            <div class="progress" style="width: 70%; margin: 3px auto;">
-              <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: <%= resume.relative_completion %>%;">
-                <p><%= resume.relative_completion %>%</p>
-              </div>
-            </div>
-          </div>
-
-
-          <div class="col-xs-4">
-            <% if resume.academic_description.present? %>
-              <h6 class="user-description"><%= resume.academic_description[0..200] + "..." %></h6>
-            <% else %>
-              <h6></h6>
-            <% end %>
-          </div>
-        </div>
-      </div> <!-- end: ~> col-sm-10 -->
+      <!-- Resume card -->
+      <%= render 'resume-card', resume: resume, avg_rating: @avg_rating, count_reviews: @count_reviews %>
     <% end %> <!-- end: ~> @resumes iterator-->
 </div> <!-- end: ~> Body  -->
