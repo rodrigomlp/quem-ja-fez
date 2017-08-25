@@ -1,6 +1,7 @@
 <div class="container margin-v-sm">
   <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
-    <div class="card padding-md">
+    <div class="card-plain"></div>
+    <div class="card padding-h-md padding-bottom-md">
       <div class="title flex-center-column margin-bottom-xs">
         <!-- Avatar -->
         <div class="header-undergrad-profile text-center">
@@ -12,7 +13,7 @@
 
         <div class="header-resume">
           <!-- thumbs icon -->
-          <div class="resume-stance">
+          <div class="resume-stance-mid">
             <% if @resume.stance %>
               <div class="thumb-icon thumb-up" data-toggle="tooltip" data-animation="true" title="<%= @resume.user.first_name %> recomenda esse curso"> <!-- Toggles tooltip if hovered over -->
                 <i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i>
@@ -36,23 +37,32 @@
 
       <hr>
       <!-- 1.Detalhes -->
+      <h4 class=""><strong>1. Detalhes</strong></h4>
+      <br>
+
       <div class="flex-center-column margin-bottom-sm">
-        <h4 class=""><strong>1. Detalhes</strong></h4>
-        <br>
         <!-- Datas seecionadas -->
         <p>Datas selecionadas</p>
-        <% @events.each do  |event| %>
+        <% if @events.present? %>
+          <% @events.each do |event| %>
+            <div class= "flex-row">
+              <div class="well margin-bottom-xs padding-xs">
+                <!-- day/month -->
+                <span><%= event.start.day %>/<%= event.start.month %></span>
+                <!-- start time -->
+              </div>
+
+              <div class="well margin-bottom-xs padding-xs">
+                <span> <%= '%02d' % event.start.hour %>:<%= '%02d' % event.start.min %> </span> -
+                <!-- end time -->
+                <span> <%= '%02d' % event.end.hour %>:<%= '%02d' % event.end.min %> </span>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
           <div class= "flex-row">
             <div class="well margin-bottom-xs padding-xs">
-              <!-- day/month -->
-              <span><%= event.start.day %>/<%= event.start.month %></span>
-              <!-- start time -->
-            </div>
-
-            <div class="well margin-bottom-xs padding-xs">
-              <span> <%= '%02d' % event.start.hour %>:<%= '%02d' % event.start.min %> </span> -
-              <!-- end time -->
-              <span> <%= '%02d' % event.end.hour %>:<%= '%02d' % event.end.min %> </span>
+              <span> Nenhuma conversa selecionada </span>
             </div>
           </div>
         <% end %>
@@ -72,15 +82,16 @@
       <hr>
 
       <!-- 2.Formas de pagamento -->
+      <h4 class=""><strong>2. Formas de Pagamento</strong></h4>
+      <br>
+
       <div class="flex-center-column">
         <div class="">
-          <h4 class=""><strong>2. Formas de Pagamento</strong></h4>
-          <br>
         </div>
       </div>
 
       <!-- Botões -->
-      <div class="flex-center-column margin-v-sm">
+      <div class="flex-center-column">
         <div class="">
         <%= form_for(@meeting, :url => profile_meetings_path, :action => "POST") do |f| %>
 
