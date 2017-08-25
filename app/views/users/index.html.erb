@@ -12,8 +12,10 @@
 <!-- Body -->
 <div class="container margin-v-md">
   <!-- If there's some result -->
-  <div class="col-sm-10 col-sm-offset-1">
-    <p class="pull-right"><%= @resumes.size %> <%= result_search(params, @resumes) %></p>
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+      <p class="pull-right"><%= @resumes.size %> <%= result_search(params, @resumes) %></p>
+    </div>
   </div>
     <!-- Search Results if there's some resume-->
     <% @resumes.each do |resume| %>
@@ -23,28 +25,44 @@
       <% @meetings.each { |meeting| @count += meeting.rating if !meeting.rating.nil? } %>
       <% @meetings.each { |meeting| @count_reviews += 1 if !meeting.review_title.nil? } %>
       <% @avg_rating = (@count.to_f / @meetings.size).round(1) unless @meetings.size == 0 %>
-      <div class="col-sm-12">
-        <div class="row undergrad-card">
-          <%= link_to "", user_path(resume.user), class: 'card-link'%>
+      <div class="col-sm-10 col-sm-offset-1">
+        <div class="row undergrad-card margin-v-xs">
+          <%= link_to "", user_path(resume), class: 'card-link'%>
+
           <div class="col-xs-4 content text-center">
-            <%= image_tag user_photo_index(resume), class: "img-thumbnail img-responsive img-circle pull-left" %>
-            <h4 class="pull-left"><%= resume.user.first_name %> <%= resume.user.last_name %><%= ", #{age_calculator(resume.user)}" %></h4>
-            <%= render '/shared/users/avg' %>
             <div class="row">
-              <div style="display: inline;">
-                <p class="text-center"><strong><%= @avg_rating %></strong> - <%= @count_reviews %> análises</p>
-              </div>
+              <%= image_tag user_photo_index(resume), class: "img-thumbnail img-responsive img-circle" %>
+            </div>
+            <div class="row">
+              <h4><%= resume.user.first_name %> <%= resume.user.last_name %><%= ", #{age_calculator(resume.user)}" %></h4>
+            </div>
+            <div class="row">
+              <%= render '/shared/users/avg' %>
+            </div>
+            <div class="row">
+              <p><strong><%= @avg_rating %></strong> - <%= @count_reviews %> análises</p>
             </div>
           </div>
+
           <div class="col-xs-4 text-center content right-column">
-            <h3 class="user-name"><a class="btn btn-md btn-success pull-left" style="cursor: pointer; margin-right: 5px;"><i class="fa fa-thumbs-up"></i></a><%= resume.course.name %></h3>
+            <h4 class="user-name">
+              <% if resume.stance %>
+              <a class="btn btn-sm btn-success" style="cursor: pointer; margin-right: 25px;">
+                <i class="fa fa-thumbs-up"></i></a></a><%= resume.course.name %>
+              <% else %>
+                <a class="btn btn-sm btn-danger" style="cursor: pointer; margin-right: 25px;">
+                <i class="fa fa-thumbs-down"></i></a></a><%= resume.course.name %>
+              <% end %>
+            </h4>
             <h6><%= resume.university.name %></h6>
-            <div class="progress">
+            <div class="progress" style="width: 70%; margin: 3px auto;">
               <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: <%= resume.relative_completion %>%;">
                 <p><%= resume.relative_completion %>%</p>
               </div>
             </div>
           </div>
+
+
           <div class="col-xs-4">
             <h6 class="user-description"><%= resume.user.personal_description %></h6>
           </div>
