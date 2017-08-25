@@ -8,7 +8,11 @@
           <!-- PERGUNTA: Por quê por default a imagem é 200x200? -->
           <%= image_tag(user_photo_show(@resume), size: "75x75", class: "img-circle") %>
           <p><%= @resume.user.first_name %> <%= @resume.user.last_name %></p>
+
           <!-- TO-DO: Implement star rating -->
+          <div class="review-stars">
+            <%= render 'shared/stars', avg_rating: @avg_rating %>
+          </div>
         </div>
 
         <div class="header-resume">
