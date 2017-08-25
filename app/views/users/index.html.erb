@@ -25,9 +25,8 @@
       <% @meetings.each { |meeting| @count += meeting.rating if !meeting.rating.nil? } %>
       <% @meetings.each { |meeting| @count_reviews += 1 if !meeting.review_title.nil? } %>
       <% @avg_rating = (@count.to_f / @meetings.size).round(1) unless @meetings.size == 0 %>
-      <div class="col-sm-12">
-        <div class="row undergrad-card">
-          <p><%= resume.id %></p>
+      <div class="col-sm-10 col-sm-offset-1">
+        <div class="row undergrad-card margin-v-xs">
           <%= link_to "", user_path(resume), class: 'card-link'%>
 
           <div class="col-xs-4 content text-center">
@@ -46,15 +45,15 @@
           </div>
 
           <div class="col-xs-4 text-center content right-column">
-            <h3 class="user-name">
+            <h4 class="user-name">
               <% if resume.stance %>
-              <a class="btn btn-md btn-success" style="cursor: pointer; margin-right: 25px;">
+              <a class="btn btn-sm btn-success" style="cursor: pointer; margin-right: 25px;">
                 <i class="fa fa-thumbs-up"></i></a></a><%= resume.course.name %>
               <% else %>
-                <a class="btn btn-md btn-danger" style="cursor: pointer; margin-right: 25px;">
+                <a class="btn btn-sm btn-danger" style="cursor: pointer; margin-right: 25px;">
                 <i class="fa fa-thumbs-down"></i></a></a><%= resume.course.name %>
               <% end %>
-            </h3>
+            </h4>
             <h6><%= resume.university.name %></h6>
             <div class="progress" style="width: 70%; margin: 3px auto;">
               <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: <%= resume.relative_completion %>%;">
