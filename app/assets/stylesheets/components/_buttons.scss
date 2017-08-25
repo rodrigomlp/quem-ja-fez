@@ -11,9 +11,10 @@
 }
 
 #paypal_button{
-  margin-left: 180px;
+  display: flex;
+  justify-content: center;
 }
 
 #paypal_button_position{
-  margin-bottom: 28px;
+  // margin-bottom: 28px;
 }
