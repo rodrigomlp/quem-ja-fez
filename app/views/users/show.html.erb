@@ -8,7 +8,7 @@
 
 <div class="container margin-v-sm">
   <!-- School, análise do curso e reviews -->
-  <div class="col-xs-12 col-sm-8 col-md-7 col-md-offset-1">
+  <div class="col-xs-12 col-sm-8 col-md-8 col-md-offset-1">
     <div class="left-box">
     <!-- School, course and avatar -->
     <div class="row margin-bottom-md">
@@ -17,11 +17,13 @@
 
     <!-- Opnião do undergrad sobre o curso -->
     <div class="row margin-bottom-md">
-      <h4>
-        Minhas experiências
-      </h4>
-      <div class="formatted-text">
-        <p> <%= simple_format @resume.academic_description %> </p>
+      <div class="col-xs-10 col-xs-offset-2">
+        <h4>
+          Minhas experiências
+        </h4>
+        <div class="formatted-text">
+          <%= simple_format @resume.academic_description %>
+        </div>
       </div>
     </div>
 

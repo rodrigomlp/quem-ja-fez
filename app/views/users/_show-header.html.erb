@@ -1,8 +1,8 @@
 <div class="title">
-  <div class="header-resume">
+  <!-- <div class="header-resume"> -->
 
     <!-- thumbs icon -->
-    <div class="resume-stance">
+    <div class="resume-stance col-xs-2">
       <% if @resume.stance %>
         <div class="thumb-icon thumb-up" data-toggle="tooltip" data-animation="true" title="<%= @resume.user.first_name %> recomenda esse curso"> <!-- Toggles tooltip if hovered over -->
           <i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i>
@@ -16,7 +16,7 @@
     </div>
 
     <!-- Title -->
-    <div class="resume-title">
+    <div class="resume-title col-xs-7">
       <h2><%= @resume.course.name %></h2>
       <p><%= @resume.university.name %></p>
 
@@ -26,10 +26,10 @@
         </div>
       </div>
     </div>
-  </div>
+  <!-- </div> -->
 
   <!-- Avatar -->
-  <div class="title-avatar text-center">
+  <div class="title-avatar text-center col-xs-3">
     <!-- PERGUNTA: Por quê por default a imagem é 200x200? -->
     <%= image_tag(user_photo_show(@resume), size: "75x75", class: "img-circle") %>
     <p><%= @resume.user.first_name %> <%= @resume.user.last_name %></p>

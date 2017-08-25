@@ -3,15 +3,13 @@ class UsersController < ApplicationController
 
   def show
     user = User.find(params[:id])
-    @resume = Resume.find_by(user_id: user.id)
-    @meetings = Meeting.where(undergraduate_id: @resume.user.id)
+    @resume = Resume.find_by(user: user)
+    @meetings = Meeting.where(undergraduate: @resume.user)
 
     count = 0
 
     @meetings.each do |meeting|
-      if !meeting.rating.nil?
-        count += meeting.rating
-      end
+      count += meeting.rating unless meeting.rating.nil?
     end
 
     @count_reviews = 0
@@ -25,7 +23,6 @@ class UsersController < ApplicationController
     end
 
     @avg_rating = (count.to_f / @meetings.size).round(2) unless @meetings.size == 0 # If user has no reviews, there is no rating yet.
-
   end
 
   def index
