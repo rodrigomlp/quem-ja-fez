@@ -1,9 +1,12 @@
 .events.confirm {
 
   .card-plain {
-    height: 200px;
+    height: 120px;
     width: 100%;
     background-color: $brand-primary;
+
+    position: relative;
+    z-index: 10;
   }
 
   .title {

@@ -29,5 +29,13 @@
 
 
 .header-undergrad-profile {
+  position: relative;
+  top: -38px;
 
+  z-index: 100;
+
+  img {
+    border: 2px solid white;
+  }
 }
+
