@@ -5,12 +5,14 @@
 .resume-stance {
   display: flex;
   justify-content: flex-end;
+  margin-left: 10px;
 }
 
 .resume-stance-mid {
   @extend .resume-stance;
   align-items: center;
   margin-right: 10px;
+  margin-left: 0;
 }
 
 .resume-title {

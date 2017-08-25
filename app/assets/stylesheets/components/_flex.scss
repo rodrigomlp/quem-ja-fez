@@ -1,3 +1,13 @@
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
 .flex-align-center {
   align-items: center;
 }
@@ -9,10 +19,6 @@
   // justify-content: center;
 }
 
-.flex-row {
-  display: flex;
-  flex-direction: row;
-}
 
 .flex-align-bottom {
 
