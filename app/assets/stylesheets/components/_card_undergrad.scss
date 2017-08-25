@@ -1,6 +1,5 @@
 .undergrad-card {
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
-  margin: 5px auto;
   position: relative;
 
   .content {
@@ -9,6 +8,7 @@
 
   .right-column {
     border-right: 2px solid rgba(128, 128, 128, 0.42);
+    border-left: 2px solid rgba(128, 128, 128, 0.42);
   }
 
   .user-name {
