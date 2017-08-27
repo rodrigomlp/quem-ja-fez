@@ -38,5 +38,13 @@ class User < ApplicationRecord
     return user
   end
 
+  def profile_completed?
+    if first_name.present? && last_name.present? && skype.present? && (facebook_picture_url.present? || photo.present?) && personal_description.present?
+      true
+    else
+      false
+    end
+  end
+
 end
 

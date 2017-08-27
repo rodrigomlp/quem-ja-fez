@@ -34,6 +34,14 @@ class Resume < ApplicationRecord
     end
   end
 
+  def completed?
+    if relative_completion.present? && academic_description.present? && stance.present?
+      true
+    else
+      false
+    end
+  end
+
   # Método a ser jogado no ERB para criar o o array do RELATIVE_COMPLETION
   # def range_of_completion
   #   completion_grades = []
