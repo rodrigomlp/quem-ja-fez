@@ -13,8 +13,9 @@ class User < ApplicationRecord
   has_many :universities, through: :resumes
   has_many :courses, through: :resumes
   has_many :events, dependent: :destroy
-  # validates :first_name, presence: true # We don't have a form for this yet
-  # validates :last_name, presence: true # We don't have a form for this yet
+
+  validates :first_name, presence: true # We don't have a form for this yet
+  validates :last_name, presence: true # We don't have a form for this yet
   mount_uploader :photo, PhotoUploader
 
   def self.find_for_facebook_oauth(auth)
