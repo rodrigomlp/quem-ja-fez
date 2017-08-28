@@ -121,6 +121,7 @@ courses = [
   "Ciências Econômicas",
   "Ciências Sociais",
   "Cinema e Audiovisual",
+  "Cursos Interdisciplinares",
   "Design",
   "Direito",
   "Educação Física",
