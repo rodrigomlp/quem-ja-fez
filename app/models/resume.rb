@@ -17,6 +17,14 @@ class Resume < ApplicationRecord
   belongs_to :user
   has_many :meetings
 
+  def completed?
+    if relative_completion.present? && academic_description.present? && !stance.nil?
+      true
+    else
+      false
+    end
+  end
+
   private
 
   def set_confirmation_token
@@ -31,14 +39,6 @@ class Resume < ApplicationRecord
   def validate_email
     if !EmailChecker.is_valid?(self.school_email, self.university)
       errors.add(:school_email, 'E-mail universitário inválido')
-    end
-  end
-
-  def completed?
-    if relative_completion.present? && academic_description.present? && stance.present?
-      true
-    else
-      false
     end
   end
 

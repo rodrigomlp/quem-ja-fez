@@ -28,8 +28,9 @@ class UsersController < ApplicationController
     @resumes = @resumes.where(email_checked: true) # only show resumes that have been verified
 
     @resumes = @resumes.select do |resume|
-      resume.user.profile_completed?
+      resume.completed? #&& resume.user.profile_completed? #Validation to be discussed with the group
     end
+
 
 
 
