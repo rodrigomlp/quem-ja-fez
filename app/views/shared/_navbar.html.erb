@@ -16,8 +16,9 @@
     <% if user_signed_in? %>
 
       <!-- Links when logged in -->
-      <!-- TO-DO: Se já sou um undergrad, essa opção não pode aparecer -->
-      <%= link_to "Cadastrar-se como Universitário", info_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <% if current_user.undergraduate == false  %>
+        <%= link_to "Cadastrar-se como Universitário", info_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <% end %>
 
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
@@ -66,6 +67,7 @@
     <div class="dropdown">
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+       <!-- TO-DO: fazer os ifs para universitários e vestibulando  -->
         <li>
           <%= link_to(info_path) do %>
             <!-- <i class="fa fa-graduation-cap"></i> -->  <%= t(".profile", default: "Cadastrar-se como Universitário") %>
