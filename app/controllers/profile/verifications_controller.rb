@@ -12,8 +12,10 @@ class Profile::VerificationsController < ApplicationController
 
     # Only submit form if right info is provided
     if @resume.save
-      # After creating this resume, an e-mail of confirmation is sent. Logic is in Resume model.
-      redirect_to profile_resumes_path #TO-DO: checkque seu e-mail para validar
+      # After creating this resume, an e-mail of confirmation is sent.
+      @resume.user.undergraduate = true;
+      @resume.user.save!
+      redirect_to profile_resumes_path
     else
       render :new # else re-render form
     end

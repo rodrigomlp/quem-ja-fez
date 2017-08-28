@@ -11,7 +11,7 @@
 
       <!-- Links when logged in -->
       <!-- TO-DO: Se já sou um undergrad, essa opção não pode aparecer -->
-      <%= link_to "Universitários", info_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Cadastrar-se como Universitário", info_path, class: "navbar-wagon-item navbar-wagon-link" %>
 
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
@@ -46,8 +46,8 @@
       </div>
     <% else %>
       <!-- Links when logged out -->
-      <%= link_to "Universitários", info_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Cadastrar-se", new_user_registration_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Cadastrar-se como Universitário", info_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Cadastrar-se como vestibulando", new_user_registration_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to t(".sign_in", default: "Entrar"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
 
     <% end %>
