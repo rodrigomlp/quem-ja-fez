@@ -10,46 +10,6 @@
   justify-content: space-between;
 }
 
-/* Logo */
-.logo-container {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-
-  .logo {
-    display: flex;
-    align-items:center;
-
-    background: -webkit-linear-gradient(-45deg, rgba(0, 199,176,1) 0%, rgba(0, 136, 131,1) 90%);
-    -webkit-background-clip: text;
-    color: transparent;
-
-    // hard-coded size because background-clip crops the text.
-    // The 'pacifico' font is large and fat so it grows outside the boundaries expected by background-clip
-    height: 50px;
-    width: 125px;
-    h4 {
-      font-family: $logo-font;
-      font-weight: 600;
-      margin: 0 !important;
-    }
-  }
-
-  .logo:hover {
-    color: $brand-primary;
-    text-decoration: none;
-  }
-
-  .logo-beta-keyword {
-    color: $black;
-    opacity: 0.5;
-    position: relative;
-    top: -5px;
-    right: -5px;
-  }
-}
-/* Logo */
-
 
 /* User Avatar */
 .navbar-wagon .avatar {
@@ -80,6 +40,50 @@
   color: #da552f;
   text-decoration: none;
 }
+
+/* Logo */
+.logo-container {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+
+  .logo {
+    display: flex;
+    align-items:center;
+    text-decoration: none;
+
+    background: -webkit-linear-gradient(-45deg, rgba(0, 199,176,1) 0%, rgba(0, 136, 131,1) 90%);
+    -webkit-background-clip: text;
+    color: transparent;
+
+    // hard-coded size because background-clip crops the text.
+    // The 'pacifico' font is large and fat so it grows outside the boundaries expected by background-clip
+    height: 50px;
+    width: 125px;
+    h4 {
+      font-family: $logo-font;
+      font-weight: 600;
+      margin: 0 !important;
+    }
+  }
+  .logo:hover {
+    color: $brand-primary;
+  }
+
+  .logo-beta-keyword {
+    color: $black;
+    opacity: 0.5;
+    position: relative;
+    top: -5px;
+    right: -5px;
+  }
+}
+
+.logo-container:hover {
+  text-decoration: none;
+}
+/* Logo */
+
 
 // Only affects home
 .navbar-home {

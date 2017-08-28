@@ -22,7 +22,8 @@
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
         <div class="dropdown">
-        <!-- Getting the rigth user's image -->
+
+        <!-- Getting the right user's image -->
         <% if current_user.facebook_picture_url != nil %>
           <% avatar_url = current_user.facebook_picture_url %>
         <% elsif current_user.photo.file != nil  %>
@@ -30,6 +31,7 @@
         <% else %>
           <% avatar_url = "http://placehold.it/30x30" %>
         <% end %>
+
           <%= image_tag avatar_url, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
