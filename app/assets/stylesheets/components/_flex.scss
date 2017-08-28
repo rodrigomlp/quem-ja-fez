@@ -1,3 +1,7 @@
+.flex {
+  display: flex;
+}
+
 .flex-column {
   display: flex;
   flex-direction: column;
@@ -16,6 +20,14 @@
   align-items: flex-start;
 }
 
+.flex-align-bottom {
+
+}
+
+.flex-justify-center {
+  justify-content: center;
+}
+
 .flex-center-column {
   display: flex;
   flex-direction: column;
@@ -23,7 +35,3 @@
   // justify-content: center;
 }
 
-
-.flex-align-bottom {
-
-}

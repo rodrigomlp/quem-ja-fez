@@ -59,15 +59,73 @@
   }
 }
 
+// -----------
+// .card-resume
 .card-resume {
   @extend .card;
+  box-shadow: 1px 2px 4px rgba(0,0,0,0.2);
+  // transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 
-  // .card-banner {
-  //   height: 200px;
-  //   background-size: cover !important;
-  //   background-position: center;
-  // }
+  img {
+    width: 100px;
+  }
+
+  .card-resume-user-info {
+  // display: flex;
+  // align-items: flex-start;
 }
+
+  // Progress bar
+  .progress {
+    margin: 0 !important;
+    width: 50% !important;
+  }
+
+  .right-column {
+    border-right: 2px solid rgba(128, 128, 128, 0.42);
+    border-left: 2px solid rgba(128, 128, 128, 0.42);
+  }
+
+  .card-link {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 2;
+    background: black;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .card-link:hover {
+    // opacity: 0.05;
+    // box-shadow: 1px 8px 16px rgba(0,0,0,0.2);
+  }
+
+  .course-body {
+    @extend .margin-bottom-xs;
+    p, h5, h6 {
+      margin: 0;
+    }
+  }
+
+  .user-description {
+    margin: 0;
+  }
+
+  .vertical-line {
+    width: 5px;
+    height: 100%;
+    background-color: red;
+  }
+}
+
+// .review {
+//   position: relative;
+//   bottom: 20px;
+// }
+// card-resume
+// -----------
 
 .card-border-rd-sm {
   border-radius: 5px;

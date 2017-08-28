@@ -1,10 +1,10 @@
 module ApplicationHelper
 
   def user_photo_index(resume)
-    if resume.user.facebook_picture_url != nil
-      user_photo_url = resume.user.facebook_picture_url
-    elsif resume.user.photo.file != nil
+    if resume.user.photo.file != nil
       user_photo_url = resume.user.photo
+    elsif resume.user.facebook_picture_url != nil
+      user_photo_url = resume.user.facebook_picture_url
     else
       user_photo_url = "http://placehold.it/100x100"
     end

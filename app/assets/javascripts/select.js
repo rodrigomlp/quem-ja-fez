@@ -6,7 +6,7 @@
       placeholder: "Selecione um curso",
       allowClear: true,
       theme: "bootstrap",
-      width: "225"
+      width: "40%",
     });
   });
 
@@ -15,6 +15,6 @@
       placeholder: "Selecione uma universidade",
       allowClear: true,
       theme: "bootstrap",
-      width: "300",
+      width: "40%",
     });
   });

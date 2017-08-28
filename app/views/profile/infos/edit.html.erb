@@ -1,36 +1,39 @@
 <div class="container margin-v-md">
   <div class="row">
-    <div class="col-xs-3">
+    <div class="col-xs-12 col-sm-3">
       <!-- Profile side-bar -->
       <%= render 'shared/profile/profile_side_bar' %>
     </div>
     <!-- Form para editar informações básicas -->
-    <div class="col-xs-5">
-      <h3>Informações Básicas</h3>
-      <%= simple_form_for @user, url: profile_info_path do |f| %>
-        <!-- <div class="inline-name"> -->
-          <%= f.input :first_name, placeholder: 'Nome', label: 'Nome' %>
-          <%= f.input :last_name, placeholder: 'Sobrenome', label: 'Sobrenome' %>
-        <!-- </div> -->
-        <div class="form-group"> <!--Uma vez que o current user atualiza o gender para 'Male' ou 'Female' nós não perguntamos mais -->
-          <% if !current_user.gender.present? || ( ['Homem', 'Mulher'].include?(current_user.gender) == false ) %>
-            <%= f.select :gender, class: "form-control" do %> <!-- TO-DO: apesar de a classe ser form-control, o input ainda não está com o mesmo dos outros... BUG -->
-              <% [['Homem', 1], ['Mulher', 2], ['Outro', 3]].each do |c| -%>
-                <%= content_tag(:option, c.first, value: c.first) %>
+    <div class="col-xs-12 col-sm-6">
+      <div class="card padding-md">
+        <h3>Informações Básicas</h3>
+        <%= simple_form_for @user, url: profile_info_path do |f| %>
+          <!-- <div class="inline-name"> -->
+            <%= f.input :first_name, placeholder: 'Nome', label: 'Nome' %>
+            <%= f.input :last_name, placeholder: 'Sobrenome', label: 'Sobrenome' %>
+          <!-- </div> -->
+          <div class="form-group"> <!--Uma vez que o current user atualiza o gender para 'Male' ou 'Female' nós não perguntamos mais -->
+            <% if !current_user.gender.present? || ( ['Homem', 'Mulher'].include?(current_user.gender) == false ) %>
+              <%= f.select :gender, class: "form-control" do %> <!-- TO-DO: apesar de a classe ser form-control, o input ainda não está com o mesmo dos outros... BUG -->
+                <% [['Homem', 1], ['Mulher', 2], ['Outro', 3]].each do |c| -%>
+                  <%= content_tag(:option, c.first, value: c.first) %>
+                <% end %>
               <% end %>
             <% end %>
-          <% end %>
-        </div>
-        <%= f.input :birth_date, as: :date, start_year: Date.current.year - 90,
-                                  end_year: Date.current.year - 10,
-                                  order: [:day, :month, :year],
-                                  label: false %>
-        <%= f.input :city, placeholder: 'Cidade', label: false %>
-        <%= f.input :country, placeholder: 'País', label: false %>
-        <%= f.input :photo, placeholder: "Profile photo", class: 'btn btn-lg btn-primary', label: false %>
-        <%= f.input :photo_cache, as: :hidden %>
-        <%= f.button :submit, 'Atualizar', class: "btn btn-primary" %>
-      <% end %>
+          </div>
+          <%= f.input :birth_date, as: :date, start_year: Date.current.year - 90,
+                                    end_year: Date.current.year - 10,
+                                    order: [:day, :month, :year],
+                                    label: "Nascimento" %>
+          <%= f.input :city, placeholder: 'Cidade', label: "Cidade" %>
+          <%= f.input :country, placeholder: 'País', label: "País" %>
+          <%= f.input :skype, placeholder: 'Skype', label: "Contato do Skype" %>
+          <%= f.input :photo, placeholder: "Profile photo", class: 'btn btn-lg btn-primary', label: false %>
+          <%= f.input :photo_cache, as: :hidden %>
+          <%= f.button :submit, 'Atualizar', class: "btn btn-primary" %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

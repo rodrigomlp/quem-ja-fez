@@ -8,9 +8,9 @@
 
       <!-- Adicionar university email -->
       <%= simple_form_for @resume, url: profile_verification_path, method: :post do |f| %>
-        <%= f.association :university, label: false, prompt: "Universidade" %>
-        <%= f.association :course, label: false, prompt: "Curso" %>
-        <%= f.input :school_email, label: false, placeholder: "Email acadêmico" %>
+        <%= f.association :university, label: "Universidade", prompt: "ex.: FURB" %>
+        <%= f.association :course, label: "Curso", prompt: "ex.: Direito" %>
+        <%= f.input :school_email, label: "E-mail Universitário", placeholder: "Email para confirmação", hint: "Precisamos desse e-mail para confirmar que você estuda aonde diz." %>
         <%= f.button :submit, "Adicionar Currículo", class: "btn btn-primary" %>
       <% end %>
     </div>
