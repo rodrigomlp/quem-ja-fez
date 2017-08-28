@@ -11,29 +11,45 @@
 }
 
 /* Logo */
-.navbar-wagon-brand {
+.logo-container {
   display: flex;
   align-items: center;
-
-  height: 50px;
-
   text-decoration: none;
-  // color: $brand-primary;
-  background: -webkit-linear-gradient(-45deg, rgba(0, 199,176,1) 0%, rgba(0, 136, 131,1) 90%);
-  -webkit-background-clip: text;
-  // -webkit-text-fill-color: transparent;
-  color: transparent;
-  h4 {
-    font-family: $logo-font;
-    font-weight: 600;
-    margin: 0 !important;
+
+  .logo {
+    display: flex;
+    align-items:center;
+
+    background: -webkit-linear-gradient(-45deg, rgba(0, 199,176,1) 0%, rgba(0, 136, 131,1) 90%);
+    -webkit-background-clip: text;
+    color: transparent;
+
+    // hard-coded size because background-clip crops the text.
+    // The 'pacifico' font is large and fat so it grows outside the boundaries expected by background-clip
+    height: 50px;
+    width: 125px;
+    h4 {
+      font-family: $logo-font;
+      font-weight: 600;
+      margin: 0 !important;
+    }
+  }
+
+  .logo:hover {
+    color: $brand-primary;
+    text-decoration: none;
+  }
+
+  .logo-beta-keyword {
+    color: $black;
+    opacity: 0.5;
+    position: relative;
+    top: -5px;
+    right: -5px;
   }
 }
+/* Logo */
 
-.navbar-wagon-brand:hover {
-  color: $brand-primary;
-  text-decoration: none;
-}
 
 /* User Avatar */
 .navbar-wagon .avatar {
@@ -113,15 +129,21 @@
     color: white;
   }
 
-  .navbar-wagon-brand {
+  /* Logo */
+  .logo {
     text-shadow: 1px 1px 1px rgba(51, 51, 51, 0.4);
     background: transparent;
     color: white;
   }
 
-  .navbar-wagon-brand:hover {
+  .logo:hover {
     color: white;
   }
+
+  .logo-beta-keyword {
+    color: white;
+  }
+  /* Logo */
 
   .navbar-wagon-link {
     color: white;
