@@ -1,8 +1,14 @@
 <div class="navbar-wagon <%= yield(:navbar_class) %>">
   <!-- Logo -->
-  <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <h4>Quem já fez?</h4>
+  <%= link_to root_path, class: "logo-container" do %>
+    <div class="logo">
+      <h4>Quem já fez?</h4>
+    </div>
+    <div class="logo-beta-keyword">
+      <small>beta</small>
+    </div>
   <% end %>
+
 
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
