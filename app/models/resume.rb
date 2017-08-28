@@ -17,6 +17,14 @@ class Resume < ApplicationRecord
   belongs_to :user
   has_many :meetings
 
+  def completed?
+    if relative_completion.present? && academic_description.present? && !stance.nil?
+      true
+    else
+      false
+    end
+  end
+
   private
 
   def set_confirmation_token
