@@ -74,51 +74,42 @@
         <br>
 
         <!-- Preço final -->
-        <p>Preço final</p>
+        <!-- <p>Preço final</p>
         <div class="well margin-bottom-xs padding-xs">
-          <% if(@events.count.zero?) %>
+          <%# if(@events.count.zero?) %>
             <span>R$ 0</span>
-          <% else %>
-            <span>R$ <%=  (@events.count * 19.99) %></span>
-          <% end %>
-        </div>
+          <%# else %>
+            <span>R$ <%#=  (@events.count * 19.99) %></span>
+          <%# end %>
+        </div> -->
       </div>
 
-      <hr>
 
       <!-- 2.Formas de pagamento -->
-
-      <div id="paypal_button_position" class="flex-center-column">
-
-      <h4 class=""><strong>2. Formas de Pagamento</strong></h4>
-      <br>
-      </div>
-
+      <hr>
+      <h4 class=""><strong>2. Confirmação</strong></h4>
 
       <!-- Paypal -->
-      <form id="paypal_button" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+      <!-- <form id="paypal_button" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
         <input type="hidden" name="cmd" value="_s-xclick">
-        <input type="hidden" name="custom" value="<%= { resume_id: @resume.id, events_ids: @events.map(&:id), highschooler_id: current_user.id }.to_json %>">
+        <input type="hidden" name="custom" value="<%#= { resume_id: @resume.id, events_ids: @events.map(&:id), highschooler_id: current_user.id }.to_json %>">
         <input type="hidden" name="hosted_button_id" value="D9P7PAFXJAU84">
         <input type="image" src="https://www.sandbox.paypal.com/pt_BR/BR/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - A maneira fácil e segura de enviar pagamentos online!">
         <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
-      </form>
+      </form> -->
       <!-- Paypal -->
 
-      <!-- Botões -->
-      <!-- REMOVER ? -->
-      <div class="flex-algin-center">
-        <div class="">
+      <!-- Confirmar Conversa -->
+      <div class="flex flex-justify-center margin-v-xs">
         <%= form_for(@meeting, :url => profile_meetings_path, :action => "POST") do |f| %>
 
           <%= f.hidden_field :resume, :value => @resume.id %>
           <%= f.hidden_field :event, :value => @events.map(&:id)  %>
 
-          <%= f.submit class: 'btn btn-primary', :style => "display: none;" %>
+          <%= f.submit class: 'btn btn-primary', value: "Agendar Conversa" %>
         <% end %>
-        </div>
       </div>
-      <!-- Botões -->
+      <!-- Confirmar Conversa -->
     </div>
   </div>
 </div>

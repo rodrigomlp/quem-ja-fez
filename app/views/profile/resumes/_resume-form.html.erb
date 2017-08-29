@@ -60,7 +60,7 @@
         </h4>
 
         <div class="range-slider margin-v-sm col-xs-8 col-xs-offset-2">
-          <%= f.input_field :relative_completion, label: false, as: :range, input_html: { min: 10, max: 100, step: 5 } %>
+          <%= f.input_field :relative_completion, label: false, step: 20,  as: :range, value: resume.relative_completion, input_html: { min: 0, max: 100 } %>
         </div>
       </div>
 
