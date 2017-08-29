@@ -39,5 +39,14 @@ class User < ApplicationRecord
     return user
   end
 
+  # validation to be discussed with the group
+  # def profile_completed?
+  #   if  skype.present? && personal_description.present?
+  #     true
+  #   else
+  #     false
+  #   end
+  # end
+
 end
 

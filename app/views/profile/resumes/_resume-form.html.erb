@@ -41,8 +41,8 @@
             <input type="radio" name="resume[stance]" value="true" id="option1" autocomplete="off" <%= 'checked' if resume.stance %>> <i class="fa fa-thumbs-up" aria-hidden="true"></i>
           </label>
 
-          <label class="btn btn-default <%= 'active' unless resume.stance %>">
-            <input type="radio" name="resume[stance]" value="false" id="option2" autocomplete="off" <%= 'checked' unless resume.stance %>> <i class="fa fa-thumbs-down" aria-hidden="true"></i>
+          <label class="btn btn-default <%= 'active' if resume.stance == false %>">
+            <input type="radio" name="resume[stance]" value="false" id="option2" autocomplete="off" <%= 'checked' if resume.stance == false %>> <i class="fa fa-thumbs-down" aria-hidden="true"></i>
           </label>
         </div>
       </div>
@@ -60,7 +60,7 @@
         </h4>
 
         <div class="range-slider margin-v-sm col-xs-8 col-xs-offset-2">
-          <%= f.input_field :relative_completion, label: false, step: 20,  as: :range, value: resume.relative_completion, input_html: { min: 0, max: 100 } %>
+          <%= f.input_field :relative_completion, label: false, as: :range, step: 5, input_html: { min: 0, max: 100} %>
         </div>
       </div>
 
