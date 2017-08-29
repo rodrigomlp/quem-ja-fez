@@ -97,10 +97,10 @@ end
 # University.create!(name: "Gmail", email: 'gmail.com')
 
 # Seed for a restricted number of universities
-universities_number = 10
-for i in 1..universities_number
-  University.create(name: universities.sample)
-end
+# universities_number = 10
+# for i in 1..universities_number
+#   University.create(name: universities.sample)
+# end
 
 
 #Creating courses
