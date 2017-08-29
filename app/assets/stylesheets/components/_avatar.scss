@@ -1,12 +1,15 @@
 .avatar {
   border-radius: 50%;
-  width: 30px;
 }
-.avatar-large {
+.avatar-lg {
   width: 80px;
   margin: 5px auto;
 }
 
 .avatar-md {
   width: 60px;
+}
+
+.avatar-sm {
+  width: 30px;
 }

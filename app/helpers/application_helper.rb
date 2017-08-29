@@ -1,15 +1,17 @@
 module ApplicationHelper
 
-  def user_photo_index(resume)
-    if resume.user.photo.file != nil
-      user_photo_url = resume.user.photo
-    elsif resume.user.facebook_picture_url != nil
-      user_photo_url = resume.user.facebook_picture_url
+  def display_user_photo(user, my_class)
+    if user.photo.file != nil
+      cl_image_tag user.photo.url(:avatar_md), class: my_class
+
+    elsif user.facebook_picture_url != nil
+      # user_photo_url = user.facebook_picture_url
+      image_tag user.facebook_picture_url, class: my_class
     else
-      user_photo_url = "http://placehold.it/100x100"
+      image_tag "http://placehold.it/100x100", class: my_class
     end
 
-    user_photo_url
+    # user_photo_url
   end
 
   def user_photo_show(resume)
