@@ -1,17 +1,14 @@
 module ApplicationHelper
 
+  # Show user photo
   def display_user_photo(user, my_class)
     if user.photo.file != nil
       cl_image_tag user.photo.url(:avatar_md), class: my_class
-
     elsif user.facebook_picture_url != nil
-      # user_photo_url = user.facebook_picture_url
-      image_tag user.facebook_picture_url, class: my_class
+      image_tag user.facebook_picture_url + "&widht=200&height=200", class: my_class
     else
       image_tag "http://placehold.it/100x100", class: my_class
     end
-
-    # user_photo_url
   end
 
   def user_photo_show(resume)
