@@ -45,11 +45,34 @@
           <h2>Agenda</h2>
           <small class="text-gray">Ver horários de <%= @resume.user.first_name %></small>
         </div>
+        <!-- In the case where the undergraduate has available slots -->
+        <% if !@notification_button %>
+          <div class="schedule button">
+            <%= link_to "Marcar reunião", user_events_path(@resume), class: "btn btn-primary" %>
+          </div>
+        <!-- In the case where the undergraduate has not available slots.-->
+        <% else %>
+          <div class="schedule button">
+            <button class="btn btn-primary" disabled="disabled" > Marcar reunião </button>
+          </div>
+          <!-- Button in case the undergraduate don't have any availability -->
+          <div class="schedule button">
+            <%= link_to "Notificar #{@resume.user.first_name}", user_notify_interest_path(@resume), id: "show-interest", class: "btn btn-primary"  %>
+          </div>
+          <small class="text-gray">
+            <%= @resume.user.first_name %> ainda não indicou horários disponíveis.
+          </small>
+          <br>
+          <small class="text-gray">
+            Clique no link a cima e o/a notificaremos que você tem interesse em marcar uma conversa.
+          </small>
+          <br>
+          <small class="text-gray">
+            Assim que ele/a disponilizar uma agenda você será o primeiro a saber!
+          </small>
 
-        <div class="schedule button">
-          <%= link_to "Marcar reunião", user_events_path(@resume), class: "btn btn-primary" %>
-          <!-- <small class="text-gray">*Você ainda não será cobrado</small> -->
-        </div>
+        <% end %>
+
       </div>
     </div>
   </div>
