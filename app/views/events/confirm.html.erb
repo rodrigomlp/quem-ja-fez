@@ -6,7 +6,7 @@
         <!-- Avatar -->
         <div class="header-undergrad-profile text-center">
           <!-- PERGUNTA: Por quê por default a imagem é 200x200? -->
-          <%= image_tag(user_photo_show(@resume), size: "75x75", class: "img-circle") %>
+          <%= display_user_avatar(@resume.user, size: 'md') %>
           <p><%= @resume.user.first_name %> <%= @resume.user.last_name %></p>
 
           <!-- TO-DO: Implement star rating -->

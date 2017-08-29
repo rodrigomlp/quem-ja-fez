@@ -1,15 +1,40 @@
 module ApplicationHelper
 
-  # Show user photo
-  def display_user_photo(user, my_class)
-    if user.photo.file != nil
-      cl_image_tag user.photo.url(:avatar_md), class: my_class
-    elsif user.facebook_picture_url != nil
-      image_tag user.facebook_picture_url + "&widht=200&height=200", class: my_class
+  # Show user avatar photo
+  def display_user_avatar(user, args = {})
+    # If values are not defined
+    args[:css_class] ||= ""
+    args[:size] ||= 'sm'
+
+    # pre-defined sizes
+    if args[:size]   == 'lg'
+      height = 160
+      width  = 160
+      default_class = "avatar avatar-lg " + args[:css_class]
+    elsif args[:size] == 'md'
+      height = 100
+      width  = 100
+      default_class = "avatar avatar-md " + args[:css_class]
+    elsif args[:size] == 'sm'
+      height = 60
+      width  = 60
+      default_class = "avatar avatar-sm " + args[:css_class]
     else
-      image_tag "http://placehold.it/100x100", class: my_class
+      height = 40
+      width  = 40
+      default_class = "avatar avatar-xs " + args[:css_class]
+    end
+
+    # check which type of image to use
+    if user.photo.file != nil
+      cl_image_tag user.photo.url(:avatar), class: default_class
+    elsif user.facebook_picture_url != nil
+      image_tag user.facebook_picture_url + "&width=" + width.to_s + "&height=" + height.to_s, class:  default_class
+    else
+      image_tag "http://placehold.it/" + width.to_s + "x" + height.to_s, class: default_class
     end
   end
+
 
   def user_photo_show(resume)
     if resume.user.facebook_picture_url != nil
