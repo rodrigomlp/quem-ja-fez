@@ -30,4 +30,13 @@ class UserMailer < ApplicationMailer
 
     mail(to: @undergrad.email, subject: "Quem já fez? | Faltam 24hrs para sua conversa")
   end
+
+  def notify_interest(resume, undergraduate, highschooler)
+    @undergraduate_name = undergraduate.first_name
+    @highschooler_name = highschooler.first_name
+    @resume_id = resume.id
+    @greeting = "Olá," # greeting message displayed on e-mail
+    mail(to: undergraduate.email, subject: "Quem já fez? | #{@highschooler_name} quer falar com você")
+  end
+
 end
