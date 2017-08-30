@@ -1,4 +1,4 @@
-<div class="banner banner-lg" style="background-image: url(<%= image_path 'undergrad_info.jpg' %>);">
+<div class="banner banner-md" style="background-image: url(<%= image_path 'undergrad_info.jpg' %>);">
   <div class="container">
     <div class="col-xs-5">
       <div class="card-info card-border-rd-sm">
@@ -7,13 +7,13 @@
           <h2>Junte-se ao grupo de universitários do<br>Quem Já Fez</h2>
         </div>
         <div class="card-body">
-          <p>Você recomenda seu curso? Quais as matérias mais difíceis da facu? Quais atividades extras você participa? Converse com vestibulandos que possuem tais dúvidas.</p>
+          <p>Você recomenda seu curso? Quais as matérias mais difíceis da facu? Quais atividades extras você participa? <a href="#linktobottom">Descubra como funciona abaixo e inscreva-se!</a></p>
 <!--         e ganhe um dinheiro extra.
  -->        </div>
         <!-- If user is an undergrad, take him to 'edit resumes', else, help him create his first resume -->
         <%=
           link_to_if(current_user && current_user.undergraduate == true, "Editar meus currículos", profile_resumes_path, class: "btn btn-default") do
-              link_to("Inscreva-se", new_user_registration_path, class: "btn btn-primary")
+              link_to("Inscreva-se", new_profile_verification_path, class: "btn btn-primary")
           end
         %>
       </div>
