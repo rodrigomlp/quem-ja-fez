@@ -40,7 +40,6 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    # @event = Event.find(:id)
     @event.destroy
   end
 
