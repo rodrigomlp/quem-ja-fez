@@ -93,7 +93,6 @@ end
 # DEBUG
 # University.create!(name: "Gmail", email: 'gmail.com')
 
-
 #Creating courses
 courses = [
   "Administração Pública",

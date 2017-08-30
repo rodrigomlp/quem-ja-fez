@@ -37,9 +37,8 @@
   <!-- </div> -->
 
   <!-- Avatar -->
-  <div class="title-avatar text-center col-xs-3">
-    <!-- PERGUNTA: Por quê por default a imagem é 200x200? -->
-    <%= image_tag(user_photo_show(@resume), size: "75x75", class: "img-circle") %>
+  <div class="text-center col-xs-3">
+    <%= display_user_avatar(@resume.user, size: 'md') %>
     <p><%= @resume.user.first_name %> <%= @resume.user.last_name %></p>
   </div>
 </div>
