@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   # Users
   resources :users, only: [:index, :show], path: "/results" do
+    get 'notify_interest', to: 'users#notify_interest', as: :notify_interest
     # member do
       # get 'schedule', to: 'users#schedule'
       # get '/schedule/confirm', to: 'users#confirm'
@@ -41,4 +42,6 @@ Rails.application.routes.draw do
       end
     end
   end
+
+
 end

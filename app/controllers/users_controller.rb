@@ -4,21 +4,20 @@ class UsersController < ApplicationController
   def show
     @resume = Resume.find(params[:id])
     @meetings = Meeting.where(undergraduate: @resume.user)
-
+    # Calculate rating and number of meetings
     meetings_rated = 0
     total_rating = 0
-
-
     @meetings.each do |meeting|
       if meeting.rating.present?
         total_rating += meeting.rating
         meetings_rated += 1
       end
     end
-
     @avg_rating = meetings_rated.zero? ? nil : round_point5(total_rating.to_f / meetings_rated)
-
     @count_reviews = meetings_rated
+
+    # Check availability to create button for sending email of interest
+    @notification_button = @resume.user.events.blank? ? true : false
 
   end
 
@@ -43,6 +42,13 @@ class UsersController < ApplicationController
   end
 
   def schedule
+  end
+
+  def notify_interest
+    resume = Resume.find(params[:user_id])
+    undergraduate = resume.user
+    highschooler = current_user
+    UserMailer.notify_interest(resume, undergraduate, highschooler).deliver
   end
 
   private
