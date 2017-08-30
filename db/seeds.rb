@@ -87,20 +87,11 @@ universities = [
   { name: 'Universidade Federal Fluminense (UFF)', email: '' }
 ]
 
-
-
-
 universities.each do |university|
   University.create!(name: university[:name], email: university[:email])
 end
 # DEBUG
 # University.create!(name: "Gmail", email: 'gmail.com')
-
-# Seed for a restricted number of universities
-universities_number = 10
-for i in 1..universities_number
-  University.create(name: universities.sample)
-end
 
 
 #Creating courses
@@ -191,12 +182,6 @@ courses.each do |course|
   Course.create!(name: course)
 end
 
-# Seed for a restricted number of courses
-courses_number = 10
-for i in 1..courses_number
-  University.create(name: courses.sample)
-end
-
 # Creating Resumes
 User.all.where(undergraduate: true).each do |undergraduate|
   (rand(3) + 1).times do
@@ -212,14 +197,6 @@ User.all.where(undergraduate: true).each do |undergraduate|
     )
   end
 end
-
-# TESTE: E-mail do marco pra testar se o postmark está mandando e-mails corretamente
-Resume.create!(
-    user: User.last,
-    university: University.last,
-    course: Course.last,
-    school_email: "beduschimarco@gmail.com"
-)
 
 # Creating Meetings
 duration = [0.5, 1, 1.5, 2]

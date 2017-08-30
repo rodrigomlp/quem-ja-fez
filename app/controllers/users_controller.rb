@@ -43,7 +43,8 @@ class UsersController < ApplicationController
 
   def notify_interest
     resume = Resume.find(params[:user_id])
-    # TO-DO: undergraduate and highschooler
+    undergraduate = resume.user
+    highschooler = current_user
     UserMailer.notify_interest(resume, undergraduate, highschooler).deliver
   end
 

@@ -3,8 +3,26 @@
   <%= javascript_tag do %>
     $('.thumb-icon').tooltip();
     $('.progress').tooltip();
+    $('#show-interest').popover();
   <% end %>
 <% end %>
+
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>Acabamos de notificar o/a <%= @resume.user.first_name %> sobre seu interesse em falar com ele/a</p>
+        <p>Agora é só aguardar que enviaremos um e-mail para você assim que ele/a disponibilizar algum horário </p>
+        <p>Enquanto isso não deixe de procurar por outros universitários com os quais você pode conversar</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Entendi!</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 <div class="container margin-v-sm">
   <!-- School, análise do curso e reviews -->
@@ -43,7 +61,13 @@
       <div class="schedule text-center">
         <div class="schedule-price margin-bottom-sm">
           <h2>Agenda</h2>
-          <small class="text-gray">Ver horários de <%= @resume.user.first_name %></small>
+          <!-- In the case where the undergraduate has available slots -->
+          <% if !@notification_button %>
+            <small class="text-gray">Ver horários de <%= @resume.user.first_name %></small>
+          <!-- Button in case the undergraduate don't have any availability -->
+          <% else %>
+            <small class="text-gray"><%= @resume.user.first_name %> ainda não indicou horários disponíveis.</small>
+          <% end %>
         </div>
         <!-- In the case where the undergraduate has available slots -->
         <% if !@notification_button %>
@@ -52,28 +76,40 @@
           </div>
         <!-- In the case where the undergraduate has not available slots.-->
         <% else %>
-          <div class="schedule button">
-            <button class="btn btn-primary" disabled="disabled" > Marcar reunião </button>
-          </div>
           <!-- Button in case the undergraduate don't have any availability -->
-          <div class="schedule button">
-            <%= link_to "Notificar #{@resume.user.first_name}", user_notify_interest_path(@resume), id: "show-interest", class: "btn btn-primary"  %>
+          <div class="schedule button" id="show-interest" data-toggle="popover" data-container="body" data-placement="left" data-animation="true" data-trigger="hover" data-content="Notificaremos <%= @resume.user.first_name %> sobre seu interesse em falar com ele/a. Assim que surgir um horário você será o/a primeiro/a a saber!">
+            <button id="show-interest", class="btn btn-primary"> Tenho interesse </button>
           </div>
-          <small class="text-gray">
-            <%= @resume.user.first_name %> ainda não indicou horários disponíveis.
-          </small>
-          <br>
-          <small class="text-gray">
-            Clique no link a cima e o/a notificaremos que você tem interesse em marcar uma conversa.
-          </small>
-          <br>
-          <small class="text-gray">
-            Assim que ele/a disponilizar uma agenda você será o primeiro a saber!
-          </small>
-
         <% end %>
-
       </div>
     </div>
   </div>
+
+  <% content_for(:js) do %>
+    <%= javascript_tag do %>
+
+      function sendEmail() {
+        $.ajax({
+
+          url: "<%= user_notify_interest_url(@resume) %>",
+          success: function(data) {
+            console.log('oi');
+            $("#myModal").modal();
+
+          },
+          error: function(jqXHR) {
+            console.error(jqXHR.responseText);
+          }
+        });
+      }
+
+      $(document).ready(function() {
+        $('#show-interest').click(function() {
+          sendEmail();
+        });
+      });
+
+    <% end %>
+  <% end %>
+
 </div>

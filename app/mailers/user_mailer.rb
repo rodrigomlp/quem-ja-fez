@@ -32,14 +32,11 @@ class UserMailer < ApplicationMailer
   end
 
   def notify_interest(resume, undergraduate, highschooler)
-    @undergraduate = undergraduate
-    @undergraduate_name = @undergraduate.first_name
-    @highschooler = highschooler
-    @highschooler_name = @highschooler.name
-    @resume = resume
-    @resume_id = @resume.id
+    @undergraduate_name = undergraduate.first_name
+    @highschooler_name = highschooler.first_name
+    @resume_id = resume.id
     @greeting = "Olá," # greeting message displayed on e-mail
-    mail(to: @undergraduate.email, subject: "Quem já fez? | Alguém quer falar com você")
+    mail(to: undergraduate.email, subject: "Quem já fez? | #{@highschooler_name} quer falar com você")
   end
 
 end
