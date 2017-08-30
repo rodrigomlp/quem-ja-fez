@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get 'info', to: "pages#info" # Undergraduate sign up explanation page
 
   # Feedback page
-  resources :feedback, only: [:new, :create]
+  resource :feedbacks, only: [:new, :create]
 
   # Users
   resources :users, only: [:index, :show], path: "/results" do
