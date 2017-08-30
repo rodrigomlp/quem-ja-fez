@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'feedback/new'
+
    # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   devise_for :users,
     controllers: { omniauth_callbacks: 'users/omniauth_callbacks' } # ~> Facebook connection
@@ -8,6 +10,9 @@ Rails.application.routes.draw do
   root to: 'pages#home' #defaults root to home
   get 'about', to: "pages#about" # About us
   get 'info', to: "pages#info" # Undergraduate sign up explanation page
+
+  # Feedback page
+  resources :feedback, only: [:new, :create]
 
   # Users
   resources :users, only: [:index, :show], path: "/results" do
