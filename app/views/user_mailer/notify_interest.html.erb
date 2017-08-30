@@ -1,0 +1,14 @@
+<h4><%= @greeting %> <%= @undergraduate_name %></h4>
+<p>
+  <%= @highschooler_name %> está querendo falar com você la no Quem Já Fez!
+</p>
+<p>
+  Que tal marcar quais horários disponíveis você tem para conversar? É só clicar no link abaixo:
+</p>
+
+
+<%= link_to 'clique aqui para marcar disponibilidades', user_events_url(@resume_id)  %>
+
+<p>Abraço,</p>
+<p>Equipe Quem Já Fez.</p>
+
