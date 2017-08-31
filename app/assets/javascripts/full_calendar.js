@@ -35,17 +35,18 @@ $(document).ready(function(){
        events: '/results/' +  resume_id + '/events.json',
 
         select: function(start, end, event) {
+
            if (window.user_undergraduate && is_same_user){
               $.ajax({
-              type: "POST",
-              url: "/results/" + resume_id + "/events/",
-              data: {
-                event: {
-                  start: start.toDate(),
-                  end: end.toDate(),
-                  color: "green"
+                type: "POST",
+                url: "/results/" + resume_id + "/events/",
+                data: {
+                  event: {
+                    start: start.toDate(),
+                    end: end.toDate(),
+                    color: "green"
+                  }
                 }
-              }
             })
               $('.calendar').fullCalendar( 'renderEvent', {
 
@@ -74,6 +75,7 @@ $(document).ready(function(){
 
         eventClick: function(event){
           /*Check if the current user is a undegraduate and the right user which allows him to delete available time slots */
+
           if (window.user_undergraduate && is_same_user){
                  $.ajax({
                  type: 'DELETE',
@@ -100,20 +102,8 @@ $(document).ready(function(){
                       success: function() {
                               $('.calendar').fullCalendar( 'refetchEvents' );
 
-                              // $('.calendar').fullCalendar( 'refetchEvents' );
-                              // $('.calendar').fullCalendar({
-                              //     events: events
-                              // });
-                              // console.log(events);
-                              // $('.calendar').fullCalendar('destroy');
-                              // $('.calendar').fullCalendar();
                           }
-
-                        // event.color does not update when clicked although updated on DB.
-                        // Is the problem the fact I'm using Javascript? Why?                    }
                     });
-                    // window.location.reload()
-
               }
             /*if he has not clicked yet (event is green) change it to red*/
             else if (event.color == "red"){
@@ -129,11 +119,11 @@ $(document).ready(function(){
                               $('.calendar').fullCalendar( 'refetchEvents' );
                     }
                   });
+               }
              }
-          }
-        }
+           }
 
-      });
+        });
 
     });
   }
