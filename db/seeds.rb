@@ -64,7 +64,7 @@ end
 # DO NOT DELETE THIS!!
 universities = [
   { name: 'Universidade de São Paulo (USP)', email: 'usp.com' },
-  { name: 'Universidade Estadual de Campinas (Unicamp)', email: 'dac.unicamp.com' },
+  { name: 'Universidade Estadual de Campinas (Unicamp)', email: 'dac.unicamp.br' },
   { name: 'Universidade Federal do Rio de Janeiro (UFRJ)', email: '' },
   { name: 'Universidade Estadual Paulista (Unesp)', email: '' },
   { name: 'Pontifícia Universidade Católica de São Paulo (PUC-SP)', email: '' },
@@ -184,7 +184,7 @@ end
 # Creating Resumes
 User.all.where(undergraduate: true).each do |undergraduate|
   (rand(3) + 1).times do
-    Resume.create!(
+    Resume.new(
       user: undergraduate,
       university: University.all.sample,
       course: Course.all.sample,
@@ -193,7 +193,7 @@ User.all.where(undergraduate: true).each do |undergraduate|
       academic_description: Faker::HitchhikersGuideToTheGalaxy.quote,
       stance: [true, false].sample,
       email_checked: [true, false].sample
-    )
+    ).save!(validate: false)
   end
 end
 
