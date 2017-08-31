@@ -100,7 +100,7 @@
       <!-- Paypal -->
 
       <!-- Confirmar Conversa -->
-      <div class="flex flex-justify-center margin-v-xs">
+      <div class="flex-column flex-align-center margin-v-xs">
         <%= form_for(@meeting, :url => profile_meetings_path, :action => "POST") do |f| %>
 
           <%= f.hidden_field :resume, :value => @resume.id %>
@@ -108,6 +108,8 @@
 
           <%= f.submit class: 'btn btn-primary', value: "Agendar Conversa" %>
         <% end %>
+
+        <%= link_to "Problemas com agendamento?", new_feedbacks_path, class: "margin-top-xs" %>
       </div>
       <!-- Confirmar Conversa -->
     </div>
