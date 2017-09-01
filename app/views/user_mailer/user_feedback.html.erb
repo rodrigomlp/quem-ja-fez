@@ -6,13 +6,22 @@
 
   <p><strong>Dados do usuário</strong></p>
   <% if !@user.nil? %>
-    <p><%= @user.id %> - <%= @user.first_name %> <%= @user.last_name %> - <%= @user.email %></p>
+    <p>ID - <%= @user.id %></p>
+    <p>Nome Completo - <%= @user.first_name %> <%= @user.last_name %></p>
+    <p>Email de Login - <%= @user.email %></p>
   <% else %>
     <p>Anônimo</p>
   <% end %>
 
+  <strong>Usuário veio da rota: </strong>
+  <%= @referrer %>
+
   <p><strong>E-mail</strong></p>
-  <p><%= @user_email %></p>
+  <% if !@user_email.nil? %>
+    <p><%= @user_email %></p>
+  <% else %>
+    <p>Anônimo</p>
+  <% end %>
 
 
   <p><strong>Feedback</strong></p>

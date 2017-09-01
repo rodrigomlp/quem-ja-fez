@@ -20,6 +20,7 @@
           <div class="form-group">
             <%= text_area_tag(:feedback, nil, placeholder: "Deixe aqui seu feedback",  class: "form-control", rows: "10") %>
             <%= text_field_tag(:email, nil, placeholder: "E-mail para contato (opcional)", class: "form-control margin-v-xs") %>
+            <%= text_field_tag(:referrer, @referrer, type: "hidden") %> <!-- useful so we know from which page the user came from -->
           </div>
           <!-- Button -->
           <div class="text-center">
