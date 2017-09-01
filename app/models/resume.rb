@@ -37,8 +37,12 @@ class Resume < ApplicationRecord
 
   # Custom error: Verifica se o e-mail bate com a universidade selecionada
   def validate_email
-    if !EmailChecker.is_valid?(self.school_email, self.university)
-      errors.add(:school_email, 'E-mail universitário inválido')
+    if !self.school_email.nil? || !self.university.nil?
+      # Don't validate if fields are empty
+    else
+      if !EmailChecker.is_valid?(self.school_email, self.university)
+        errors.add(:school_email, 'E-mail universitário inválido')
+      end
     end
   end
 
