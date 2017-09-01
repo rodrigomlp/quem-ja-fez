@@ -15,6 +15,7 @@ class Resume < ApplicationRecord
   belongs_to :course
   belongs_to :user
   has_many :meetings
+  has_many :potential_meetings
 
   def completed?
     if relative_completion.present? && academic_description.present? && !stance.nil?
