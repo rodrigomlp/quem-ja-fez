@@ -10,18 +10,22 @@ module ApplicationHelper
     if args[:size]   == 'lg'
       height = 160
       width  = 160
+      fa_size = "fa-5x"
       default_class = "avatar avatar-lg " + args[:css_class]
     elsif args[:size] == 'md'
       height = 100
       width  = 100
+      fa_size = "fa-4x"
       default_class = "avatar avatar-md " + args[:css_class]
     elsif args[:size] == 'sm'
       height = 60
       width  = 60
+      fa_size = "fa-3x"
       default_class = "avatar avatar-sm " + args[:css_class]
     else
       height = 40
       width  = 40
+      fa_size = "fa-2x"
       default_class = "avatar avatar-xs " + args[:css_class]
     end
 
@@ -31,18 +35,7 @@ module ApplicationHelper
     elsif user.facebook_picture_url != nil
       image_tag user.facebook_picture_url + "&width=" + width.to_s + "&height=" + height.to_s, class:  default_class
     else
-      image_tag "http://placehold.it/" + width.to_s + "x" + height.to_s, class: default_class
-    end
-  end
-
-
-  def user_photo_show(resume)
-    if resume.user.facebook_picture_url != nil
-      @user_photo_url = resume.user.facebook_picture_url
-    elsif resume.user.photo.file != nil
-      @user_photo_url = resume.user.photo
-    else
-      @user_photo_url = "http://placehold.it/200x200"
+      content_tag(:i, "", class: "fa fa-user-circle-o #{fa_size}") # Place-holder image
     end
   end
 
