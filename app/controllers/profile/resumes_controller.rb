@@ -24,17 +24,15 @@ class Profile::ResumesController < ApplicationController
 
   def update
     # THe first if is for the resumes that has already the email checked. The second is for the ones not checked yet
-    if @resume.email_checked
-
-
-      if @resume.update(resume_params_for_checked_resume)
-        redirect_to profile_resumes_path
-      else
-        @resumes = current_user.resumes
-        @new_resume = Resume.new
-        render :index
-      end
-    else
+    # if @resume.email_checked
+    #   if @resume.update(resume_params_for_checked_resume)
+    #     redirect_to profile_resumes_path
+    #   else
+    #     @resumes = current_user.resumes
+    #     @new_resume = Resume.new
+    #     render :index
+    #   end
+    # else
       if @resume.update(resume_params)
 
         redirect_to profile_resumes_path
@@ -43,7 +41,7 @@ class Profile::ResumesController < ApplicationController
         @new_resume = Resume.new
         render :index
       end
-    end
+    # end
   end
 
 

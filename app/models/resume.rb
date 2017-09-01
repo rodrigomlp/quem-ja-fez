@@ -1,14 +1,13 @@
 class Resume < ApplicationRecord
   RELATIVE_COMPLETION = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100]
 
-  validates :school_email, presence: true
-  validates :school_email, uniqueness: true
+  # validates :school_email, presence: true
+  # validates :school_email, uniqueness: true
   validates :university, presence: true
   validates :course, presence: true
-  validate :validate_email, on: :create
 
   before_create :set_confirmation_token
-  after_create :send_confirmation_email
+  # after_create :send_confirmation_email
   before_update :set_confirmation_token, if: :school_email_changed?
   after_update :send_confirmation_email, if: :school_email_changed?
 
@@ -36,10 +35,15 @@ class Resume < ApplicationRecord
     UserMailer.confirmation(self).deliver_now
   end
 
+  # NOT IMPLEMENTED
   # Custom error: Verifica se o e-mail bate com a universidade selecionada
   def validate_email
-    if !EmailChecker.is_valid?(self.school_email, self.university)
-      errors.add(:school_email, 'E-mail universitário inválido')
+    if !self.school_email.nil? || !self.university.nil?
+      # Don't validate if fields are empty
+    else
+      if !EmailChecker.is_valid?(self.school_email, self.university)
+        errors.add(:school_email, 'E-mail universitário inválido')
+      end
     end
   end
 

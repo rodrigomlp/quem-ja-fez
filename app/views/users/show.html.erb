@@ -12,7 +12,7 @@
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-body">
-        <p>Acabamos de notificar o/a <%= @resume.user.first_name %> sobre seu interesse em falar com ele/a</p>
+        <p>Acabamos de notificar o/a <%= @resume.user.first_name.capitalize %> sobre seu interesse em falar com ele/a</p>
         <p>Agora é só aguardar que enviaremos um e-mail para você assim que ele/a disponibilizar algum horário </p>
         <p>Enquanto isso não deixe de procurar por outros universitários com os quais você pode conversar</p>
       </div>
@@ -63,10 +63,10 @@
           <h2>Agenda</h2>
           <!-- In the case where the undergraduate has available slots -->
           <% if !@notification_button %>
-            <small class="text-gray">Ver horários de <%= @resume.user.first_name %></small>
+            <small class="text-gray">Ver horários de <%= @resume.user.first_name.capitalize %></small>
           <!-- Button in case the undergraduate don't have any availability -->
           <% else %>
-            <small class="text-gray"><%= @resume.user.first_name %> ainda não indicou horários disponíveis.</small>
+            <small class="text-gray"><%= @resume.user.first_name.capitalize %> ainda não indicou horários disponíveis.</small>
           <% end %>
         </div>
         <!-- In the case where the undergraduate has available slots -->
@@ -77,7 +77,7 @@
         <!-- In the case where the undergraduate has not available slots.-->
         <% else %>
           <!-- Button in case the undergraduate don't have any availability -->
-          <div class="schedule button" id="show-interest" data-toggle="popover" data-container="body" data-placement="bottom" data-animation="true" data-trigger="hover" data-content="Notificaremos <%= @resume.user.first_name %> sobre seu interesse em falar com ele/a. Assim que surgir um horário você será o/a primeiro/a a saber!">
+          <div class="schedule button" id="show-interest" data-toggle="popover" data-container="body" data-placement="bottom" data-animation="true" data-trigger="hover" data-content="Notificaremos <%= @resume.user.first_name.capitalize %> sobre seu interesse em falar com ele/a. Assim que surgir um horário você será o/a primeiro/a a saber!">
             <button id="show-interest", class="btn btn-primary"> Tenho interesse </button>
           </div>
         <% end %>

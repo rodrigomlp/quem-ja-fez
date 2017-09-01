@@ -1,18 +1,20 @@
 <div class="container margin-v-md">
   <div class="row">
-    <div class="col-xs-12 col-sm-3">
+    <div class="col-sm-12 col-md-3">
       <!-- Profile side-bar -->
       <%= render 'shared/profile/profile_side_bar' %>
     </div>
+
     <!-- Form para editar informações básicas -->
-    <div class="col-xs-12 col-sm-6">
-      <div class="card padding-md">
-        <h3>Informações Básicas</h3>
-        <%= simple_form_for @user, url: profile_info_path do |f| %>
-          <!-- <div class="inline-name"> -->
-            <%= f.input :first_name, placeholder: 'Nome', label: 'Nome' %>
-            <%= f.input :last_name, placeholder: 'Sobrenome', label: 'Sobrenome' %>
-          <!-- </div> -->
+    <%= simple_form_for @user, url: profile_info_path do |f| %>
+      <div class="col-sm-12 col-md-6">
+        <!-- Nome, sobrenome, nascimento, país, cidade -->
+        <div class="card padding-md margin-bottom-xs">
+          <h3>Informações Básicas</h3>
+
+          <%= f.input :first_name, placeholder: 'Nome', label: 'Nome' %>
+          <%= f.input :last_name, placeholder: 'Sobrenome', label: 'Sobrenome' %>
+
           <div class="form-group"> <!--Uma vez que o current user atualiza o gender para 'Male' ou 'Female' nós não perguntamos mais -->
             <% if !current_user.gender.present? || ( ['Homem', 'Mulher'].include?(current_user.gender) == false ) %>
               <%= f.select :gender, class: "form-control" do %> <!-- TO-DO: apesar de a classe ser form-control, o input ainda não está com o mesmo dos outros... BUG -->
@@ -29,11 +31,20 @@
           <%= f.input :city, placeholder: 'Cidade', label: "Cidade" %>
           <%= f.input :country, placeholder: 'País', label: "País" %>
           <%= f.input :skype, placeholder: 'Skype', label: "Contato do Skype" %>
-          <%= f.input :photo, placeholder: "Profile photo", class: 'btn btn-lg btn-primary', label: false %>
-          <%= f.input :photo_cache, as: :hidden %>
+
+
+          <!-- Foto de Perfil -->
+          <div class="margin-v-sm">
+            <label for="photo"> Foto de perfil </label>
+            <br>
+            <%= display_user_avatar(@user, size: "lg", css_class: "img-thumbnail") %>
+
+            <%= f.input :photo, wrapper_html: { class: "margin-top-xs" }, label: false %>
+            <%= f.input :photo_cache, as: :hidden %>
+          </div>
           <%= f.button :submit, 'Atualizar', class: "btn btn-primary" %>
-        <% end %>
+        </div>
       </div>
-    </div>
+    <% end %>
   </div>
 </div>

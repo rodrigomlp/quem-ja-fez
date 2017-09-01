@@ -14,9 +14,12 @@
             <%= display_user_avatar(resume.user) %>
           </div>
 
-          <!-- First & Last name -->
+          <!-- Full name & Age -->
           <div class="">
-            <h4><strong><%= resume.user.first_name %> <%= resume.user.last_name %></strong><%= ", #{age_calculator(resume.user)}" %></h4>
+            <h4>
+              <strong><%= resume.user.full_name %></strong>
+              <%= ", #{age_calculator(resume.user)}" unless resume.user.birth_date.nil? %>
+            </h4>
           </div>
 
           <!-- Stars -->
