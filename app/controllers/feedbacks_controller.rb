@@ -10,7 +10,7 @@ class FeedbacksController < ApplicationController
     if params[:feedback] != "" # If feedback was given
       @user = current_user
       UserMailer.user_feedback(params[:feedback], params[:email], params[:referrer], @user).deliver_now
-      flash[:notice] = "Feedback recebido. Obrigado!"
+      # flash[:notice] = "Feedback recebido. Obrigado!"
       redirect_to params[:referrer] # Redirect user back to where he came from
     else
       render :new
