@@ -18,7 +18,6 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     @user = Resume.find(params[:user_id]).user
-
   end
 
   def edit

@@ -10,7 +10,7 @@
       <% if lock_course_info %>
         <p class="well well-sm"><%= resume.course %></p>
         <p class="well well-sm"><%= resume.university %></p>
-        <p class="well well-sm"><%= resume.school_email %></p>
+        <!-- <p class="well well-sm"><%#= resume.school_email %></p> -->
         <small class="text-gray">
           <i class="fa fa-lock margin-h-xs" aria-hidden="true"></i>
           Não pode ser alterado depois de validado.
@@ -20,7 +20,7 @@
       <% else %>
         <p><%= f.association :course, readonly: false, label: "Curso", prompt: "Curso" %></p>
         <p><%= f.association :university, readonly: false, label: "Universidade", prompt: "Universidade" %></p>
-        <p><%= f.input :school_email, readonly: false, label: "E-mail acadêmico", placeholder: "E-mail da instituição de ensino", hint: 'Não será exibido para os usuários.' %></p>
+        <%#= f.input :school_email, readonly: false, label: "E-mail acadêmico", placeholder: "E-mail da instituição de ensino", hint: 'Não será exibido para os usuários.' %>
       <% end %>
 
       <hr class="margin-v-sm">
