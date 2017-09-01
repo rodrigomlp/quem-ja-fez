@@ -26,7 +26,6 @@ class UsersController < ApplicationController
     @resumes = @resumes.joins(:course, :university, :user) # joins all tables onto resume PERGUNTA: por que eu preciso dar join?
     @resumes = @resumes.where(email_checked: true) # only show resumes that have been verified
 
-
     if params[:university].present? # has the user entered anything in the 'university' search field?
       @resumes = @resumes.where("LOWER(universities.name) ILIKE ?", "%#{University.find_by_name(params[:university])}%")
     end
@@ -38,6 +37,8 @@ class UsersController < ApplicationController
     @resumes = @resumes.select do |resume|
       resume.completed? #&& resume.user.profile_completed? #Validation to be discussed with the group
     end
+
+    @resumes
   end
 
   def schedule

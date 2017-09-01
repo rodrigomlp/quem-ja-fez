@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   get 'about', to: "pages#about" # About us
   get 'info', to: "pages#info" # Undergraduate sign up explanation page
 
+  # Feedback page
+  resource :feedbacks, only: [:new, :create]
+
   # Users
   resources :users, only: [:index, :show], path: "/results" do
     get 'notify_interest', to: 'users#notify_interest', as: :notify_interest

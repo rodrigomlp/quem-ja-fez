@@ -1,0 +1,32 @@
+<div class="container">
+  <h4>Feedback do Usuário</h4>
+  <small class="text-gray">Esse e-mail é enviado quando o usuário deixa um feedback na nossa página.</small>
+  <hr>
+  <br>
+
+  <p><strong>Dados do usuário</strong></p>
+  <% if !@user.nil? %>
+    <p>ID - <%= @user.id %></p>
+    <p>Nome Completo - <%= @user.first_name %> <%= @user.last_name %></p>
+    <p>Email de Login - <%= @user.email %></p>
+  <% else %>
+    <p>Anônimo</p>
+  <% end %>
+
+  <strong>Usuário veio da rota: </strong>
+  <%= @referrer %>
+
+  <p><strong>E-mail</strong></p>
+  <% if !@user_email.nil? %>
+    <p><%= @user_email %></p>
+  <% else %>
+    <p>Anônimo</p>
+  <% end %>
+
+
+  <p><strong>Feedback</strong></p>
+  <p>"<%= @feedback %>"</p>
+
+  <br>
+  <hr>
+</div>

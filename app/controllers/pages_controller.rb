@@ -9,8 +9,4 @@ class PagesController < ApplicationController
 
   def info # undergrad sign up explanation page
   end
-
-  private
-
-
 end

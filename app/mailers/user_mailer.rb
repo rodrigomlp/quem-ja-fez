@@ -39,4 +39,12 @@ class UserMailer < ApplicationMailer
     mail(to: undergraduate.email, subject: "Quem já fez? | #{@highschooler_name} quer falar com você")
   end
 
+  def user_feedback(feedback, email, referrer, user)
+    @feedback = feedback
+    @user_email = email
+    @referrer = referrer
+    @user = user
+    mail(to: "admin@quemjafez.com.br", subject: "Feedback do Usuário")
+  end
+
 end
