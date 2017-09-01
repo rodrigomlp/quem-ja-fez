@@ -87,7 +87,7 @@ $(document).ready(function(){
           }
 
 
-         /*Highschoolers want sto schedule a time*/
+         /*Highschoolers want to schedule a time*/
          else {
             /*if he has not clicked yet (event is green) change it to red*/
             if (event.color == "green"){

@@ -48,6 +48,10 @@ class UsersController < ApplicationController
     resume = Resume.find(params[:user_id])
     undergraduate = resume.user
     highschooler = current_user
+    # Create interest
+    potential_meeting = PotentialMeeting.new(resume: resume, undergraduate: undergraduate, highschooler: highschooler)
+    potential_meeting.save!
+    # Send email to undergraduate
     UserMailer.notify_interest(resume, undergraduate, highschooler).deliver
   end
 
