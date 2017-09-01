@@ -39,6 +39,10 @@ class User < ApplicationRecord
     return user
   end
 
+  def full_name
+    return "#{self.first_name.capitalize} #{self.last_name.capitalize}"
+  end
+
   # validation to be discussed with the group
   # def profile_completed?
   #   if  skype.present? && personal_description.present?
