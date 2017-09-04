@@ -1,0 +1,13 @@
+<h4><%= @greeting %> <%= @highschooler_name %></h4>
+<p>
+  <%= @undergraduate_name %> já disponibilizou alguns horários para conversar com você lá no Quem Já Fez!
+</p>
+<p>
+  Agora é só clicar no link abaixo para marcar um horário:
+</p>
+
+
+<%= link_to 'clique aqui para marcar um horário', user_events_url(@resume_id)  %>
+
+<p>Abraço,</p>
+<p>Equipe Quem Já Fez.</p>

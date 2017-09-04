@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170824014158) do
+ActiveRecord::Schema.define(version: 20170901212617) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,15 @@ ActiveRecord::Schema.define(version: 20170824014158) do
     t.bigint "resume_id"
     t.string "virtual_room"
     t.index ["resume_id"], name: "index_meetings_on_resume_id"
+  end
+
+  create_table "potential_meetings", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "undergraduate_id"
+    t.integer "highschooler_id"
+    t.bigint "resume_id"
+    t.index ["resume_id"], name: "index_potential_meetings_on_resume_id"
   end
 
   create_table "resumes", force: :cascade do |t|
@@ -107,6 +116,9 @@ ActiveRecord::Schema.define(version: 20170824014158) do
   add_foreign_key "meetings", "resumes"
   add_foreign_key "meetings", "users", column: "highschooler_id"
   add_foreign_key "meetings", "users", column: "undergraduate_id"
+  add_foreign_key "potential_meetings", "resumes"
+  add_foreign_key "potential_meetings", "users", column: "highschooler_id"
+  add_foreign_key "potential_meetings", "users", column: "undergraduate_id"
   add_foreign_key "resumes", "courses"
   add_foreign_key "resumes", "universities"
   add_foreign_key "resumes", "users"
