@@ -1,0 +1,23 @@
+.feedbacks.new {
+  .contact {
+    .contact-content{
+      @extend .flex-column;
+      @extend .flex-align-center;
+
+      .contact-info {
+        @extend .flex;
+        @extend .flex-align-center;
+        width: 240px;
+
+        .contact-icon {
+          @extend .flex;
+
+          justify-content: flex-end;
+          padding-right: 10px;
+          width: 50px;
+          color: $light-gray;
+        }
+      }
+    }
+  }
+}
