@@ -1,3 +1,9 @@
+// Container
+.container {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
 // Vertical only
 .padding-v-sm {
   padding-top:    20px;
@@ -11,39 +17,39 @@
 
 // Horizontal only
 .padding-h-sm {
-  padding-left:    20px;
-  padding-right:   20px;
+  padding-left:    5%;
+  padding-right:   5%;
 }
 
 
 .padding-h-md {
-  padding-left:    40px;
-  padding-right:   40px;
+  padding-left:    10%;
+  padding-right:   10%;
 }
 
 // All sides
 .padding-xs {
-  padding: 10px;
+  padding: 2.5% !important;
 }
 
 .padding-sm {
-  padding: 20px;
+  padding: 5% !important;
 }
 
 .padding-md {
-  padding: 40px !important;
+  padding: 10% !important;
 }
 
 // Bottom only
 
 .padding-bottom-xs {
-  padding-bottom: 10px;
+  padding-bottom: 2.5%;
 }
 
 .padding-bottom-sm {
-  padding-bottom: 20px;
+  padding-bottom: 5%;
 }
 
 .padding-bottom-md {
-  padding-bottom: 40px;
+  padding-bottom: 10%;
 }
