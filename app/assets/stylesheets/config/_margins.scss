@@ -1,4 +1,5 @@
-// Bottom and top
+// Veritcal
+// (should NOT be responsive)
 .margin-v-xs {
   margin-top:    20px !important;
   margin-bottom: 20px !important;
@@ -24,34 +25,8 @@
   margin-bottom: 200px !important;
 }
 
-.margin-h-xs {
-  margin-left:    20px !important;
-  margin-right:   20px !important;
-}
-
-.margin-h-sm {
-  margin-left:    40px !important;
-  margin-right:   40px !important;
-}
-
-.margin-h-md {
-  margin-left:    80px !important;
-  margin-right:   80px !important;
-}
-
-.margin-h-lg {
-  margin-left:    120px !important;
-  margin-right:   120px !important;
-}
-
-.margin-h-xl {
-  margin-left:    200px !important;
-  margin-right:   200px !important;
-}
-
-
-
 // Top only
+// (should NOT be responsive)
 .margin-top-xs {
   margin-top: 20px !important;
 }
@@ -69,6 +44,7 @@
 }
 
 // Bottom only
+// (should NOT be responsive)
 .margin-bottom-xs {
   margin-bottom: 20px !important;
 }
@@ -86,22 +62,42 @@
 
 // Right only
 .margin-right-xxs {
-  margin-right: 10px !important;
+  margin-right: 2.5% !important;
 }
 
 .margin-right-xs {
-  margin-right: 20px !important;
+  margin-right: 5% !important;
 }
 .margin-right-sm {
-  margin-right: 40px !important;
+  margin-right: 10% !important;
 }
 
 .margin-right-md {
-  margin-right: 80px !important;
+  margin-right: 15% !important;
 }
 
 .margin-right-lg {
-  margin-right: 120px !important;
+  margin-right: 20% !important;
+}
+
+// Left only
+.margin-left-xxs {
+  margin-left: 2.5% !important;
+}
+
+.margin-left-xs {
+  margin-left: 5% !important;
+}
+.margin-left-sm {
+  margin-left: 10% !important;
+}
+
+.margin-left-md {
+  margin-left: 15% !important;
+}
+
+.margin-left-lg {
+  margin-left: 20% !important;
 }
 
 // No margin
@@ -111,4 +107,32 @@
 
 .no-margin-top {
   margin-top: 0;
+}
+
+
+// Horizontal
+// (responsive)
+.margin-h-xs {
+  margin-left:    5% !important;
+  margin-right:   5% !important;
+}
+
+.margin-h-sm {
+  margin-left:    10% !important;
+  margin-right:   10% !important;
+}
+
+.margin-h-md {
+  margin-left:    15% !important;
+  margin-right:   15% !important;
+}
+
+.margin-h-lg {
+  margin-left:    20% !important;
+  margin-right:   20% !important;
+}
+
+.margin-h-xl {
+  margin-left:    25% !important;
+  margin-right:   25% !important;
 }

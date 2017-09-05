@@ -1,6 +1,6 @@
 <!-- Display number of reviews -->
 <div class="row">
-  <div class="col-xs-10 col-xs-offset-2">
+  <div class="col-xs-12 col-md-10 col-md-offset-2">
     <div class="reviews-title">
       <% if @count_reviews == 1 %>
         <h4><%= @count_reviews %> Comentário sobre <%= @resume.user.first_name %></h4>
@@ -25,14 +25,14 @@
       <div class="card-review margin-bottom-sm">
     <div class="row">
           <!-- Avatar image -->
-          <div class="col-xs-2">
+          <div class="col-xs-2 hidden-xs hidden-sm">
             <div class="review-avatar">
               <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
             </div>
           </div>
 
           <!-- Review content -->
-          <div class="col-xs-10">
+          <div class="col-xs-12 col-md-10">
             <div class="review-content">
               <strong><%= meeting.review_title %></strong>
               <p><%= meeting.review_content %></p>

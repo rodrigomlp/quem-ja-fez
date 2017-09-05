@@ -11,22 +11,22 @@ module ApplicationHelper
       height = 160
       width  = 160
       fa_size = "fa-5x"
-      default_class = "avatar avatar-lg " + args[:css_class]
+      default_class = "avatar avatar-lg img-thumbnail " + args[:css_class]
     elsif args[:size] == 'md'
       height = 100
       width  = 100
       fa_size = "fa-4x"
-      default_class = "avatar avatar-md " + args[:css_class]
+      default_class = "avatar avatar-md img-thumbnail " + args[:css_class]
     elsif args[:size] == 'sm'
       height = 60
       width  = 60
       fa_size = "fa-3x"
-      default_class = "avatar avatar-sm " + args[:css_class]
+      default_class = "avatar avatar-sm img-thumbnail " + args[:css_class]
     else
       height = 40
       width  = 40
       fa_size = "fa-2x"
-      default_class = "avatar avatar-xs " + args[:css_class]
+      default_class = "avatar avatar-xs img-thumbnail " + args[:css_class]
     end
 
     # check which type of image to use
@@ -35,7 +35,7 @@ module ApplicationHelper
     elsif user.facebook_picture_url != nil
       image_tag user.facebook_picture_url + "&width=" + width.to_s + "&height=" + height.to_s, class:  default_class
     else
-      content_tag(:i, "", class: "fa fa-user-circle-o #{fa_size}") # Place-holder image
+      content_tag(:i, "", class: "fa fa-user-circle-o img-circle img-thumbnail #{fa_size}") # Place-holder image
     end
   end
 

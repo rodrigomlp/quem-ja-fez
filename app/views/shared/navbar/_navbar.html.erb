@@ -1,0 +1,18 @@
+<div class="navbar-wagon <%= yield(:navbar_class) %>">
+  <!-- Logo -->
+  <%= link_to root_path, class: "logo-container" do %>
+
+    <div class="logo">
+      <h4>Quem já fez?</h4>
+    </div>
+    <div class="logo-beta-keyword">
+      <small>beta</small>
+    </div>
+
+  <% end %>
+
+  <!-- DESKTOP -->
+  <%= render '/shared/navbar/desktop_navbar' %>
+  <!-- MOBILE -->
+  <%= render '/shared/navbar/mobile_navbar' %>
+</div>

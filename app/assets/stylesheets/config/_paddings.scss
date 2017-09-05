@@ -1,4 +1,11 @@
+// Container
+.container {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
 // Vertical only
+// (should NOT be responsive)
 .padding-v-sm {
   padding-top:    20px;
   padding-bottom: 20px;
@@ -10,32 +17,66 @@
 }
 
 // Horizontal only
+// (responsive)
+.padding-h-xs {
+  padding-left:    2.5%;
+  padding-right:   2.5%;
+}
+
 .padding-h-sm {
-  padding-left:    20px;
-  padding-right:   20px;
+  padding-left:    5%;
+  padding-right:   5%;
 }
 
 
 .padding-h-md {
-  padding-left:    40px;
-  padding-right:   40px;
+  padding-left:    10%;
+  padding-right:   10%;
+}
+
+
+// Right only
+.padding-left-xs {
+  padding-left:   2.5%;
+}
+
+.padding-left-sm {
+  padding-left:   5%;
+}
+
+.padding-left-md {
+  padding-left:   10%;
+}
+
+
+// Right only
+.padding-right-xs {
+  padding-right:   2.5%;
+}
+
+.padding-right-sm {
+  padding-right:   5%;
+}
+
+.padding-right-md {
+  padding-right:   10%;
 }
 
 // All sides
 .padding-xs {
-  padding: 10px;
+  padding: 2.5% !important;
 }
 
 .padding-sm {
-  padding: 20px;
+  padding: 5% !important;
 }
 
 .padding-md {
-  padding: 40px !important;
+  padding: 10% !important;
 }
 
 // Bottom only
-
+// (should NOT be responsive)
 .padding-bottom-xs {
   padding-bottom: 10px;
 }

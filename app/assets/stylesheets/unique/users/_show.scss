@@ -1,6 +1,6 @@
 .users.show {
   .card {
-    padding-right: 40px;
+    @extend .padding-h-sm;
   }
   .title {
     display: flex;

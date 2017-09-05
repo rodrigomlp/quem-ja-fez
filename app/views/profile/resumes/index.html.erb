@@ -5,17 +5,17 @@
   <% end %>
 <% end %>
 
-<div class="container margin-v-md">
+<div class="container margin-v-md margin-h-xs">
   <div class="row">
 
     <!-- Profile side-bar -->
-    <div class="col-xs-3">
+    <div class="col-xs-12 col-md-3">
       <%= render 'shared/profile/profile_side_bar' %>
     </div>
 
 
     <!-- Alert in case the profile is complete -->
-    <div class="col-xs-8">
+    <div class="col-xs-12 col-md-8">
       <% @resumes.each do |resume| %>
         <% if resume.completed?%>
           <div class="alert alert-success">
@@ -94,7 +94,7 @@
           <%= simple_form_for @new_resume, url:  profile_resumes_path, method: :post do |f| %>
             <!-- Curso, universidade e e-mail acadêmico -->
             <div class="row">
-              <div class="col-xs-6 col-xs-offset-3">
+              <div class="col-xs-12 col-md-8 col-md-offset-2">
 
               <p><%= f.association :course, readonly: false, label: "Curso", prompt: "Curso" %></p>
               <p><%= f.association :university, readonly: false, label: "Universidade", prompt: "Universidade" %></p>
@@ -106,7 +106,7 @@
 
             <!-- Recomenda o curso ou não -->
             <div class="row">
-              <div class="col-xs-8 col-xs-offset-2">
+              <div class="col-xs-12 col-md-8 col-md-offset-2">
                 <div class="">
                   <h4 class="text-center no-margin">
                     Você recomendaria seu curso/faculdade para outras pessoas?
@@ -132,7 +132,7 @@
 
             <!-- % do curso completado -->
             <div class="row">
-              <div class="col-xs-8 col-xs-offset-2">
+              <div class="col-xs-12 col-md-8 col-md-offset-2">
                 <div class="">
                   <h4 class="text-center no-margin">
                     Em termos gerais, quanto do curso você já completou?
@@ -149,7 +149,7 @@
 
             <!-- Descrição pessoal sobre o curso -->
             <div class="row">
-              <div class="col-xs-8 col-xs-offset-2">
+              <div class="col-xs-12 col-md-8 col-md-offset-2">
                 <div class="text-center margin-bottom-sm">
                   <h4 class="no-margin">
                     Fale um pouco sobre você e das suas atividades atuais e passadas na faculdade.

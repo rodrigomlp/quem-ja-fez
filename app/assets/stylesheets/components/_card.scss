@@ -49,8 +49,8 @@
 
 // app/views/pages/info
 .card-info {
-  padding: 20px;
   background-color: rgba(0,0,0,0.6);
+  border-radius: 5px;
   .card-title {
     margin-bottom: 10px;
   }
@@ -78,8 +78,10 @@
   }
 
   .right-column {
-    border-right: 2px solid rgba(128, 128, 128, 0.42);
-    border-left: 2px solid rgba(128, 128, 128, 0.42);
+    @media screen and (min-width: 800px) {
+      border-right: 2px solid rgba(128, 128, 128, 0.42);
+      border-left: 2px solid rgba(128, 128, 128, 0.42);
+    }
   }
 
   .card-link {
@@ -123,24 +125,19 @@
 // card-resume
 // -----------
 
-.card-border-rd-sm {
-  border-radius: 5px;
-}
-
 .meeting-card {
   border-left: 7px solid;
   border-top: none;
   border-bottom: none;
   border-right: none;
-  margin-bottom: 20px;
+  @extend .margin-bottom-xs;
   // height: 150px;
-  padding: 5px 5px;
 
   small {
     font-size: 80%;
 
     .xs{
-      font-size: 12px;
+      font-size: 0.75em;
     }
   }
 
@@ -194,27 +191,26 @@
   .sec-t1 {
     flex-basis: 20%;
     // width: 150px;
-    padding: 0 5px;
+    @extend .padding-right-xs;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     p {
       margin-bottom: 0px;
-      font-size: 16px;
+      font-size: 1em;
     }
   }
 
   .sec-t2 {
     flex-basis: 50%;
     // width: 350px;
-    padding-left: 5px;
-    padding-right: 10px;
+    @extend .padding-h-xs;
     display: flex;
     flex-direction: row;
     align-self: flex-start;
 
     .icon {
-      padding: 0 10px;
+      @extend .padding-right-xs;
     }
 
     .names {
@@ -223,11 +219,11 @@
       justify-content: center;
       align-self: flex-start;
       flex: 1;
-      padding-right: 30px;
+      @extend .padding-right-xs;
 
       p {
         margin-bottom: 0px;
-        font-size: 16px;
+        font-size: 1em;
       }
 
       .name-top {
@@ -241,7 +237,7 @@
   .sec-t3 {
     flex-basis: 30%;
     // width: 250px;
-    padding: 0 15px;
+    @extend .padding-left-xs;
     border-left: 1px solid $light-gray;
     display: flex;
 
