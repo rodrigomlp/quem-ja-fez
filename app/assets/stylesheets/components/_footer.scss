@@ -5,7 +5,7 @@
   color: $light-gray;
   a.first {
     color: $light-gray;
-    font-size: 30px;
+    font-size: 1.875em;
     letter-spacing: 20px;
     transition: color 0.5s ease;
 
@@ -16,7 +16,7 @@
 
   a.second {
     color: $light-gray;
-    font-size: 16px;
+    font-size: 1em;
     transition: color 0.5s ease;
     padding: 4px;
 
@@ -27,7 +27,7 @@
 
   p {
     margin-top: 17px;
-    font-size: 14px;
+    font-size: 0.75em;
   }
 
   ul {
