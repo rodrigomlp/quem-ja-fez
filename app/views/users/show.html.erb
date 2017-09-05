@@ -35,7 +35,7 @@
 
       <!-- Opnião do undergrad sobre o curso -->
       <div class="row">
-        <div class="col-xs-10 col-xs-offset-2">
+        <div class="col-xs-12 col-md-10 col-md-offset-2">
           <div>
             <h4>
               Minhas experiências
@@ -72,13 +72,13 @@
         <!-- In the case where the undergraduate has available slots -->
         <% if !@notification_button %>
           <div class="schedule button">
-            <%= link_to "Marcar reunião", user_events_path(@resume), class: "btn btn-primary" %>
+            <%= link_to "Marcar reunião", user_events_path(@resume), class: "btn btn-primary btn-block" %>
           </div>
         <!-- In the case where the undergraduate has not available slots.-->
         <% else %>
           <!-- Button in case the undergraduate don't have any availability -->
           <div class="schedule button" id="show-interest" data-toggle="popover" data-container="body" data-placement="bottom" data-animation="true" data-trigger="hover" data-content="Notificaremos <%= @resume.user.first_name.capitalize %> sobre seu interesse em falar com ele/a. Assim que surgir um horário você será o/a primeiro/a a saber!">
-            <button id="show-interest", class="btn btn-primary"> Tenho interesse </button>
+            <button id="show-interest", class="btn btn-primary btn-block"> Tenho interesse </button>
           </div>
         <% end %>
       </div>
