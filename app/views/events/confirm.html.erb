@@ -1,7 +1,7 @@
 <div class="container margin-v-sm">
-  <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
+  <div class="col-xs-12 col-md-6 col-md-offset-3">
     <div class="card-plain"></div>
-    <div class="card padding-h-md padding-bottom-md">
+    <div class="card padding-h-sm padding-bottom-md">
       <div class="title flex-center-column margin-bottom-xs">
         <!-- Avatar -->
         <div class="header-undergrad-profile text-center">
@@ -100,17 +100,16 @@
       <!-- Paypal -->
 
       <!-- Confirmar Conversa -->
-      <div class="flex-column flex-align-center margin-v-xs">
-        <%= form_for(@meeting, :url => profile_meetings_path, :action => "POST") do |f| %>
+      <%= form_for(@meeting, :url => profile_meetings_path, :action => "POST") do |f| %>
 
+      <div class="flex-column flex-align-center margin-v-xs">
           <%= f.hidden_field :resume, :value => @resume.id %>
           <%= f.hidden_field :event, :value => @events.map(&:id)  %>
 
-          <%= f.submit class: 'btn btn-primary', value: "Agendar Conversa" %>
-        <% end %>
-
-        <%= link_to "Problemas com agendamento?", new_feedbacks_path, class: "margin-top-xs" %>
+          <%= f.submit class: 'btn btn-primary btn-block', value: "Agendar Conversa" %>
+          <%= link_to "Problemas com agendamento?", new_feedbacks_path, class: "margin-top-xs" %>
       </div>
+      <% end %>
       <!-- Confirmar Conversa -->
     </div>
   </div>
