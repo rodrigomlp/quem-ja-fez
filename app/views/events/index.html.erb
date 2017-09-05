@@ -1,17 +1,17 @@
-<div class="container margin-v-sm">
+<div class="container margin-v-sm margin-h-xs">
 
   <div class="row">
-    <div class="col-xs-7">
+    <div class="col-xs-12 col-md-7">
       <div class="calendar">
       </div>
     </div>
-    <div class="col-xs-5">
+    <div class="col-xs-12 col-md-5 margin-v-sm">
     <!-- Se for undergraduate ele vai ter a opção de clicar nos seus horários disponíveis e voltar ao seu perfil -->
     <!-- ISSO VAI DAR RUIM! Se um undergraduate entrar na página de outro undergraduate, ele receberá a tela de 'Qual é a sua disponibiliadde para essa semana?' -->
       <div class="card padding-h-md padding-v-md">
         <% if current_user.undergraduate %>
           <h3 class="margin-bottom-sm">Qual é a sua disponibilidade para essa semana?</h3>
-          <%= link_to "Confirmar disponibilidade", profile_meetings_path, :class => "btn btn-primary" %>
+          <%= link_to "Confirmar disponibilidade", profile_meetings_path, :class => "btn btn-primary btn-block" %>
         <!-- Se for highschooler ele vai ter a opção de marcar os horários em que ele pode conversar -->
         <% else %>
           <div class="card-title margin-bottom-sm">
@@ -19,7 +19,7 @@
             </h3>
             <small class="text-gray">Você pode selecionar um ou mais blocos de 30 minutos.</small>
           </div>
-          <%= link_to "Selecionar horários", confirm_user_events_path, :class => "btn btn-primary disabled", id: "confirm_button" %>
+          <%= link_to "Selecionar horários", confirm_user_events_path, :class => "btn btn-primary disabled btn-block", id: "confirm_button" %>
         <% end %>
 
         <!-- <br> -->
