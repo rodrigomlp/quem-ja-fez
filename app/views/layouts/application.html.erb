@@ -20,8 +20,12 @@
   <body class="<%= controller_name %> <%= action_name %>">
     <%= render 'shared/navbar/navbar' %>
     <%= render 'shared/flashes' %>
-    <%= yield %>
-    <div id='remote_container'></div>
+
+    <!-- Body -->
+    <main class="body">
+      <%= yield %>
+    </main>
+
     <!-- Include Required Prerequisites -->
     <script>
       <% if params[:user_id] %>
@@ -31,8 +35,10 @@
       <% end %>
     </script>
 
-
     <%= render 'shared/footer' %>
+
+    <!-- Javascript -->
+    <!-- Google analyctics -->
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -45,7 +51,5 @@
     <%= javascript_include_tag 'application' %>
     <%= yield(:js) %> <!-- Reload javascript that was called from within an html -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-
-
   </body>
 </html>

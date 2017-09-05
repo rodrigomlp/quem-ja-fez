@@ -12,7 +12,7 @@ class Profile::VerificationsController < ApplicationController
 
     # Only submit form if right info is provided
     if @resume.save
-      # After creating this resume, an e-mail of confirmation is sent.
+      # After creating this resume, an e-mail of confirmation is sent. NOT ANYMORE.
       @resume.user.undergraduate = true;
       @resume.user.save!
       redirect_to profile_resumes_path

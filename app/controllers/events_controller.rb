@@ -1,15 +1,13 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:index, :show, :new, :create, :update]
 
   def index
-    @user = Resume.find(params[:user_id]).user
-    # @events = Event.where(start: params[:start]..params[:end])
     @events = Event.where(user: @user)
     @red_events = @user.events.where(color: "red").count
   end
 
   def show
-    @user = Resume.find(params[:user_id]).user
     @event = Event.find(params[:id])
     @red_events = @user.events.where(color: "red").count
 
@@ -17,21 +15,21 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-    @user = Resume.find(params[:user_id]).user
-
   end
 
   def edit
   end
 
+  # When an undergraduate creates an event
   def create
     @event = Event.new(event_params)
-    @event.user = Resume.find(params[:user_id]).user
+    @event.user = @user
     @event.save
+    # Cehck if there is any highschooler interested in talking to this undergraduate
+    notify_highschooler if @user.interested_in_me.present?
   end
 
   def update
-    @user = Resume.find(params[:user_id]).user
     @event.update(event_params)
     @red_events = @user.events.where(color: "red").count
     respond_to do |format|
@@ -47,6 +45,7 @@ class EventsController < ApplicationController
 
   end
 
+  #When highschooler confirm events
   def confirm
     @resume = Resume.find(params[:user_id])
     @user = @resume.user
@@ -76,11 +75,24 @@ class EventsController < ApplicationController
       @event = Event.find(params[:id])
     end
 
+    def set_user
+      @user = Resume.find(params[:user_id]).user
+    end
+
     def event_params
       params.require(:event).permit(:title, :start, :end, :color, :user_id)
     end
 
-    private
+    def notify_highschooler
+      # O first pega o highschooler que mostrou interesse ha mais tempo: FIFO
+      potential_meeting = @user.interested_in_me.first
+      highschooler = potential_meeting.highschooler
+      resume = potential_meeting.resume
+      # Send email to highschooler
+      UserMailer.notify_availability(resume, @user, highschooler).deliver
+      # Depois de enviado e-mail podemos excluir a indicação de interesse
+      potential_meeting.destroy
+    end
 
     # !- Stars -!
     def round_point5(number)

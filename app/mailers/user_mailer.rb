@@ -39,6 +39,14 @@ class UserMailer < ApplicationMailer
     mail(to: undergraduate.email, subject: "Quem já fez? | #{@highschooler_name} quer falar com você")
   end
 
+  def notify_availability(resume,undergraduate, highschooler)
+    @undergraduate_name = undergraduate.first_name
+    @highschooler_name = highschooler.first_name
+    @resume_id = resume.id
+    @greeting = "Olá," # greeting message displayed on e-mail
+    mail(to: highschooler.email, subject: "Quem já fez? | #{@undergraduate_name} disponibilizou um horário para conversa")
+  end
+
   def user_feedback(feedback, email, referrer, user)
     @feedback = feedback
     @user_email = email

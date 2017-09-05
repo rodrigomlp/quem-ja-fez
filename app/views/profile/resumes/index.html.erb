@@ -17,7 +17,7 @@
     <!-- Alert in case the profile is complete -->
     <div class="col-xs-8">
       <% @resumes.each do |resume| %>
-        <% if resume.email_checked && resume.completed?%>
+        <% if resume.completed?%>
           <div class="alert alert-success">
             <strong> Não se esqueça de inserir sua <%= link_to "disponibilidade", user_events_path(current_user.resumes.first), class: "alert-link" %> aqui do lado! </strong>
           </div>
@@ -29,7 +29,7 @@
 
       <!-- List of the courses with e-mail validated and with infos completed-->
       <% @resumes.each do |resume| %>
-        <% if resume.email_checked && resume.completed?%>
+        <% if resume.completed?%>
           <div class="panel panel-success">
             <div class="panel-heading">
               <h3 class="panel-title"> <i class="fa fa-check" aria-hidden="true"></i> <strong> Dados completos! </strong> </h3>
@@ -43,13 +43,13 @@
 
       <!-- List of the courses with e-mail validated -->
       <% @resumes.each do |resume| %>
-        <% if resume.email_checked && !resume.completed? %>
+        <% if !resume.completed? %>
           <div class="panel panel-warning">
             <div class="panel-heading">
               <h3 class="panel-title">
                 <ul class="list-unstyled">
 
-                  <li><i class="fa fa-check" aria-hidden="true"></i>  E-mail verificado</li>
+                  <!-- <li><i class="fa fa-check" aria-hidden="true"></i>  E-mail verificado</li> -->
                   <% if resume.stance.nil? %>
                     <li><i class="fa fa-times" aria-hidden="true"></i>  Informe se você indicaria este curso a um amigo</li>
                   <% end %>
@@ -71,18 +71,18 @@
       <% end %>
 
       <!-- List of the courses pending verification -->
-      <% @resumes.each do |resume| %>
-        <% if !resume.email_checked %>
-          <div class="panel panel-danger">
+      <%# @resumes.each do |resume| %>
+        <%# if !resume.email_checked %>
+          <!-- <div class="panel panel-danger">
             <div class="panel-heading">
               <h3 class="panel-title">Verifique seu e-mail acadêmico e click no link que enviamos para você</h3>
             </div>
             <div class="panel-body">
-            <%= render 'resume-form', resume: resume, readonly: false, lock_course_info: false %>
+            <%#= render 'resume-form', resume: resume, readonly: false, lock_course_info: false %>
             </div>
-          </div>
-        <% end %>
-      <% end %>
+          </div> -->
+        <%# end %>
+      <%# end %>
 
       <!-- TO-DO: Refatorar essa budega -->
       <!-- Add a new course -->
@@ -98,7 +98,7 @@
 
               <p><%= f.association :course, readonly: false, label: "Curso", prompt: "Curso" %></p>
               <p><%= f.association :university, readonly: false, label: "Universidade", prompt: "Universidade" %></p>
-              <p><%= f.input :school_email, readonly: false, label: "E-mail acadêmico", placeholder: "E-mail da instituição de ensino", hint: 'Não será exibido para os usuários.' %></p>
+              <p><%#= f.input :school_email, readonly: false, label: "E-mail acadêmico", placeholder: "E-mail da instituição de ensino", hint: 'Não será exibido para os usuários.' %></p>
 
                 <hr class="margin-v-sm">
               </div>

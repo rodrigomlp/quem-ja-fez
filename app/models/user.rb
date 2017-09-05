@@ -8,11 +8,15 @@ class User < ApplicationRecord
   has_many :meetings_accepted, class_name: "Meeting", foreign_key: :undergraduate_id, dependent: :destroy
   has_many :meetings_proposed, class_name: "Meeting", foreign_key: :highschooler_id, dependent: :destroy
 
+  has_many :interested_in_me, class_name: "PotentialMeeting", foreign_key: :undergraduate_id, dependent: :destroy
+  has_many :interested_in, class_name: "PotentialMeeting", foreign_key: :highschooler_id, dependent: :destroy
+
   has_many :meetings
   has_many :resumes, dependent: :destroy
   has_many :universities, through: :resumes
   has_many :courses, through: :resumes
   has_many :events, dependent: :destroy
+
 
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -37,6 +41,10 @@ class User < ApplicationRecord
     end
 
     return user
+  end
+
+  def full_name
+    return "#{self.first_name.capitalize} #{self.last_name.capitalize}"
   end
 
   # validation to be discussed with the group

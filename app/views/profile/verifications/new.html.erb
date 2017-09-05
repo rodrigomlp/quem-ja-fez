@@ -3,15 +3,15 @@
     <div class="card padding-v-md padding-h-md">
       <div class="margin-bottom-sm">
         <h3><strong>Olá!</strong></h3>
-        <h4>Para ser universitário do Quem Já Fez precisamos confirmar seu email acadêmico.</h4>
+        <h4>Para ser universitário do Quem Já Fez precisamos saber um pouco do seu curso.</h4>
       </div>
 
       <!-- Adicionar university email -->
       <%= simple_form_for @resume, url: profile_verification_path, method: :post do |f| %>
         <%= f.association :university, label: "Universidade", prompt: "ex.: FURB" %>
         <%= f.association :course, label: "Curso", prompt: "ex.: Direito" %>
-        <%= f.input :school_email, label: "E-mail Universitário", placeholder: "Email para confirmação" %>
-        <%= f.button :submit, "Enviar link de confirmação", class: "btn btn-primary" %>
+        <%#= f.input :school_email, label: "E-mail Universitário", placeholder: "Email para confirmação" %>
+        <%= f.button :submit, "Cadastrar curso", class: "btn btn-primary" %>
       <% end %>
     </div>
   </div>

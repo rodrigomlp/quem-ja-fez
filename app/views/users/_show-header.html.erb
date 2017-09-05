@@ -11,7 +11,7 @@
 
         <div class="flex-row margin-v-xs">
         <!-- Progress Bar -->
-        <div class="progress" data-toggle="tooltip" data-placement="bottom" data-animation="true" title="Quanto <%= @resume.user.first_name %> já cursou">
+        <div class="progress" data-toggle="tooltip" data-placement="bottom" data-animation="true" title="Quanto <%= @resume.user.first_name.capitalize %> já cursou">
           <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: <%= @resume.relative_completion %>%;">
             <p><%= @resume.relative_completion %>%</p>
           </div>
@@ -20,12 +20,12 @@
         <!-- thumbs icon -->
         <div class="resume-stance">
           <% if @resume.stance %>
-            <div class="thumb-icon thumb-up" data-toggle="tooltip" data-animation="true" title="<%= @resume.user.first_name %> recomenda esse curso"> <!-- Toggles tooltip if hovered over -->
+            <div class="thumb-icon thumb-up" data-toggle="tooltip" data-animation="true" title="<%= @resume.user.first_name.capitalize %> recomenda esse curso"> <!-- Toggles tooltip if hovered over -->
               <i class="fa fa-thumbs-up fa" aria-hidden="true"></i>
             </div>
 
           <% else %>
-            <div class="thumb-icon thumb-down" data-toggle="tooltip" data-animation="true" title="<%= @resume.user.first_name %> não recomenda esse curso"> <!-- Toggles tooltip if hovered over -->
+            <div class="thumb-icon thumb-down" data-toggle="tooltip" data-animation="true" title="<%= @resume.user.first_name.capitalize %> não recomenda esse curso"> <!-- Toggles tooltip if hovered over -->
               <i class="fa fa-thumbs-down fa" aria-hidden="true"></i>
             </div>
           <% end %>
@@ -39,6 +39,6 @@
   <!-- Avatar -->
   <div class="text-center col-xs-3">
     <%= display_user_avatar(@resume.user, size: 'md') %>
-    <p><%= @resume.user.first_name %> <%= @resume.user.last_name %></p>
+    <p><%= @resume.user.full_name %></p>
   </div>
 </div>

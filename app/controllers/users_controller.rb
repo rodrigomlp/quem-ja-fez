@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   def index
     @resumes = Resume.all
     @resumes = @resumes.joins(:course, :university, :user) # joins all tables onto resume PERGUNTA: por que eu preciso dar join?
-    @resumes = @resumes.where(email_checked: true) # only show resumes that have been verified
+    # @resumes = @resumes.where(email_checked: true) # only show resumes that have been verified
 
     if params[:university].present? # has the user entered anything in the 'university' search field?
       @resumes = @resumes.where("LOWER(universities.name) ILIKE ?", "%#{University.find_by_name(params[:university])}%")
@@ -48,6 +48,10 @@ class UsersController < ApplicationController
     resume = Resume.find(params[:user_id])
     undergraduate = resume.user
     highschooler = current_user
+    # Create interest
+    potential_meeting = PotentialMeeting.new(resume: resume, undergraduate: undergraduate, highschooler: highschooler)
+    potential_meeting.save!
+    # Send email to undergraduate
     UserMailer.notify_interest(resume, undergraduate, highschooler).deliver
   end
 

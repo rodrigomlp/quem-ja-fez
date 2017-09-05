@@ -60,8 +60,27 @@
   margin-bottom: 120px !important;
 }
 
+// Right only
+.margin-right-xxs {
+  margin-right: 10px !important;
+}
 
-// No Margin
+.margin-right-xs {
+  margin-right: 20px !important;
+}
+.margin-right-sm {
+  margin-right: 40px !important;
+}
+
+.margin-right-md {
+  margin-right: 80px !important;
+}
+
+.margin-right-lg {
+  margin-right: 120px !important;
+}
+
+// No margin
 .no-margin {
   margin: 0;
 }
