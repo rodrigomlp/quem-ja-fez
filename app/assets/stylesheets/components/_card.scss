@@ -78,8 +78,10 @@
   }
 
   .right-column {
-    border-right: 2px solid rgba(128, 128, 128, 0.42);
-    border-left: 2px solid rgba(128, 128, 128, 0.42);
+    @media screen and (min-width: 800px) {
+      border-right: 2px solid rgba(128, 128, 128, 0.42);
+      border-left: 2px solid rgba(128, 128, 128, 0.42);
+    }
   }
 
   .card-link {

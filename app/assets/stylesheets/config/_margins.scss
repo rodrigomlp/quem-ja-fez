@@ -62,22 +62,42 @@
 
 // Right only
 .margin-right-xxs {
-  margin-right: 10px !important;
+  margin-right: 2.5% !important;
 }
 
 .margin-right-xs {
-  margin-right: 20px !important;
+  margin-right: 5% !important;
 }
 .margin-right-sm {
-  margin-right: 40px !important;
+  margin-right: 10% !important;
 }
 
 .margin-right-md {
-  margin-right: 80px !important;
+  margin-right: 15% !important;
 }
 
 .margin-right-lg {
-  margin-right: 120px !important;
+  margin-right: 20% !important;
+}
+
+// Left only
+.margin-left-xxs {
+  margin-left: 2.5% !important;
+}
+
+.margin-left-xs {
+  margin-left: 5% !important;
+}
+.margin-left-sm {
+  margin-left: 10% !important;
+}
+
+.margin-left-md {
+  margin-left: 15% !important;
+}
+
+.margin-left-lg {
+  margin-left: 20% !important;
 }
 
 // No margin
