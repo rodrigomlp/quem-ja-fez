@@ -49,8 +49,8 @@
 
 // app/views/pages/info
 .card-info {
-  padding: 20px;
   background-color: rgba(0,0,0,0.6);
+  border-radius: 5px;
   .card-title {
     margin-bottom: 10px;
   }
@@ -122,10 +122,6 @@
 // }
 // card-resume
 // -----------
-
-.card-border-rd-sm {
-  border-radius: 5px;
-}
 
 .meeting-card {
   border-left: 7px solid;
