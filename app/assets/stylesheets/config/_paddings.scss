@@ -5,6 +5,7 @@
 }
 
 // Vertical only
+// (should NOT be responsive)
 .padding-v-sm {
   padding-top:    20px;
   padding-bottom: 20px;
@@ -16,6 +17,7 @@
 }
 
 // Horizontal only
+// (responsive)
 .padding-h-sm {
   padding-left:    5%;
   padding-right:   5%;
@@ -41,15 +43,15 @@
 }
 
 // Bottom only
-
+// (should NOT be responsive)
 .padding-bottom-xs {
-  padding-bottom: 2.5%;
+  padding-bottom: 10px;
 }
 
 .padding-bottom-sm {
-  padding-bottom: 5%;
+  padding-bottom: 20px;
 }
 
 .padding-bottom-md {
-  padding-bottom: 10%;
+  padding-bottom: 40px;
 }
