@@ -89,7 +89,7 @@ class EventsController < ApplicationController
       highschooler = potential_meeting.highschooler
       resume = potential_meeting.resume
       # Send email to highschooler
-      UserMailer.notify_availability(resume, @user, highschooler).deliver
+      UserMailer.notify_availability(resume, @user, highschooler).deliver_now
       # Depois de enviado e-mail podemos excluir a indicação de interesse
       potential_meeting.destroy
     end

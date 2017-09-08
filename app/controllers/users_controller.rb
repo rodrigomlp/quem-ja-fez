@@ -52,7 +52,7 @@ class UsersController < ApplicationController
     potential_meeting = PotentialMeeting.new(resume: resume, undergraduate: undergraduate, highschooler: highschooler)
     potential_meeting.save!
     # Send email to undergraduate
-    UserMailer.notify_interest(resume, undergraduate, highschooler).deliver
+    UserMailer.notify_interest(resume, undergraduate, highschooler).deliver_now
   end
 
   private
