@@ -13,7 +13,7 @@
         <!-- If user is an undergrad, take him to 'edit resumes', else, help him create his first resume -->
         <%=
           link_to_if(current_user && current_user.undergraduate == true, "Editar meus currículos", profile_resumes_path, class: "btn btn-default") do
-              link_to("Inscreva-se", new_profile_verification_path, class: "btn btn-primary")
+              link_to("Inscreva-se", new_user_registration_path, class: "btn btn-primary")
           end
         %>
       </div>

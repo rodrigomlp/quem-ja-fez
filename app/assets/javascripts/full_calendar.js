@@ -1,5 +1,7 @@
 
 $(document).ready(function(){
+
+
   if (typeof(window.user_undergraduate) !== "undefined") {
     $('.calendar').each(function(){
       var calendar = $(this);
@@ -34,8 +36,8 @@ $(document).ready(function(){
        dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
        events: '/results/' +  resume_id + '/events.json',
 
-        select: function(start, end, event) {
 
+        select: function(start, end, event) {
            if (window.user_undergraduate && is_same_user){
               $.ajax({
                 type: "POST",
@@ -46,14 +48,18 @@ $(document).ready(function(){
                     end: end.toDate(),
                     color: "green"
                   }
-                }
-            })
-              $('.calendar').fullCalendar( 'renderEvent', {
+                },
+                success: function() {
 
-              start: start,
-              end: end,
-              allDay: false,
-               }, true);
+                              $('.calendar').fullCalendar( 'refetchEvents' );
+                          }
+            });
+              // $('.calendar').fullCalendar( 'renderEvent', {
+              // start: start,
+              // end: end,
+              // allDay: false,
+              //  }, true);
+              // console.log(event);
 
            }
         },

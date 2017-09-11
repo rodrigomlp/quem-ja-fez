@@ -11,7 +11,7 @@
       <div class="card padding-h-md padding-v-md">
         <% if current_user.undergraduate %>
           <h3 class="margin-bottom-sm">Qual é a sua disponibilidade para essa semana?</h3>
-          <%= link_to "Confirmar disponibilidade", profile_meetings_path, :class => "btn btn-primary btn-block" %>
+          <%= link_to "Confirmar disponibilidade", profile_meetings_path, :id => "availability_confirmation", :class => "btn btn-primary btn-block" %>
         <!-- Se for highschooler ele vai ter a opção de marcar os horários em que ele pode conversar -->
         <% else %>
           <div class="card-title margin-bottom-sm">
