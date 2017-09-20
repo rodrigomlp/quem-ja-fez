@@ -33,13 +33,20 @@ class Profile::MeetingsController < ApplicationController
   def create
     events_id = params[:meeting][:event].split(" ")
     @resume = Resume.find(params[:meeting][:resume])
+    @meetings = []
     events_id.each do |event|
       @event = Event.find(event)
       start_time = @event.start
       end_time = @event.end
       meeting = Meeting.create(start_time: start_time, end_time: end_time, highschooler: current_user, undergraduate: @resume.user, resume: @resume)
       @event.destroy
+      @meetings << meeting
     end
+
+    # Sends a confirmation email to both undergraduate and highschooler
+    UserMailer.meeting_confirmation(@meetings, @meetings.first.undergraduate).deliver_now
+    UserMailer.meeting_confirmation(@meetings, @meetings.first.highschooler).deliver_now
+
     redirect_to profile_meetings_path
   end
 

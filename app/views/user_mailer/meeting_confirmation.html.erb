@@ -1,0 +1,13 @@
+<h4>Olá, <%= @user %></h4>
+<p>
+  Você possui uma nova conversa agendada no Quem Já Fez!
+</p>
+
+<% @meetings.each do |meeting| %>
+  <h4>@person</h4>
+  <p> <%= (meeting.start_time).strftime("%R") %> - <%= (meeting.end_time).strftime("%R") %> </p>
+  <br>
+<% end %>
+
+<p>Sinceramente,</p>
+<p>Equipe Quem Já Fez.</p>
