@@ -6,39 +6,47 @@
 
     <%= render 'mail-styling' %>
     </head>
-
   <body id="body" >
+    <center>
 
-    <div id="body_banner">
+      <table>
+        <tr>
+          <td>
+            <div id="body_banner"></div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div id="body_text">
+              <strong>Olá, <%= @user.first_name %></strong>
+              <p>
+                Você possui uma nova conversa agendada no Quem Já Fez!
+              </p>
+              <br>
 
-    </div>
+              <% @meetings.each do |meeting| %>
+                <div class="highlight_left">
+                  <p><%= @person.full_name %></p>
+                  <p>
+                    <%= l meeting.start_time.to_date, format: :short %> | <%= (meeting.start_time).strftime("%R") %> - <%= (meeting.end_time).strftime("%R") %>
+                  </p>
+                  <br>
+                </div>
+              <% end %>
 
-    <div id="body_text">
-      <strong>Olá, <%= @user.first_name %></strong>
-      <p>
-        Você possui uma nova conversa agendada no Quem Já Fez!
-      </p>
-      <br>
+              <div style="margin: 20px 0">
+                <a class='btn' href="https://www.quemjafez.com/profile/meetings" target="_blank">Minhas conversas agendadas</a>
+              </div>
 
-      <% @meetings.each do |meeting| %>
-        <div class="highlight_left">
-          <p><%= @person.full_name %></p>
-          <p>
-            <%= l meeting.start_time.to_date, format: :short %> | <%= (meeting.start_time).strftime("%R") %> - <%= (meeting.end_time).strftime("%R") %>
-          </p>
-          <br>
-        </div>
-      <% end %>
+              <div id="sign-off">
+                <p>Sinceramente,</p>
+                <p>Equipe Quem Já Fez.</p>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
 
-
-      <div style="margin: 20px 0">
-        <a class='btn' href="https://www.quemjafez.com/profile/meetings" target="_blank">Minhas conversas agendadas</a>
-      </div>
-
-      <div id="sign-off">
-        <p>Sinceramente,</p>
-        <p>Equipe Quem Já Fez.</p>
-      </div>
-    </div>
+    </center>
   </body>
 </html>
