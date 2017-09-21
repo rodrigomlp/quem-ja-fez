@@ -53,14 +53,14 @@
             <div class= "flex-row">
               <div class="well margin-bottom-xs padding-xs">
                 <!-- day/month -->
-                <span><%= event.start.day %>/<%= event.start.month %></span>
+                <span><%= event.date %></span>
                 <!-- start time -->
               </div>
 
               <div class="well margin-bottom-xs padding-xs">
-                <span> <%= '%02d' % event.start.hour %>:<%= '%02d' % event.start.min %> </span> -
+                <span> <%= event.start_time %> </span> -
                 <!-- end time -->
-                <span> <%= '%02d' % event.end.hour %>:<%= '%02d' % event.end.min %> </span>
+                <span> <%= event.end_time %> </span>
               </div>
             </div>
           <% end %>

@@ -14,6 +14,20 @@ class UserMailer < ApplicationMailer
     mail(to: resume.school_email, subject: "Confirme seu email acadêmico | Quem já fez?")
   end
 
+  def meeting_confirmation(meetings, user)
+    @meetings = meetings
+    @user = user
+
+    # Who will I be talking to?
+    if @user.undergraduate
+      @person = @meetings.first.highschooler
+    else
+      @person = @meetings.first.undergraduate
+    end
+
+    mail(to: @user.email, subject: "Quem já fez | Conversa agendada")
+  end
+
   def remember_highschooler(meeting)
     @highschooler = User.find(meeting.highschooler_id)
 
