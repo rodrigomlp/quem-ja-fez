@@ -1,13 +1,44 @@
-<h4>Olá, <%= @user %></h4>
-<p>
-  Você possui uma nova conversa agendada no Quem Já Fez!
-</p>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+  <head>
+    <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<% @meetings.each do |meeting| %>
-  <h4>@person</h4>
-  <p> <%= (meeting.start_time).strftime("%R") %> - <%= (meeting.end_time).strftime("%R") %> </p>
-  <br>
-<% end %>
+    <%= render 'mail-styling' %>
+    </head>
 
-<p>Sinceramente,</p>
-<p>Equipe Quem Já Fez.</p>
+  <body id="body" >
+
+    <div id="body_banner">
+
+    </div>
+
+    <div id="body_text">
+      <strong>Olá, <%= @user.first_name %></strong>
+      <p>
+        Você possui uma nova conversa agendada no Quem Já Fez!
+      </p>
+      <br>
+
+      <% @meetings.each do |meeting| %>
+        <div class="highlight_left">
+          <p><%= @person.full_name %></p>
+          <p>
+            <%= l meeting.start_time.to_date, format: :short %> | <%= (meeting.start_time).strftime("%R") %> - <%= (meeting.end_time).strftime("%R") %>
+          </p>
+          <br>
+        </div>
+      <% end %>
+
+
+      <div style="margin: 20px 0">
+        <a class='btn' href="https://www.quemjafez.com/profile/meetings" target="_blank">Minhas conversas agendadas</a>
+      </div>
+
+      <div id="sign-off">
+        <p>Sinceramente,</p>
+        <p>Equipe Quem Já Fez.</p>
+      </div>
+    </div>
+  </body>
+</html>

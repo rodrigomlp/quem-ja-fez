@@ -19,7 +19,7 @@ class UserMailer < ApplicationMailer
     @user = user
 
     # Who will I be talking to?
-    if @user.undergradute
+    if @user.undergraduate
       @person = @meetings.first.highschooler
     else
       @person = @meetings.first.undergraduate
