@@ -7,7 +7,6 @@ gem 'jbuilder', '~> 2.0'
 gem 'puma'
 gem 'rails', '5.1.2'
 gem 'redis'
-gem 'sqlite3'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
@@ -33,7 +32,8 @@ gem 'rails-i18n', '5.0.3' # to set our date and time formats
 gem 'parallax-rails' # parallax effects
 
 group :development, :test do
-  gem "letter_opener" # to preview e-mails to be sent to user
+  gem 'letter_opener' # to preview e-mails to be sent to user
+  gem 'sqlite3'
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'web-console', '>= 3.3.0'
