@@ -1,7 +1,6 @@
 class Event < ApplicationRecord
   belongs_to :user
 
-
   def date
     return "#{self.start.day}/#{self.start.month}"
   end

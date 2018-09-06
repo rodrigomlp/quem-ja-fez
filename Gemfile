@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
-ruby '2.3.3'
+ruby '2.4.4'
 
 gem 'devise'
 gem 'figaro'
 gem 'jbuilder', '~> 2.0'
-gem 'pg'
 gem 'puma'
 gem 'rails', '5.1.2'
 gem 'redis'
+gem 'sqlite3'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
@@ -32,7 +32,6 @@ gem 'rails-i18n', '5.0.3' # to set our date and time formats
 # jQuery
 gem 'parallax-rails' # parallax effects
 
-
 group :development, :test do
   gem "letter_opener" # to preview e-mails to be sent to user
   gem 'pry-byebug'
@@ -47,3 +46,6 @@ group :development, :test do
   gem 'minitest-reporters'
 end
 
+group :production do
+  gem 'pg'
+end
