@@ -22,8 +22,8 @@ gem 'rails-assets-momentjs', source: 'https://rails-assets.org'
 gem 'rails-assets-air-datepicker', source: 'https://rails-assets.org'
 gem 'postmark-rails' # automatic email sender
 gem 'faker' # Fake info generator
-gem "select2-rails" # gem usada para fazer o autocomplete da searchbar
-gem "activemerchant" # gem usado no paypal
+gem 'select2-rails' # gem usada para fazer o autocomplete da searchbar
+gem 'activemerchant' # gem usado no paypal
 gem 'cloudinary' # gem usada para armazenar as imagens
 gem 'carrierwave', '~> 0.11.2' # gem usada para associar photos aos Models
 gem 'rails-i18n', '5.0.3' # to set our date and time formats
